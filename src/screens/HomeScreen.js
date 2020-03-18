@@ -24,52 +24,53 @@ const HomeScreen = (props) => {
     return (
         <>
         <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
-        <Drawer navigate={navigate} title='Home'/>
-        <SafeAreaView style={styles.safeArea}>
-            <ScrollView>
-                <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>Covid 19</Text>
-                    <View style={styles.mainSubContainer}>
-                        <View style={styles.subResult}>
-                            <Text style={styles.subResultText}>Confirmed</Text>
-                            { healthResults ? <Text>{healthResults.total_confirmed}</Text> : <Text>...</Text> }
-                        </View>
-                        <View style={styles.subResult}>
-                            <Text style={styles.subResultText}>Deaths</Text>
-                            { healthResults ? <Text>{healthResults.total_deaths}</Text> : <Text>...</Text> }
-                        </View>
-                        <View style={styles.subResult}>
-                            <Text style={styles.subResultText}>Recovered</Text>
-                            { healthResults ? <Text>{healthResults.total_recovered}</Text> : <Text>...</Text> }
-                        </View>
+        <Drawer navigate={navigate} title=''/>
+        <ScrollView style={styles.safeArea}>
+            
+            <View style={styles.mainHeader}>
+                <Text style={styles.mainHeaderText}>Covid 19</Text>
+                <View style={styles.mainSubContainer}>
+                    <View style={styles.subResult}>
+                        <Text style={styles.subResultText}>Confirmed</Text>
+                        { healthResults ? <Text style={styles.resultNumbers}>{healthResults.total_confirmed}</Text> : <Text>...</Text> }
+                    </View>
+                    <View style={styles.subResult}>
+                        <Text style={styles.subResultText}>Deaths</Text>
+                        { healthResults ? <Text style={styles.resultNumbers}>{healthResults.total_deaths}</Text> : <Text>...</Text> }
+                    </View>
+                    <View style={styles.subResult}>
+                        <Text style={styles.subResultText}>Recovered</Text>
+                        { healthResults ? <Text style={styles.resultNumbers}>{healthResults.total_recovered}</Text> : <Text>...</Text> }
                     </View>
                 </View>
+            </View>
 
-                <View style={styles.subContainer}>
-                    <FlatList
-                        ListHeaderComponent={() => {
-                            return <Text style={styles.subHeading}>Top Affected Countries: </Text>
-                        }}
-                        data={countryWiseData}
-                        keyExtractor={ ele => ele.country }
-                        renderItem={({ item }) => {
-                            return (
-                            <TouchableOpacity style={styles.listItem}>
-                                <Grid>
-                                    <Row>
-                                        <Col><Text>{item.country.toUpperCase()}</Text></Col>
-                                        <Col><Text>{item.confirmed}</Text></Col>
-                                        <Col><Text>{item.deaths}</Text></Col>
-                                        <Col><Text>{item.recovered}</Text></Col>
-                                    </Row>
-                                </Grid>
-                            </TouchableOpacity>
-                            );
-                        }}
-                    />
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+            <View style={styles.subContainer}>
+                <FlatList
+                    ListHeaderComponent={() => {
+                        return <Text style={styles.subHeading}>Top Affected Countries: </Text>
+                    }}
+                    data={countryWiseData}
+                    keyExtractor={ ele => ele.country }
+                    renderItem={({ item }) => {
+                        return (
+                        <TouchableOpacity style={styles.listItem}>
+                            <Grid>
+                                <Row>
+                                    <Col><Text>{item.country.toUpperCase()}</Text></Col>
+                                    <Col><Text>{item.confirmed}</Text></Col>
+                                    <Col><Text>{item.deaths}</Text></Col>
+                                    <Col><Text>{item.recovered}</Text></Col>
+                                </Row>
+                            </Grid>
+                        </TouchableOpacity>
+                        );
+                    }}
+                />
+            </View>
+
+
+        </ScrollView>
         </>
     );
 }
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
         paddingHorizontal: 5,
+        paddingVertical: 20,
     },
     mainHeader: {
         flex: 1,
@@ -86,11 +88,11 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignContent: 'center',
-        paddingVertical: 20,
+        paddingVertical: 100,
     },
     mainHeaderText: {
         textAlign: 'center',
-        fontSize: 48,
+        fontSize: 52,
         fontWeight: 'bold',
         color: '#3f72af',
     }, 
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        paddingTop: 20,
+        paddingTop: 40,
     },
     subResult: {
         flex: 1,
@@ -110,9 +112,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     subResultText: {
-        fontSize: 18,
+        fontSize: 16,
         color: '#112d4e',
-        fontWeight: 'bold'
+    },
+    resultNumbers: {
+        fontSize: 24,
+        fontWeight: 'bold',
     },
     listItem: {
         flex: 1,

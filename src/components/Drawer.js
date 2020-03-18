@@ -20,10 +20,10 @@ const Drawer = ({ navigate, title }) => {
         <>
         <View style={styles.header}>
             <TouchableOpacity style={styles.menu} onPress={onHamClick}>
-                <Feather name='menu' color='#112d4e' size={32}/>
+                <Feather name='menu' color='#112d4e' size={28}/>
             </TouchableOpacity>
-            <View style={styles.headerText}>
-                <Text>{title}</Text>
+            <View>
+                <Text style={styles.headerText}>{title}</Text>
             </View>
         </View>
         </>
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
         top: 0,
         right: 0,
         left: 0,
-        height: 40,
-        padding: 5,
+        height: 48,
+        padding: 10,
         backgroundColor: '#dbe2ef',
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -45,8 +45,9 @@ const styles = StyleSheet.create({
     },
     headerText: {
         color: '#112d4e',
-        fontSize: 22,
+        fontSize: 18,
         margin: 20,
+        fontWeight: 'bold',
     }
 })
 
