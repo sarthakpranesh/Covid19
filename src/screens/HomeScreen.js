@@ -6,40 +6,69 @@ import {
     SafeAreaView,
     StatusBar
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { FlatList, TouchableOpacity, ScrollView } from "react-native-gesture-handler";
+import { Col, Row, Grid} from 'react-native-easy-grid';
 
 // importing components
 import Drawer from '../components/Drawer';
 
 // importing hooks
-import getHealthStats from '../hooks/getStatus';
+import getHealthStats from '../hooks/getGlobalTotal';
+import getCountries from '../hooks/getCountries';
 
 const HomeScreen = (props) => {
     const navigate = props.navigation;
     const [healthCoronaSearch, healthResults, err] = getHealthStats();
+    const [getCountryWiseData, countryWiseData, isError] = getCountries();
 
     return (
         <>
         <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
+        <Drawer navigate={navigate} title='Home'/>
         <SafeAreaView style={styles.safeArea}>
-            <Drawer navigate={navigate} title='Home'/>
-            <View style={styles.mainHeader}>
-                <Text style={styles.mainHeaderText}>Covid 19</Text>
-                <View style={styles.mainSubContainer}>
-                    <View style={styles.subResult}>
-                        <Text style={styles.subResultText}>Confirmed</Text>
-                        { healthResults ? <Text>{healthResults.total_confirmed}</Text> : <Text>...</Text> }
-                    </View>
-                    <View style={styles.subResult}>
-                        <Text style={styles.subResultText}>Deaths</Text>
-                        { healthResults ? <Text>{healthResults.total_deaths}</Text> : <Text>...</Text> }
-                    </View>
-                    <View style={styles.subResult}>
-                        <Text style={styles.subResultText}>Recovered</Text>
-                        { healthResults ? <Text>{healthResults.total_recovered}</Text> : <Text>...</Text> }
+            <ScrollView>
+                <View style={styles.mainHeader}>
+                    <Text style={styles.mainHeaderText}>Covid 19</Text>
+                    <View style={styles.mainSubContainer}>
+                        <View style={styles.subResult}>
+                            <Text style={styles.subResultText}>Confirmed</Text>
+                            { healthResults ? <Text>{healthResults.total_confirmed}</Text> : <Text>...</Text> }
+                        </View>
+                        <View style={styles.subResult}>
+                            <Text style={styles.subResultText}>Deaths</Text>
+                            { healthResults ? <Text>{healthResults.total_deaths}</Text> : <Text>...</Text> }
+                        </View>
+                        <View style={styles.subResult}>
+                            <Text style={styles.subResultText}>Recovered</Text>
+                            { healthResults ? <Text>{healthResults.total_recovered}</Text> : <Text>...</Text> }
+                        </View>
                     </View>
                 </View>
-            </View>
+
+                <View style={styles.subContainer}>
+                    <FlatList
+                        ListHeaderComponent={() => {
+                            return <Text style={styles.subHeading}>Top Affected Countries: </Text>
+                        }}
+                        data={countryWiseData}
+                        keyExtractor={ ele => ele.country }
+                        renderItem={({ item }) => {
+                            return (
+                            <TouchableOpacity style={styles.listItem}>
+                                <Grid>
+                                    <Row>
+                                        <Col><Text>{item.country.toUpperCase()}</Text></Col>
+                                        <Col><Text>{item.confirmed}</Text></Col>
+                                        <Col><Text>{item.deaths}</Text></Col>
+                                        <Col><Text>{item.recovered}</Text></Col>
+                                    </Row>
+                                </Grid>
+                            </TouchableOpacity>
+                            );
+                        }}
+                    />
+                </View>
+            </ScrollView>
         </SafeAreaView>
         </>
     );
@@ -47,7 +76,8 @@ const HomeScreen = (props) => {
 
 const styles = StyleSheet.create({
     safeArea: {
-        flex: 1
+        flex: 1,
+        paddingHorizontal: 5,
     },
     mainHeader: {
         flex: 1,
@@ -56,7 +86,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignContent: 'center',
-        paddingTop: 20,
+        paddingVertical: 20,
     },
     mainHeaderText: {
         textAlign: 'center',
@@ -68,9 +98,9 @@ const styles = StyleSheet.create({
         flex: 1,
         left: 0,
         right: 0,
+        marginTop: 0,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        alignContent: 'center',
         paddingTop: 20,
     },
     subResult: {
@@ -83,6 +113,22 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#112d4e',
         fontWeight: 'bold'
+    },
+    listItem: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        alignContent: 'center',
+        paddingVertical: 5,
+        paddingHorizontal: 5,
+    },
+    subContainer: {
+        flex: 1,
+    },
+    subHeading: {
+        fontSize: 28,
+        color: '#112d4e'
     }
 })
 
