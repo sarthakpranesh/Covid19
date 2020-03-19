@@ -14,9 +14,9 @@ class Country extends Component {
         const min = new Date(time).getMinutes();
         if ( hours > new Date().getHours() ) {
             if ( min < new Date().getMinutes() ) {
-                return `${ 24 - (hours - new Date().getHours()) + 1 }h ${ new Date().getMinutes() - min }m`
+                return `${ 24 - (hours - new Date().getHours()) + 1 }h ${ 60 - min }m`
             }
-            return `${ 24 - (hours - new Date().getHours()) }h ${ min - new Date().getMinutes() }m`
+            return `${ 24 - (hours - new Date().getHours()) }h ${ new Date().getMinutes() + (60 - min) }m`
         }
         return `${hours - new Date().getHours() }h ${ min - new Date().getMinutes() }m`
     }
