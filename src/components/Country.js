@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         paddingVertical: 40,
         paddingTop: 10,
         paddingHorizontal: 10,
-        borderRadius: 10,
+        borderRadius: 5,
     },
     countryHeader: {
         flex: 1,
