@@ -18,7 +18,6 @@ class LineChart extends Component {
       };
 
       shouldComponentUpdate (nextProps) {
-          console.log(nextProps);
           if (nextProps.data !== this.props.data) {
               return true;
           }
@@ -29,10 +28,11 @@ class LineChart extends Component {
         const timeLineData = this.props.data;
         return (
             <View>
-                <Text>{ this.props.title ? this.props.title : "Section Title" }</Text>
                 {
                         timeLineData
                     ?
+                    <>
+                        <Text>{ this.props.title ? this.props.title : "Section Title" }</Text>
                         <LineChart
                             data={{
                             labels: timeLineData.labels,
@@ -55,8 +55,9 @@ class LineChart extends Component {
                                 borderRadius: 5
                             }}
                         />
+                    </>
                     :
-                        <Text>Loading</Text>
+                        null
                     }
                 </View>
         );

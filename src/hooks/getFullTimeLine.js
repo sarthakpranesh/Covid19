@@ -9,12 +9,11 @@ const getFullTimeLine = () => {
     const getTimeline = async () => {
         try {
             const resp = await virusTrackerApi.get();
-            console.log(resp.data)
-            const unsortedData = resp.data.timelineitems[0];
-            if (unsortedData === undefined) {
+            if (!resp.data.timelineitems) {
                 console.log("No Data received");
                 throw new Error();
             }
+            const unsortedData = resp.data.timelineitems[0];
             const unsortedDataKeys = Object.keys(unsortedData);
             const sortedData = unsortedDataKeys.map((key) => {
                 if (key === "stat"){
