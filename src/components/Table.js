@@ -8,6 +8,20 @@ import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import { Col, Row, Grid} from 'react-native-easy-grid';
 
 class Table extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        this.interval = setInterval( () => {
+            this.props.getCountryWiseData();
+            console.log("@@@@@@@@@@@ Updated @@@@@@@@@@");
+        }, 5*60000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
     
     render () {
         const countryWiseData = this.props.data;

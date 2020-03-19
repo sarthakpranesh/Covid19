@@ -50,6 +50,7 @@ const HomeScreen = (props) => {
                 <Table 
                     data={countryWiseData}
                     isError={err1}
+                    getCountryWiseData={getCountryWiseData}
                 />
                 
                 <LineChart 
@@ -62,6 +63,7 @@ const HomeScreen = (props) => {
                     data={countryData}
                     isError={err3}
                     countryName="India"
+                    getCountry={getCountry}
                 />
 
             </ScrollView>

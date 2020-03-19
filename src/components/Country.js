@@ -9,6 +9,20 @@ import {
 import RowStackResult from './RowStackResult';
 
 class Country extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(() => {
+            this.props.getCountry();
+        }, 5*60000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     setTime = (time) => {
         const hours = new Date(time).getHours();
         const min = new Date(time).getMinutes();
