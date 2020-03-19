@@ -3,14 +3,15 @@ import {
     View,
     Text,
     StyleSheet,
-    SafeAreaView,
-    StatusBar
+    StatusBar,
+    Dimensions,
 } from "react-native";
 import { FlatList, TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import { Col, Row, Grid} from 'react-native-easy-grid';
 
 // importing components
 import Drawer from '../components/Drawer';
+import LineChart from '../components/LineChart';
 
 // importing hooks
 import getHealthStats from '../hooks/getGlobalTotal';
@@ -28,6 +29,7 @@ const HomeScreen = (props) => {
         <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
         <Drawer navigate={navigate} title=''/>
         <ScrollView style={styles.safeArea}>
+
             <View style={styles.mainHeader}>
                 <Text style={styles.mainHeaderText}>Covid 19</Text>
                 <View style={styles.mainSubContainer}>
@@ -69,6 +71,12 @@ const HomeScreen = (props) => {
                     }}
                 />
             </View>
+            
+            <LineChart 
+                title="TimeLine"
+                data={timeLineData}
+            />
+
         </ScrollView>
         </>
     );
@@ -77,8 +85,8 @@ const HomeScreen = (props) => {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        paddingHorizontal: 5,
-        paddingVertical: 20,
+        marginHorizontal: 10,
+        marginVertical: 20,
     },
     mainHeader: {
         flex: 1,

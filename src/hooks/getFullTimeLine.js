@@ -9,6 +9,7 @@ const getFullTimeLine = () => {
     const getTimeline = async () => {
         try {
             const resp = await virusTrackerApi.get();
+            console.log(resp.data)
             const unsortedData = resp.data.timelineitems[0];
             if (unsortedData === undefined) {
                 console.log("No Data received");
@@ -19,9 +20,12 @@ const getFullTimeLine = () => {
                 if (key === "stat"){
                     return false;
                 }
-                return { date: key, total: unsortedData[key].total_cases };
+                return unsortedData[key].total_cases;
             })
-            setResults(sortedData.slice(0, sortedData.length - 2))
+            setResults({
+                labels: unsortedDataKeys.slice(0, unsortedDataKeys.length -2),
+                totals: sortedData.slice(0, sortedData.length - 2)
+            })
         } catch (err) {
             console.log(err);
             setError(true);

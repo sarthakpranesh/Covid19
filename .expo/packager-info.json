@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 30555,
-  "expoServerNgrokUrl": "https://9c-y89.anonymous.covid19.exp.direct",
-  "packagerNgrokUrl": "https://packager.9c-y89.anonymous.covid19.exp.direct",
-  "ngrokPid": 30678
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
