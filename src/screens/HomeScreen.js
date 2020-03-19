@@ -15,18 +15,19 @@ import Drawer from '../components/Drawer';
 // importing hooks
 import getHealthStats from '../hooks/getGlobalTotal';
 import getCountries from '../hooks/getCountries';
+import getFullTimeLine from "../hooks/getFullTimeLine";
 
 const HomeScreen = (props) => {
     const navigate = props.navigation;
-    const [healthCoronaSearch, healthResults, err] = getHealthStats();
-    const [getCountryWiseData, countryWiseData, isError] = getCountries();
+    const [healthCoronaSearch, healthResults, err0] = getHealthStats();
+    const [getCountryWiseData, countryWiseData, err1] = getCountries();
+    const [getTimeLine, timeLineData, err2] = getFullTimeLine();
 
     return (
         <>
         <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
         <Drawer navigate={navigate} title=''/>
         <ScrollView style={styles.safeArea}>
-            
             <View style={styles.mainHeader}>
                 <Text style={styles.mainHeaderText}>Covid 19</Text>
                 <View style={styles.mainSubContainer}>
@@ -68,8 +69,6 @@ const HomeScreen = (props) => {
                     }}
                 />
             </View>
-
-
         </ScrollView>
         </>
     );
@@ -132,9 +131,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     subHeading: {
-        fontSize: 28,
+        fontSize: 22,
         color: '#112d4e'
-    }
+    },
 })
 
 export default HomeScreen;

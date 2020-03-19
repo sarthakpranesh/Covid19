@@ -15,7 +15,7 @@ const getCountries = () => {
             const filteredResults = resp.data.filter((ele) => {
                 return ele.confirmed !== 0;
             })
-            const sortedResults = arraySort(filteredResults, 'confirmed').reverse();
+            const sortedResults = arraySort(filteredResults, 'confirmed', {reverse: true});
             setResults(sortedResults.slice(0, 10));
         } catch (error) {
             console.log(error);
