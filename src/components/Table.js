@@ -33,7 +33,19 @@ class Table extends Component {
                     <View style={styles.subContainer}>
                         <FlatList
                             ListHeaderComponent={() => {
-                                return <Text style={styles.subHeading}>Top Affected Countries: </Text>
+                                return (
+                                    <>
+                                        <Text style={styles.subHeading}>Top Affected Countries: </Text>
+                                        <Grid>
+                                        <Row>
+                                            <Col><Text style={[{ fontWeight: 'bold' }]}>Country</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold' }]}>Cases</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold' }]}>Deaths</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold' }]}>Recovered</Text></Col>
+                                        </Row>
+                                    </Grid>
+                                    </>
+                                );
                             }}
                             data={countryWiseData}
                             keyExtractor={ ele => ele.country }

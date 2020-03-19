@@ -3,6 +3,12 @@
   "displayName": "Covid19",
   "expo": {
     "name": "Covid19",
+    "icon": "./assets/C19.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "slug": "Covid19",
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
@@ -12,6 +18,10 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "android": {
+      "package": "com.Monsoonvibe.Covid19",
+      "versionCode": 1
+    }
   }
 }
