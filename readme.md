@@ -10,7 +10,7 @@ This is a simple React-Native project developed in support of people suffering a
 
 ## For Developers
 To start the project follow the below steps<br/>
-1. git clone https://github.com/sarthakpranesh/Covid19-ReactNative
+1. git clone https://github.com/sarthakpranesh/Covid19-ReactNative.git
 2. cd Covid19-ReactNative
 3. npm i
 4. expo start
