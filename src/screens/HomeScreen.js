@@ -9,56 +9,59 @@ import { ScrollView } from "react-native-gesture-handler";
 
 // importing components
 import Drawer from '../components/Drawer';
+import RowStackResult from "../components/RowStackResult";
 import LineChart from '../components/LineChart';
 import Table from '../components/Table';
+import Country from '../components/Country';
 
 // importing hooks
 import getHealthStats from '../hooks/getGlobalTotal';
 import getCountries from '../hooks/getCountries';
-import getFullTimeLine from "../hooks/getFullTimeLine";
+import getFullTimeLine from '../hooks/getFullTimeLine';
+import getCountryData from '../hooks/getCountryData'
 
 const HomeScreen = (props) => {
     const navigate = props.navigation;
     const [healthCoronaSearch, healthResults, err0] = getHealthStats();
     const [getCountryWiseData, countryWiseData, err1] = getCountries();
     const [getTimeLine, timeLineData, err2] = getFullTimeLine();
+    const [getCountry, countryData, err3] = getCountryData();
 
     return (
         <>
-        <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
-        <Drawer navigate={navigate} title=''/>
-        <ScrollView style={styles.safeArea}>
+            <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
+            <Drawer navigate={navigate} title=''/>
+            <ScrollView 
+                style={styles.safeArea}
+                alwaysBounceVertical={true}
+                showsVerticalScrollIndicator={false}
+            >
 
-            <View style={styles.mainHeader}>
-                <Text style={styles.mainHeaderText}>Covid 19</Text>
-                <View style={styles.mainSubContainer}>
-                    <View style={styles.subResult}>
-                        <Text style={styles.subResultText}>Confirmed</Text>
-                        { healthResults ? <Text style={styles.resultNumbers}>{healthResults.total_confirmed}</Text> : <Text>...</Text> }
-                    </View>
-                    <View style={styles.subResult}>
-                        <Text style={styles.subResultText}>Deaths</Text>
-                        { healthResults ? <Text style={styles.resultNumbers}>{healthResults.total_deaths}</Text> : <Text>...</Text> }
-                    </View>
-                    <View style={styles.subResult}>
-                        <Text style={styles.subResultText}>Recovered</Text>
-                        { healthResults ? <Text style={styles.resultNumbers}>{healthResults.total_recovered}</Text> : <Text>...</Text> }
-                    </View>
+                <View style={styles.mainHeader}>
+                    <Text style={styles.mainHeaderText}>Covid 19</Text>
+                    <RowStackResult 
+                        data={healthResults}
+                    />
                 </View>
-            </View>
 
-            <Table 
-                data={countryWiseData}
-                isError={err1}
-            />
-            
-            <LineChart 
-                title="TimeLine"
-                data={timeLineData}
-                isError={err2}
-            />
+                <Table 
+                    data={countryWiseData}
+                    isError={err1}
+                />
+                
+                <LineChart 
+                    title="TimeLine"
+                    data={timeLineData}
+                    isError={err2}
+                />
 
-        </ScrollView>
+                <Country
+                    data={countryData}
+                    isError={err3}
+                    countryName="India"
+                />
+
+            </ScrollView>
         </>
     );
 }
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         paddingVertical: 100,
+        paddingBottom: 50,
     },
     mainHeaderText: {
         textAlign: 'center',
@@ -84,29 +88,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#3f72af',
     }, 
-    mainSubContainer: {
-        flex: 1,
-        left: 0,
-        right: 0,
-        marginTop: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        paddingTop: 40,
-    },
-    subResult: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-    },
-    subResultText: {
-        fontSize: 16,
-        color: '#112d4e',
-    },
-    resultNumbers: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
 })
 
 export default HomeScreen;

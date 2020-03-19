@@ -14,7 +14,7 @@ const Drawer = createDrawerNavigator({
     }
 }, {
   initialRouteName: 'Home',
-  drawerBackgroundColor: '#3f72af',
+  drawerBackgroundColor: '#dbe2ef',
   keyboardDismissMode: 'on-drag',
 })
 
