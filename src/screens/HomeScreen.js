@@ -10,7 +10,6 @@ import { ScrollView } from "react-native-gesture-handler";
 // importing components
 import Drawer from '../components/Drawer';
 import RowStackResult from "../components/RowStackResult";
-import LineChart from '../components/LineChart';
 import Table from '../components/Table';
 import Country from '../components/Country';
 
@@ -51,12 +50,6 @@ const HomeScreen = (props) => {
                     data={countryWiseData}
                     isError={err1}
                     getCountryWiseData={getCountryWiseData}
-                />
-                
-                <LineChart 
-                    title="TimeLine"
-                    data={timeLineData}
-                    isError={err2}
                 />
 
                 <Country
