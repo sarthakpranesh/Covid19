@@ -14,7 +14,10 @@ const HomeScreen = (props) => {
     const navigate = props.navigation;
     return (
         <>
-            <Drawer navigate={navigate} title='About'/>
+            <Drawer 
+                navigate={navigate} 
+                title='About'
+            />
             <ScrollView>
                 <View>
                     <Text>About the Team</Text>

@@ -3,9 +3,7 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity,
-    SafeAreaView,
-    StatusBar
+    TouchableOpacity
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 

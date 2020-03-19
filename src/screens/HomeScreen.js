@@ -30,7 +30,10 @@ const HomeScreen = (props) => {
     return (
         <>
             <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
-            <Drawer navigate={navigate} title=''/>
+            <Drawer
+                navigate={navigate}
+                title=''
+            />
             <ScrollView 
                 style={styles.safeArea}
                 alwaysBounceVertical={true}

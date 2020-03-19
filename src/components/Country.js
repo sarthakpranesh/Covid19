@@ -24,7 +24,6 @@ class Country extends Component {
     render () {
         const country = this.props.countryName;
         const data = this.props.data
-        console.log(data);
         return (
             <View style={styles.countrySection}>
                 <View style={styles.countryHeader}>
