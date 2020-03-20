@@ -9,7 +9,7 @@ const getIndianStats = () => {
     const getStats = async () => {
         try {
             const resp = await virusTrackerApi.get('/free-api?countryTotal=IN');
-            if (!resp.data.countrydata) {
+            if (!resp.data.countrydata[0]) {
                 console.log("No Data received");
                 throw new Error();
             }

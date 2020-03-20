@@ -32,7 +32,7 @@ class RowStackResult extends Component {
                     { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.newConfirmed}</Text> : <Text>...</Text> }
                 </View>
                 <View style={styles.subResult}>
-                    <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Total Serious</Text>
+                    <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Serious</Text>
                     { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.totalSerious}</Text> : <Text>...</Text> }
                 </View>
                 <View style={styles.subResult}>
