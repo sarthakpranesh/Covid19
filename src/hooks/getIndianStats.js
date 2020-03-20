@@ -19,7 +19,7 @@ const getIndianStats = () => {
                 recovered: resp.data.countrydata[0].total_recovered,
                 deathsToday: resp.data.countrydata[0].total_new_deaths_today,
                 newConfirmed: resp.data.countrydata[0].total_new_cases_today,
-                totalActive: resp.data.countrydata[0].total_active_cases,
+                totalSerious: resp.data.countrydata[0].total_serious_cases,
             })
         } catch (err) {
             console.log(err);

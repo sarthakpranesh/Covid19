@@ -15,7 +15,6 @@ class Table extends Component {
     componentDidMount() {
         this.interval = setInterval( () => {
             this.props.getCountryWiseData();
-            console.log("@@@@@@@@@@@ Updated @@@@@@@@@@");
         }, 5*60000);
     }
 
@@ -26,7 +25,7 @@ class Table extends Component {
     render () {
         const countryWiseData = this.props.data;
         return (
-            <View>
+            <View style={styles.listContainer}>
                 {
                     countryWiseData
                     ?
@@ -74,6 +73,10 @@ class Table extends Component {
 }
 
 const styles = StyleSheet.create({
+    listContainer: {
+        marginVertical: 60,
+        marginBottom: 20,
+    },
     listItem: {
         flex: 1,
         flexDirection: 'row',

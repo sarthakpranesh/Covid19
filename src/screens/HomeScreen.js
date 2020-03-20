@@ -24,7 +24,6 @@ const HomeScreen = (props) => {
     const [getCountryWiseData, countryWiseData, err1] = getCountries();
     const [getStats, indianStats, err2] = getIndianStats();
 
-    // console.log(timeLineData);
     return (
         <>
             <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
@@ -45,17 +44,17 @@ const HomeScreen = (props) => {
                     />
                 </View>
 
-                <Table 
-                    data={countryWiseData}
-                    isError={err1}
-                    getCountryWiseData={getCountryWiseData}
-                />
-
                 <Country
                     data={indianStats}
                     isError={err2}
                     countryName="India"
                     getCountry={getStats}
+                />
+
+                <Table 
+                    data={countryWiseData}
+                    isError={err1}
+                    getCountryWiseData={getCountryWiseData}
                 />
 
             </ScrollView>
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
         fontSize: 52,
         fontWeight: 'bold',
         color: '#3f72af',
-    }, 
+    },
 })
 
 export default HomeScreen;

@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     countrySection: {
         backgroundColor: '#112d4e',
         marginBottom: 10,
-        marginTop: 50,
-        paddingVertical: 40,
+        marginTop: 10,
+        paddingVertical: 20,
         paddingTop: 10,
         paddingHorizontal: 10,
         borderRadius: 5,
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         color: 'white',
         marginTop: 0,
-        fontSize: 22,
-        fontWeight: 'bold',
+        fontSize: 28,
+        fontWeight: '800',
     },
 })
 
