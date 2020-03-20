@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import healthApi from '../apis/healthApi';
+import virusTrackerApi from '../apis/virusTrackerApi';
 
 const getHealthStats = ()=>{
     const [results, setResults] = useState('');
@@ -7,11 +8,16 @@ const getHealthStats = ()=>{
 
     const coronaSearch = async ()=>{
         try {
-            const resp = await healthApi.get('total');
-            if(resp.data.error){
+            const resp = await virusTrackerApi.get('/free-api?global=stats');
+            if(!resp.data.results){
+                console.log("No data retrieved");
                 throw new Error();
             }
-            setResults(resp.data);
+            setResults({
+                total_confirmed: resp.data.results[0].total_cases,
+                total_deaths: resp.data.results[0].total_deaths,
+                total_recovered: resp.data.results[0].total_recovered,
+            });
         } catch (err) {
             setErrorMessage(true);
         }
