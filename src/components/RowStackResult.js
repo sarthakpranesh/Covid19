@@ -28,20 +28,36 @@ class RowStackResult extends Component {
 
     renderCountry = (healthResults) => {
         return (
-            <View style={styles.mainSubContainer}>
-                <View style={styles.subResult}>
-                    <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Confirmed</Text>
-                    { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.confirmed}</Text> : <Text>...</Text> }
+            <>
+                <View style={styles.mainSubContainer}>
+                    <View style={styles.subResult}>
+                        <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Total Cases</Text>
+                        { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.confirmed}</Text> : <Text>...</Text> }
+                    </View>
+                    <View style={styles.subResult}>
+                        <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Total Deaths</Text>
+                        { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.deaths}</Text> : <Text>...</Text> }
+                    </View>
+                    <View style={styles.subResult}>
+                        <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Total Recover</Text>
+                        { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.recovered}</Text> : <Text>...</Text> }
+                    </View>
                 </View>
-                <View style={styles.subResult}>
-                    <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Deaths</Text>
-                    { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.deaths}</Text> : <Text>...</Text> }
+                <View style={styles.mainSubContainer}>
+                    <View style={styles.subResult}>
+                        <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>New Cases</Text>
+                        { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.newConfirmed}</Text> : <Text>...</Text> }
+                    </View>
+                    <View style={styles.subResult}>
+                        <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Total Active</Text>
+                        { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.totalActive}</Text> : <Text>...</Text> }
+                    </View>
+                    <View style={styles.subResult}>
+                        <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Deaths Today</Text>
+                        { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.deathsToday}</Text> : <Text>...</Text> }
+                    </View>
                 </View>
-                <View style={styles.subResult}>
-                    <Text style={[ styles.subResultText, { color: this.props.textColor ? this.props.textColor : '#112d4e' } ]}>Recovered</Text>
-                    { healthResults ? <Text style={[styles.resultNumbers, { color: this.props.textColor ? this.props.textColor : '#112d4e'}]}>{healthResults.recovered}</Text> : <Text>...</Text> }
-                </View>
-            </View>
+            </>
         );
     }
 

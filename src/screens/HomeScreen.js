@@ -16,16 +16,15 @@ import Country from '../components/Country';
 // importing hooks
 import getHealthStats from '../hooks/getGlobalTotal';
 import getCountries from '../hooks/getCountries';
-import getFullTimeLine from '../hooks/getFullTimeLine';
-import getCountryData from '../hooks/getCountryData'
+import getIndianStats from '../hooks/getIndianStats';
 
 const HomeScreen = (props) => {
     const navigate = props.navigation;
     const [healthCoronaSearch, healthResults, err0] = getHealthStats();
     const [getCountryWiseData, countryWiseData, err1] = getCountries();
-    const [getTimeLine, timeLineData, err2] = getFullTimeLine();
-    const [getCountry, countryData, err3] = getCountryData();
+    const [getStats, indianStats, err2] = getIndianStats();
 
+    // console.log(timeLineData);
     return (
         <>
             <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
@@ -53,10 +52,10 @@ const HomeScreen = (props) => {
                 />
 
                 <Country
-                    data={countryData}
-                    isError={err3}
+                    data={indianStats}
+                    isError={err2}
                     countryName="India"
-                    getCountry={getCountry}
+                    getCountry={getStats}
                 />
 
             </ScrollView>
