@@ -3,17 +3,17 @@ import { useState, useEffect } from 'react';
 import virusTrackerApi from  '../apis/virusTrackerApi';
 
 const getIndianStats = () => {
-    const [results, setResults] = useState('');
+    const [indianResults, setIndianResults] = useState('');
     const [isError, setError] = useState(false);
 
     const getStats = async () => {
         try {
             const resp = await virusTrackerApi.get('/free-api?countryTotal=IN');
-            if (!resp.data.countrydata[0]) {
+            if (!resp.data.countrydata) {
                 console.log("No Data received");
                 throw new Error();
             }
-            setResults({
+            setIndianResults({
                 confirmed: resp.data.countrydata[0].total_cases,
                 deaths: resp.data.countrydata[0].total_deaths,
                 recovered: resp.data.countrydata[0].total_recovered,
@@ -31,7 +31,7 @@ const getIndianStats = () => {
         getStats();
     }, [] );
 
-    return [getStats, results, isError];
+    return [getStats, indianResults, isError];
 }
 
 export default getIndianStats;

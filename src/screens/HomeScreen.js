@@ -29,7 +29,7 @@ const HomeScreen = (props) => {
             <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
             <Drawer
                 navigate={navigate}
-                title='Home'
+                title=' Home '
             />
             <ScrollView 
                 style={styles.safeArea}
@@ -47,7 +47,7 @@ const HomeScreen = (props) => {
                 <Country
                     data={indianStats}
                     isError={err2}
-                    countryName="India"
+                    countryName=" India "
                     getCountry={getStats}
                 />
 

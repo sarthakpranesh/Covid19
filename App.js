@@ -9,22 +9,26 @@ import AboutScreen from './src/screens/AboutScreen';
 import PrecautionScreen from './src/screens/PrecautionScreen';
 
 const Drawer = createDrawerNavigator({
-    Home: {
+    " Home ": {
         screen: HomeScreen,
     },
-    Precaution: {
+    " Precaution ": {
         screen: PrecautionScreen,
     },
-    About: {
+    " About ": {
         screen: AboutScreen
     }
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: ' Home ',
   drawerBackgroundColor: '#dbe2ef',
   keyboardDismissMode: 'on-drag',
   backBehavior: 'initialRoute',
   drawerPosition: 'left',
   minSwipeDistance: 20,
+  navigationOptions: {
+  },
+  contentOptions: {
+  }
 })
 
 export default createAppContainer(Drawer);

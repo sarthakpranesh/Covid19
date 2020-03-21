@@ -18,7 +18,7 @@ const HomeScreen = (props) => {
         <>
             <Drawer 
                 navigate={navigate} 
-                title='About'
+                title=' About '
             />
             <ScrollView
                 style={styles.safeArea}

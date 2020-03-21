@@ -17,7 +17,7 @@ const Precaution = (props) => {
         <>
             <Drawer
                 navigate={navigate}
-                title='Precaution'
+                title=' Precaution '
             />
             <ScrollView
                 style={styles.safeArea}
@@ -25,7 +25,7 @@ const Precaution = (props) => {
                 showsVerticalScrollIndicator={false}
             >
                 <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>Prevention Is Better Then Cure</Text>
+                    <Text style={styles.mainHeaderText}>Prevention Is Better Than Cure</Text>
                 </View>
 
                 <PreventionCards
