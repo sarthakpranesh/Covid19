@@ -7,6 +7,7 @@ import { createAppContainer } from 'react-navigation';
 import HomeScreen from "./src/screens/HomeScreen";
 import AboutScreen from './src/screens/AboutScreen';
 import PrecautionScreen from './src/screens/PrecautionScreen';
+import HelpScreen from './src/screens/HelpScreen';
 
 const Drawer = createDrawerNavigator({
     " Home ": {
@@ -14,6 +15,9 @@ const Drawer = createDrawerNavigator({
     },
     " Precaution ": {
         screen: PrecautionScreen,
+    },
+    " Help Line ": {
+        screen: HelpScreen,
     },
     " About ": {
         screen: AboutScreen

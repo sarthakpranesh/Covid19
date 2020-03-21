@@ -29,7 +29,7 @@ class Country extends Component {
         return (
             <View style={styles.countrySection}>
                 <View style={styles.countryHeader}>
-                    <Text style={styles.countrySectionTitle}>{ country ? country : "Unknown Country"} : </Text>
+                    <Text style={styles.countrySectionTitle}>{ country ? country : " Unknown Country "} : </Text>
                 </View>
                 <RowStackResult 
                     data={data}
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         fontSize: 28,
         fontWeight: '800',
+        fontFamily: '',
     },
 })
 

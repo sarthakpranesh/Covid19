@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     mainPreventionTitle: {
         color: 'white',
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: ''
     },
     preventionContentContainer: {
         flex: 1,
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
     preventionContent: {
         color: 'white',
         fontSize: 12,
+        fontFamily: ''
     }
 })
 
