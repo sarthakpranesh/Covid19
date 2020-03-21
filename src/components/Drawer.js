@@ -20,7 +20,7 @@ const Drawer = ({ navigate, title }) => {
             <TouchableOpacity style={styles.menu} onPress={onHamClick}>
                 <Feather name='menu' color='#112d4e' size={28}/>
             </TouchableOpacity>
-            <View>
+            <View style={styles.titleContainer}>
                 <Text style={styles.headerText}>{title}</Text>
             </View>
         </View>
@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
         margin: 20,
         fontWeight: 'bold',
+    },
+    titleContainer: {
+        padding: 2,
+        margin: 2,
     }
 })
 

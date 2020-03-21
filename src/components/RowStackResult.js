@@ -63,10 +63,12 @@ const styles = StyleSheet.create({
     },
     subResultText: {
         fontSize: 16,
+        textAlign: 'center'
     },
     resultNumbers: {
         fontSize: 24,
         fontWeight: 'bold',
+        textAlign: 'center'
     },
 })
 
