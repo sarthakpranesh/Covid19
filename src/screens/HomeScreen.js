@@ -29,7 +29,7 @@ const HomeScreen = (props) => {
             <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
             <Drawer
                 navigate={navigate}
-                title=''
+                title='Home'
             />
             <ScrollView 
                 style={styles.safeArea}
