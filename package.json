@@ -17,6 +17,7 @@
     "react-native": "~0.61.4",
     "react-native-easy-grid": "^0.2.2",
     "react-native-gesture-handler": "~1.5.0",
+    "react-native-pure-chart": "0.0.24",
     "react-native-reanimated": "~1.4.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-unimodules": "~0.7.0",

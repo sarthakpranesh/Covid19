@@ -1,22 +1,51 @@
 import { useState, useEffect } from 'react';
-import healthApi from '../apis/healthApi';
+
+import virusTrackerApi from '../apis/virusTrackerApi';
 import arraySort from 'array-sort';
 
 const getCountries = () => {
-    const [results, setResults] = useState('');
+    const [results, setResults] = useState([]);
     const [isError, setError] = useState(false);
 
     const getCountryWiseData = async () => {
         try {
-            const resp = await healthApi.get('countries');
-            if ( resp.data.error ) {
+            const resp = await virusTrackerApi.get('/free-api?countryTimeline=IN');
+            if ( resp.data.timelineitems === undefined || null ) {
                 throw new Error();
             }
-            const filteredResults = resp.data.filter((ele) => {
-                return ele.confirmed !== 0;
+            const arrayObjectKeys = Object.keys(resp.data.timelineitems[0]);
+            var total_cases = [], total_deaths = [], total_recoveries = [];
+            arrayObjectKeys.slice(arrayObjectKeys, arrayObjectKeys.length - 1).forEach((date) => {
+
+                total_cases.push({
+                    x: date,
+                    y: resp.data.timelineitems[0][date].total_cases
+                })
+                total_deaths.push({
+                    x: date,
+                    y: resp.data.timelineitems[0][date].total_deaths
+                })
+                total_recoveries.push({
+                    x: date,
+                    y: resp.data.timelineitems[0][date].total_recoveries
+                })
             })
-            const sortedResults = arraySort(filteredResults, 'confirmed', {reverse: true});
-            setResults(sortedResults.slice(0, 10));
+            setResults([
+                {
+                    seriesName: 'Total Cases',
+                    data: total_cases,
+                    color: 'yellow'
+                },
+                {
+                    seriesName: 'Total Deaths',
+                    data: total_deaths,
+                    color: 'red'
+                },{
+                    seriesName: 'Total Recoveries',
+                    data: total_recoveries,
+                    color: 'green'
+                }
+            ]);
         } catch (error) {
             console.log(error);
             setError(true)

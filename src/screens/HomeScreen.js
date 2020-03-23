@@ -6,11 +6,11 @@ import {
     StatusBar,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import PureChart from 'react-native-pure-chart';
 
 // importing components
 import Drawer from '../components/Drawer';
 import RowStackResult from "../components/RowStackResult";
-import Table from '../components/Table';
 import Country from '../components/Country';
 
 // importing hooks
@@ -51,11 +51,47 @@ const HomeScreen = (props) => {
                     getCountry={getStats}
                 />
 
-                <Table 
-                    data={countryWiseData}
-                    isError={err1}
-                    getCountryWiseData={getCountryWiseData}
-                />
+                <View
+                    style={styles.lineChartContainer}
+                >
+                    <Text
+                        style={styles.lineChartText}
+                    >
+                        India's Timeline
+                    </Text>
+                    <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                        Yellow: <Text style={{color: 'black'}}>Total Cases</Text>
+                    </Text>
+                    <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                        Red:    <Text style={{color: 'black'}}>Deaths</Text>
+                    </Text>
+                    <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                        Green:  <Text style={{color: 'black'}}>Recovered</Text>
+                    </Text>
+                    <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                        *Scroll horizontally to see latest trends
+                    </Text>
+                    {
+                        countryWiseData
+                        ?
+                        <View
+                            style={{
+                                paddingVertical: 20
+                            }}
+                        >
+                            <PureChart
+                                data={countryWiseData}
+                                type='line'
+                                height={200}
+                                width={'100%'}
+                                numberOfYAxisGuideLine={10}
+                                numberOfXAxisGuideLine={10}
+                            />
+                        </View>
+                        :
+                        null
+                    }
+                </View>
 
             </ScrollView>
         </>
@@ -84,6 +120,19 @@ const styles = StyleSheet.create({
         color: '#3f72af',
         fontFamily: ''
     },
+    lineChartContainer: {
+        marginVertical: 20,
+        paddingVertical: 10,
+        marginBottom: 0,
+    },
+    lineChartText: {
+        textAlign: 'justify',
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#112d4e',
+        fontFamily: '',
+        paddingVertical: 10
+    }
 })
 
 export default HomeScreen;
