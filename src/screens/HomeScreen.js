@@ -59,16 +59,16 @@ const HomeScreen = (props) => {
                     >
                         India's Timeline
                     </Text>
-                    <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10}}>
+                    <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
                         Yellow: <Text style={{color: 'black'}}>Total Cases</Text>
                     </Text>
-                    <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10}}>
+                    <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
                         Red:    <Text style={{color: 'black'}}>Deaths</Text>
                     </Text>
-                    <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10}}>
+                    <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
                         Green:  <Text style={{color: 'black'}}>Recovered</Text>
                     </Text>
-                    <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10}}>
+                    <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
                         *Scroll horizontally to see latest trends
                     </Text>
                     {
