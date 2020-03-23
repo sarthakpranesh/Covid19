@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         fontSize: 52,
         fontWeight: 'bold',
         color: '#3f72af',
+        fontFamily: ''
     }, 
 })
 

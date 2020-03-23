@@ -84,7 +84,9 @@ const HomeScreen = (props) => {
                     <Text
                         style={{
                             fontSize: 18,
-                            color: "white"
+                            color: "white",
+                            textAlign: 'center',
+                            fontFamily: '',
                         }}
                     >
                         Support Project
@@ -97,7 +99,8 @@ const HomeScreen = (props) => {
                                 fontSize: 12,
                                 color: 'white',
                                 marginVertical: 20,
-                                textDecorationLine: 'underline' 
+                                textDecorationLine: 'underline' ,
+                                fontFamily: ''
                             }}
                         >
                             Github
@@ -105,7 +108,9 @@ const HomeScreen = (props) => {
                     </TouchableOpacity>
                     <Text
                         style={{
-                            color: 'white'
+                            color: 'white',
+                            textAlign: 'center',
+                            fontFamily: '',
                         }}
                     >
                         Made with Love
@@ -136,6 +141,7 @@ const styles = StyleSheet.create({
         fontSize: 52,
         fontWeight: 'bold',
         color: '#3f72af',
+        fontFamily: ''
     }, 
     aboutContentContainer: {
         backgroundColor: '#112d4e',
@@ -154,6 +160,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: 'white',
         marginVertical: 10,
+        fontFamily: ''
     }
 })
 

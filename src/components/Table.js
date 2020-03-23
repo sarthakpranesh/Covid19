@@ -37,10 +37,10 @@ class Table extends Component {
                                         <Text style={styles.subHeading}>Top Affected Countries: </Text>
                                         <Grid>
                                         <Row>
-                                            <Col><Text style={[{ fontWeight: 'bold' }]}>Country</Text></Col>
-                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold' }]}>Cases</Text></Col>
-                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold' }]}>Deaths</Text></Col>
-                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold' }]}>Recovered</Text></Col>
+                                            <Col><Text style={[{ fontWeight: 'bold', fontFamily: '' }]}>Country</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold', fontFamily: '' }]}>Cases</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold', fontFamily: '' }]}>Deaths</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontWeight: 'bold', fontFamily: '' }]}>Recovered</Text></Col>
                                         </Row>
                                     </Grid>
                                     </>
@@ -54,9 +54,9 @@ class Table extends Component {
                                     <Grid>
                                         <Row>
                                             <Col><Text>{item.country.toUpperCase()}</Text></Col>
-                                            <Col><Text style={[{ textAlign: 'right' }]}>{item.confirmed}</Text></Col>
-                                            <Col><Text style={[{ textAlign: 'right' }]}>{item.deaths}</Text></Col>
-                                            <Col><Text style={[{ textAlign: 'right' }]}>{item.recovered}</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontFamily: '' }]}>{item.confirmed}</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontFamily: '' }]}>{item.deaths}</Text></Col>
+                                            <Col><Text style={[{ textAlign: 'right', fontFamily: '' }]}>{item.recovered}</Text></Col>
                                         </Row>
                                     </Grid>
                                 </TouchableOpacity>
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: '#112d4e',
         fontWeight: 'bold',
+        fontFamily: '',
     },
 });
 
