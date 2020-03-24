@@ -62,8 +62,10 @@ const HomeScreen = (props) => {
                     <TouchableOpacity onPress={() => Linking.openURL('https://www.who.int/health-topics/coronavirus') }>
                         <Text 
                             style={{
-                                color: 'white',
+                                color: '#112d4e',
                                 textDecorationLine: 'underline',
+                                fontSize: 16,
+                                fontWeight: 'bold'
                             }}
                         >
                             Click Here to Know More
@@ -75,7 +77,7 @@ const HomeScreen = (props) => {
                     flex: 1,
                     padding: 20,
                     paddingHorizontal: 10,
-                    backgroundColor: '#112d4e',
+                    backgroundColor: '#FFC692',
                     marginBottom: 20,
                     borderRadius: 5,
                     justifyContent: 'center',
@@ -84,9 +86,10 @@ const HomeScreen = (props) => {
                     <Text
                         style={{
                             fontSize: 18,
-                            color: "white",
+                            color: "#112d4e",
                             textAlign: 'center',
                             fontFamily: '',
+                            fontWeight: 'bold'
                         }}
                     >
                         Support Project
@@ -96,11 +99,12 @@ const HomeScreen = (props) => {
                     >
                         <Text
                             style={{
-                                fontSize: 12,
-                                color: 'white',
+                                fontSize: 16,
+                                color: '#112d4e',
                                 marginVertical: 20,
                                 textDecorationLine: 'underline' ,
-                                fontFamily: ''
+                                fontFamily: '',
+                                fontWeight: 'bold'
                             }}
                         >
                             Github
@@ -108,9 +112,11 @@ const HomeScreen = (props) => {
                     </TouchableOpacity>
                     <Text
                         style={{
-                            color: 'white',
+                            color: '#112d4e',
                             textAlign: 'center',
                             fontFamily: '',
+                            fontWeight: 'bold',
+                            fontSize: 16
                         }}
                     >
                         Made with Love
@@ -125,6 +131,7 @@ const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
         paddingHorizontal: 10,
+        backgroundColor: '#DEF7FF'
     },
     mainHeader: {
         flex: 1,
@@ -140,11 +147,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 52,
         fontWeight: 'bold',
-        color: '#3f72af',
+        color: '#D41D3E',
         fontFamily: ''
     }, 
     aboutContentContainer: {
-        backgroundColor: '#112d4e',
+        backgroundColor: '#FFC692',
         marginVertical: 10,
         paddingVertical: 20,
         paddingHorizontal: 10,
@@ -158,7 +165,7 @@ const styles = StyleSheet.create({
     aboutContent: {
         textAlign: 'justify',
         fontSize: 18,
-        color: 'white',
+        color: '#112d4e',
         marginVertical: 10,
         fontFamily: ''
     }
