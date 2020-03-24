@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet,
     StatusBar,
+    Image,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import PureChart from 'react-native-pure-chart';
@@ -38,7 +39,11 @@ const HomeScreen = (props) => {
             >
 
                 <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>Covid 19</Text>
+                    <Image 
+                        style={styles.mainHeaderImage}
+                        source={require('../../assets/img/ic1.png')}
+                    />
+                    {/* <Text style={styles.mainHeaderText}>Covid 19</Text> */}
                     <RowStackResult 
                         data={healthResults}
                     />
@@ -102,6 +107,7 @@ const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
         paddingHorizontal: 10,
+        backgroundColor: '#DEF7FF'
     },
     mainHeader: {
         flex: 1,
@@ -113,17 +119,23 @@ const styles = StyleSheet.create({
         paddingVertical: 100,
         paddingBottom: 50,
     },
-    mainHeaderText: {
-        textAlign: 'center',
-        fontSize: 52,
-        fontWeight: 'bold',
-        color: '#3f72af',
-        fontFamily: ''
+    mainHeaderImage: {
+        width: 250,
+        height: 50,
+        alignSelf: 'center',
+        marginBottom: 40,
     },
+    // mainHeaderText: {
+    //     textAlign: 'center',
+    //     fontSize: 52,
+    //     fontWeight: 'bold',
+    //     color: '#D41D3E',
+    //     fontFamily: ''
+    // },
     lineChartContainer: {
         marginVertical: 20,
         paddingVertical: 10,
-        marginBottom: 0,
+        marginBottom: 0
     },
     lineChartText: {
         textAlign: 'justify',
