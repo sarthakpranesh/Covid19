@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
@@ -23,6 +24,10 @@ const Drawer = ({ navigate, title }) => {
             <View style={styles.titleContainer}>
                 <Text style={styles.headerText}>{title}</Text>
             </View>
+            <Image 
+                style={styles.drawerIcon}
+                source={require("../../assets/C19.png")}
+            />
         </View>
         </>
     );
@@ -36,7 +41,7 @@ const styles = StyleSheet.create({
         left: 0,
         height: 48,
         padding: 10,
-        backgroundColor: '#dbe2ef',
+        backgroundColor: '#B5ECFD',
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -45,12 +50,19 @@ const styles = StyleSheet.create({
         color: '#112d4e',
         fontSize: 18,
         margin: 20,
+        marginLeft: 0,
         fontWeight: 'bold',
         fontFamily: '',
     },
     titleContainer: {
         padding: 2,
         margin: 2,
+    },
+    drawerIcon: {
+        position: 'absolute',
+        width: 30,
+        height: 30,
+        left: 320,
     }
 })
 

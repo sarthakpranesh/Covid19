@@ -7,7 +7,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#DEF7FF"
     },
     "slug": "Covid19",
     "privacy": "unlisted",
