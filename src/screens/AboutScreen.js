@@ -12,6 +12,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 // importing Components
 import Drawer from '../components/Drawer';
 
+// importing common style
+import Styles from '../Styles';
+
 const HomeScreen = (props) => {
     const navigate = props.navigation;
     return (
@@ -21,12 +24,12 @@ const HomeScreen = (props) => {
                 title=' About '
             />
             <ScrollView
-                style={styles.safeArea}
+                style={Styles.safeArea}
                 alwaysBounceVertical={true}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>Corona Virus</Text>
+                <View style={Styles.mainHeader}>
+                    <Text style={Styles.mainHeaderText}>Corona Virus</Text>
                 </View>
 
                 <View style={styles.aboutContentContainer}>
@@ -128,32 +131,10 @@ const HomeScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        paddingHorizontal: 10,
-        backgroundColor: '#DEF7FF'
-    },
-    mainHeader: {
-        flex: 1,
-        left: 0,
-        right: 0,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
-        paddingVertical: 100,
-        paddingBottom: 50,
-    },
-    mainHeaderText: {
-        textAlign: 'center',
-        fontSize: 52,
-        fontWeight: 'bold',
-        color: '#D41D3E',
-        fontFamily: ''
-    }, 
     aboutContentContainer: {
         backgroundColor: '#FFC692',
-        marginVertical: 10,
-        paddingVertical: 20,
+        marginVertical: 30,
+        paddingVertical: 10,
         paddingHorizontal: 10,
         borderRadius: 5,
 

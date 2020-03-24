@@ -13,6 +13,9 @@ import { ScrollView } from "react-native-gesture-handler";
 // importing components
 import Drawer from '../components/Drawer';
 
+// importing common styles
+import Styles from '../Styles';
+
 const HelpScreen = (props) => {
     const navigate = props.navigation;
 
@@ -175,12 +178,12 @@ const HelpScreen = (props) => {
                 title=' Help Line '
             />
             <ScrollView
-                style={styles.safeArea}
+                style={Styles.safeArea}
                 alwaysBounceVertical={true}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>Help Line Numbers</Text>
+                <View style={Styles.mainHeader}>
+                    <Text style={Styles.mainHeaderText}>Help Line Numbers</Text>
                 </View>
 
                 <View style={styles.helpContentContainer}>
@@ -234,30 +237,7 @@ const HelpScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        paddingHorizontal: 10,
-        backgroundColor: '#DEF7FF'
-    },
-    mainHeader: {
-        flex: 1,
-        left: 0,
-        right: 0,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
-        paddingVertical: 100,
-        paddingBottom: 50,
-    },
-    mainHeaderText: {
-        textAlign: 'center',
-        fontSize: 52,
-        fontWeight: 'bold',
-        color: '#D41D3E',
-        fontFamily: ''
-    },
     helpContentContainer: {
-        marginVertical: 10,
         marginHorizontal: 5,
     },
     listItemHelp: {

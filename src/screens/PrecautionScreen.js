@@ -3,12 +3,14 @@ import {
     View,
     Text,
     ScrollView,
-    StyleSheet,
 } from 'react-native';
 
 // importing components
 import Drawer from '../components/Drawer';
 import PreventionCards from '../components/PreventionCards';
+
+// importing common style
+import Styles from '../Styles';
 
 const Precaution = (props) => {
     const navigate = props.navigation;
@@ -20,12 +22,12 @@ const Precaution = (props) => {
                 title=' Precaution '
             />
             <ScrollView
-                style={styles.safeArea}
+                style={Styles.safeArea}
                 alwaysBounceVertical={true}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>"Prevention Is Better Than Cure"</Text>
+                <View style={Styles.mainHeader}>
+                    <Text style={Styles.mainHeaderText}>Prevention Is Better Than Cure</Text>
                 </View>
 
                 <PreventionCards
@@ -70,30 +72,5 @@ const Precaution = (props) => {
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        paddingHorizontal: 10,
-        backgroundColor: '#DEF7FF'
-    },
-    mainHeader: {
-        flex: 1,
-        left: 0,
-        right: 0,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
-        paddingVertical: 100,
-        paddingBottom: 50,
-    },
-    mainHeaderText: {
-        textAlign: 'center',
-        fontSize: 52,
-        fontWeight: 'bold',
-        color: '#D41D3E',
-        fontFamily: ''
-    }, 
-})
 
 export default Precaution;

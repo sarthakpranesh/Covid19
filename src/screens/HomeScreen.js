@@ -19,6 +19,10 @@ import getHealthStats from '../hooks/getGlobalTotal';
 import getCountries from '../hooks/getCountries';
 import getIndianStats from '../hooks/getIndianStats';
 
+// import common style
+import Style from '../Styles';
+import Styles from "../Styles";
+
 const HomeScreen = (props) => {
     const navigate = props.navigation;
     const [healthCoronaSearch, healthResults, err0] = getHealthStats();
@@ -33,17 +37,16 @@ const HomeScreen = (props) => {
                 title=' Home '
             />
             <ScrollView 
-                style={styles.safeArea}
+                style={Styles.safeArea}
                 alwaysBounceVertical={true}
                 showsVerticalScrollIndicator={false}
             >
 
-                <View style={styles.mainHeader}>
+                <View style={Styles.mainHeader}>
                     <Image 
                         style={styles.mainHeaderImage}
                         source={require('../../assets/img/ic1.png')}
                     />
-                    {/* <Text style={styles.mainHeaderText}>Covid 19</Text> */}
                     <RowStackResult 
                         data={healthResults}
                     />
@@ -104,34 +107,12 @@ const HomeScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        paddingHorizontal: 10,
-        backgroundColor: '#DEF7FF'
-    },
-    mainHeader: {
-        flex: 1,
-        left: 0,
-        right: 0,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
-        paddingVertical: 100,
-        paddingBottom: 50,
-    },
     mainHeaderImage: {
         width: 250,
         height: 50,
         alignSelf: 'center',
         marginBottom: 40,
     },
-    // mainHeaderText: {
-    //     textAlign: 'center',
-    //     fontSize: 52,
-    //     fontWeight: 'bold',
-    //     color: '#D41D3E',
-    //     fontFamily: ''
-    // },
     lineChartContainer: {
         marginVertical: 20,
         paddingVertical: 10,
