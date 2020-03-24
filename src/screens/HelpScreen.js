@@ -237,6 +237,7 @@ const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
         paddingHorizontal: 10,
+        backgroundColor: '#DEF7FF'
     },
     mainHeader: {
         flex: 1,
@@ -252,15 +253,15 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 52,
         fontWeight: 'bold',
-        color: '#3f72af',
+        color: '#D41D3E',
         fontFamily: ''
     },
     helpContentContainer: {
-        marginVertical: 20,
+        marginVertical: 10,
         marginHorizontal: 5,
     },
     listItemHelp: {
-        marginVertical: 5
+        marginVertical: 10
     },
     helpLineText: {
         textAlign: 'center',
@@ -274,7 +275,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     number: {
-        color: 'red',
+        color: '#2400FF',
         textAlign: 'center',
         fontFamily: ''
     }
