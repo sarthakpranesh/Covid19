@@ -25,7 +25,7 @@ const Precaution = (props) => {
                 showsVerticalScrollIndicator={false}
             >
                 <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>Prevention Is Better Than Cure</Text>
+                    <Text style={styles.mainHeaderText}>"Prevention Is Better Than Cure"</Text>
                 </View>
 
                 <PreventionCards
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
         paddingHorizontal: 10,
+        backgroundColor: '#DEF7FF'
     },
     mainHeader: {
         flex: 1,
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 52,
         fontWeight: 'bold',
-        color: '#3f72af',
+        color: '#D41D3E',
         fontFamily: ''
     }, 
 })
