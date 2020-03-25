@@ -1,9 +1,12 @@
 {
   "scripts": {
+    "optimize-assets": "npx expo-optimize",
+    "start": "expo start",
+    "build-test": "npx expo-optimize & expo build:android -t apk --release-channel test",
+    "publish-test": "expo publish --release-channel test",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
-    "start": "react-native start",
     "test": "jest"
   },
   "dependencies": {

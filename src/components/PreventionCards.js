@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         paddingVertical: 20,
         paddingHorizontal: 10,
-        borderRadius: 5,
+        borderRadius: 18,
     },
     mainPreventionTitle: {
         color: 'black',

@@ -43,7 +43,6 @@ class Country extends Component {
 const styles = StyleSheet.create({
     countrySection: {
         backgroundColor: '#FFC692',
-        margin: 10,
         marginTop: 0,
         marginBottom: 20,
         paddingVertical: 20,
