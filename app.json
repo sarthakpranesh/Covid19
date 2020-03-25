@@ -1,18 +1,26 @@
 {
   "name": "Covid19",
   "displayName": "Covid19",
+  "description": "This is a simple straight forward app to help people deal with Corona Virus outbreak made for the community by the community",
+  "backgroundColor": "#DEF7FF",
+  "githubUrl": "https://github.com/sarthakpranesh/Covid19-ReactNative",
+  "orientation": "portrait",
+  "primaryColor": "#DEF7FF",
+  "androidNavigationBar": {
+    "backgroundColor": "#D41D3E"
+  },
   "expo": {
     "name": "Covid19",
     "icon": "./assets/C19.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#DEF7FF"
     },
     "slug": "Covid19",
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "entryPoint": "node_modules/expo/AppEntry.js",
     "platforms": [
       "ios",
