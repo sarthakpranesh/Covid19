@@ -21,7 +21,7 @@ To start the project follow the below steps<br/>
 1. git clone https://github.com/sarthakpranesh/Covid19-ReactNative.git
 2. cd Covid19-ReactNative
 3. npm i
-4. expo start
+4. npm run start
 
 <br/>
 
