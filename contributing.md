@@ -8,7 +8,7 @@ Before you start your awesome work make sure you follow the below steps
 1. Create your own *Fork* of the Covid19-ReactNative repo
 2. Create a new branch with a branch-name that starts with your name followed by what feature/issue you are going to add/resolve.
 3. Now let your work begin in this new branch of yours and make sure you follow the code style for the project.
-4. Once you are done, Send us a pull request on the *develop* branch on the main Covid19-ReactNative app
+4. Once you are done, Send us a pull request on the *develop* branch on the main Covid19-ReactNative app repo
 
 ## Some key points
 * Each feature/issue you work with should have a different branch which should follow the stated naming convention
