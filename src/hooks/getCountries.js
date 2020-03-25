@@ -33,16 +33,16 @@ const getCountries = () => {
             setResults([
                 {
                     seriesName: 'Total Cases',
-                    data: total_cases,
+                    data: total_cases.reverse(),
                     color: 'yellow'
                 },
                 {
                     seriesName: 'Total Deaths',
-                    data: total_deaths,
+                    data: total_deaths.reverse(),
                     color: 'red'
                 },{
                     seriesName: 'Total Recoveries',
-                    data: total_recoveries,
+                    data: total_recoveries.reverse(),
                     color: 'green'
                 }
             ]);

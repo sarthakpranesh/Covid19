@@ -28,7 +28,6 @@ const HomeScreen = (props) => {
     const [healthCoronaSearch, healthResults, err0] = getHealthStats();
     const [getCountryWiseData, countryWiseData, err1] = getCountries();
     const [getStats, indianStats, err2] = getIndianStats();
-
     return (
         <>
             <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
