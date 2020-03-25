@@ -65,7 +65,7 @@ const HomeScreen = (props) => {
                     <TouchableOpacity onPress={() => Linking.openURL('https://www.who.int/health-topics/coronavirus') }>
                         <Text 
                             style={{
-                                color: '#112d4e',
+                                color: 'black',
                                 textDecorationLine: 'underline',
                                 fontSize: 16,
                                 fontWeight: 'bold'
@@ -89,7 +89,7 @@ const HomeScreen = (props) => {
                     <Text
                         style={{
                             fontSize: 18,
-                            color: "#112d4e",
+                            color: "black",
                             textAlign: 'center',
                             fontFamily: '',
                             fontWeight: 'bold'
@@ -103,7 +103,7 @@ const HomeScreen = (props) => {
                         <Text
                             style={{
                                 fontSize: 16,
-                                color: '#112d4e',
+                                color: 'black',
                                 marginVertical: 20,
                                 textDecorationLine: 'underline' ,
                                 fontFamily: '',
@@ -115,7 +115,7 @@ const HomeScreen = (props) => {
                     </TouchableOpacity>
                     <Text
                         style={{
-                            color: '#112d4e',
+                            color: 'black',
                             textAlign: 'center',
                             fontFamily: '',
                             fontWeight: 'bold',
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     aboutContent: {
         textAlign: 'justify',
         fontSize: 18,
-        color: '#112d4e',
+        color: 'black',
         marginVertical: 10,
         fontFamily: ''
     }

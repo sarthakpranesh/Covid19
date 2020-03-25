@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#112d4e',
+        color: 'black',
         fontFamily: '',
         paddingVertical: 10
     }

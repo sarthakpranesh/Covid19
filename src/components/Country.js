@@ -33,7 +33,7 @@ class Country extends Component {
                 </View>
                 <RowStackResult 
                     data={data}
-                    textColor="#112d4e"
+                    textColor='black'
                 />
             </View>
         );
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     },
     countrySectionTitle: {
         textAlign: 'justify',
-        color: '#112d4e',
+        color: 'black',
         marginTop: 0,
         fontSize: 28,
         fontWeight: 'bold',

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const Styles = {
+const Styles = StyleSheet.create({
     safeArea: {
         flex: 1,
         paddingHorizontal: 10,
@@ -23,6 +23,6 @@ const Styles = {
         color: '#D41D3E',
         fontFamily: ''
     }, 
-}
+});
 
 export default Styles;

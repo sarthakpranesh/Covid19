@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 22,
         fontFamily: '',
-        color: '#112d4e',
+        color: 'black',
         fontFamily: ''
     },
     numberContainer: {
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     number: {
-        color: '#2400FF',
+        color: 'black',
         textAlign: 'center',
         fontFamily: ''
     }

@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     mainPreventionTitle: {
-        color: '#112d4e',
+        color: 'black',
         fontSize: 18,
         fontWeight: 'bold',
         fontFamily: ''
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     preventionContent: {
         flex: 2,
-        color: '#112d4e',
+        color: 'black',
         fontWeight: 'bold',
         fontSize: 12,
         fontFamily: '',
