@@ -68,6 +68,7 @@ const HomeScreen = (props) => {
                                 color: 'black',
                                 textDecorationLine: 'underline',
                                 fontSize: 16,
+                                fontFamily: '',
                                 fontWeight: 'bold'
                             }}
                         >

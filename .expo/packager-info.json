@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 8341,
-  "expoServerNgrokUrl": "https://44-x3s.sarthakpranesh.covid19.exp.direct",
-  "packagerNgrokUrl": "https://packager.8g-ja4.sarthakpranesh.covid19.exp.direct",
-  "ngrokPid": 8574,
+  "packagerPid": 5428,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
