@@ -18,7 +18,7 @@ const Styles = StyleSheet.create({
     },
     mainHeaderText: {
         textAlign: 'center',
-        fontSize: 48,
+        fontSize: 32,
         fontWeight: 'bold',
         color: '#D41D3E',
         fontFamily: ''
