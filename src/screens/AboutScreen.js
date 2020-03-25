@@ -35,7 +35,7 @@ const HomeScreen = (props) => {
                 <View style={styles.aboutContentContainer}>
                     <Image
                         style={{
-                            marginVertical: 40,
+                            marginVertical: 20,
                             height: 100,
                             width: 100,
                         }}

@@ -47,10 +47,15 @@ const HomeScreen = (props) => {
                         style={styles.mainHeaderImage}
                         source={require('../../assets/img/ic1.png')}
                     />
-                    <RowStackResult 
-                        data={healthResults}
-                    />
                 </View>
+
+                <Country
+                        data={indianStats}
+                        isError={err2}
+                        countryName=" World "
+                        getCountry={getStats}
+                        containerStyle={'#B1ECFF'}
+                />
 
                 <Country
                     data={indianStats}
@@ -67,16 +72,16 @@ const HomeScreen = (props) => {
                     >
                         India's Timeline
                     </Text>
-                    <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                    <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
                         Yellow: <Text style={{color: 'black'}}>Total Cases</Text>
                     </Text>
-                    <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                    <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
                         Red:    <Text style={{color: 'black'}}>Deaths</Text>
                     </Text>
-                    <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                    <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
                         Green:  <Text style={{color: 'black'}}>Recovered</Text>
                     </Text>
-                    <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                    <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
                         *Scroll horizontally to see latest trends
                     </Text>
                     {
@@ -108,19 +113,19 @@ const HomeScreen = (props) => {
 
 const styles = StyleSheet.create({
     mainHeaderImage: {
-        width: 250,
-        height: 50,
+        width: 200,
+        height: 40,
         alignSelf: 'center',
-        marginBottom: 40,
+        marginBottom: 0,
     },
     lineChartContainer: {
-        marginVertical: 20,
-        paddingVertical: 10,
+        marginVertical: -10,
+        paddingVertical: 0,
         marginBottom: 0
     },
     lineChartText: {
-        textAlign: 'justify',
-        fontSize: 22,
+        textAlign: 'center',
+        fontSize: 28,
         fontWeight: 'bold',
         color: 'black',
         fontFamily: '',

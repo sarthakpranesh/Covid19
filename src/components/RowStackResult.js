@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-        paddingTop: 40,
+        paddingTop: 10,
     },
     subResult: {
         flex: 1,
