@@ -67,7 +67,7 @@ const HomeScreen = (props) => {
                 </View>
 
                 <Country
-                        data={indianStats}
+                        data={healthResults}
                         isError={err2}
                         countryName=" World "
                         getCountry={getStats}
