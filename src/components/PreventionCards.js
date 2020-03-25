@@ -20,9 +20,10 @@ class PreventionCards extends Component {
                     <Image 
                         style={{
                             width: 100,
-                            height: 100,
-                            margin: 10,
+                            height: 120,
+                            marginLeft: 10,
                             marginBottom: 0,
+                            flex: 1.6,
                         }}
                         source={src}
                     />
@@ -34,14 +35,14 @@ class PreventionCards extends Component {
 
 const styles = StyleSheet.create({
     mainPreventionContainer: {
-        backgroundColor: '#112d4e',
+        backgroundColor: '#FFC692',
         marginVertical: 10,
         paddingVertical: 20,
         paddingHorizontal: 10,
-        borderRadius: 5,
+        borderRadius: 18,
     },
     mainPreventionTitle: {
-        color: 'white',
+        color: 'black',
         fontSize: 18,
         fontWeight: 'bold',
         fontFamily: ''
@@ -49,15 +50,19 @@ const styles = StyleSheet.create({
     preventionContentContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 5,
         padding: 5,
-        flexWrap: 'wrap'
     },
     preventionContent: {
-        color: 'white',
+        flex: 2,
+        color: 'black',
+        fontWeight: 'bold',
         fontSize: 12,
-        fontFamily: ''
+        fontFamily: '',
+        flexWrap: 'wrap',
+        textAlign: 'justify'
     }
 })
 

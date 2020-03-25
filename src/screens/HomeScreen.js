@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import {
     View,
     Text,
     StyleSheet,
     StatusBar,
+    Image,
+    RefreshControl
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import PureChart from 'react-native-pure-chart';
@@ -18,11 +20,30 @@ import getHealthStats from '../hooks/getGlobalTotal';
 import getCountries from '../hooks/getCountries';
 import getIndianStats from '../hooks/getIndianStats';
 
+// import common style
+import Styles from "../Styles";
+
+function wait(timeout) {
+    return new Promise(resolve => {
+      setTimeout(resolve, timeout);
+    });
+  }
+
 const HomeScreen = (props) => {
     const navigate = props.navigation;
     const [healthCoronaSearch, healthResults, err0] = getHealthStats();
     const [getCountryWiseData, countryWiseData, err1] = getCountries();
     const [getStats, indianStats, err2] = getIndianStats();
+
+    // for pull down to refresh
+    const [refreshing, setRefresh] = useState(false);
+    const onRefresh = useCallback(async () => {
+        setRefresh(true);
+        await getStats();
+        await getCountryWiseData();
+        await healthCoronaSearch();
+        setRefresh(false);
+    }, [refreshing]);
 
     return (
         <>
@@ -32,17 +53,26 @@ const HomeScreen = (props) => {
                 title=' Home '
             />
             <ScrollView 
-                style={styles.safeArea}
+                style={Styles.safeArea}
                 alwaysBounceVertical={true}
                 showsVerticalScrollIndicator={false}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
             >
 
-                <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>Covid 19</Text>
-                    <RowStackResult 
-                        data={healthResults}
+                <View style={Styles.mainHeader}>
+                    <Image 
+                        style={styles.mainHeaderImage}
+                        source={require('../../assets/img/ic1.png')}
                     />
                 </View>
+
+                <Country
+                        data={healthResults}
+                        isError={err2}
+                        countryName=" World "
+                        getCountry={getStats}
+                        containerStyle={'#B1ECFF'}
+                />
 
                 <Country
                     data={indianStats}
@@ -59,16 +89,16 @@ const HomeScreen = (props) => {
                     >
                         India's Timeline
                     </Text>
-                    <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                    <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
                         Yellow: <Text style={{color: 'black'}}>Total Cases</Text>
                     </Text>
-                    <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                    <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
                         Red:    <Text style={{color: 'black'}}>Deaths</Text>
                     </Text>
-                    <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                    <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
                         Green:  <Text style={{color: 'black'}}>Recovered</Text>
                     </Text>
-                    <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: ''}}>
+                    <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
                         *Scroll horizontally to see latest trends
                     </Text>
                     {
@@ -99,37 +129,22 @@ const HomeScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        paddingHorizontal: 10,
-    },
-    mainHeader: {
-        flex: 1,
-        left: 0,
-        right: 0,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
-        paddingVertical: 100,
-        paddingBottom: 50,
-    },
-    mainHeaderText: {
-        textAlign: 'center',
-        fontSize: 52,
-        fontWeight: 'bold',
-        color: '#3f72af',
-        fontFamily: ''
-    },
-    lineChartContainer: {
-        marginVertical: 20,
-        paddingVertical: 10,
+    mainHeaderImage: {
+        width: 200,
+        height: 40,
+        alignSelf: 'center',
         marginBottom: 0,
     },
+    lineChartContainer: {
+        marginVertical: -10,
+        paddingVertical: 0,
+        marginBottom: 0
+    },
     lineChartText: {
-        textAlign: 'justify',
-        fontSize: 22,
+        textAlign: 'center',
+        fontSize: 28,
         fontWeight: 'bold',
-        color: '#112d4e',
+        color: 'black',
         fontFamily: '',
         paddingVertical: 10
     }

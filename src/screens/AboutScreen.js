@@ -12,6 +12,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 // importing Components
 import Drawer from '../components/Drawer';
 
+// importing common style
+import Styles from '../Styles';
+
 const HomeScreen = (props) => {
     const navigate = props.navigation;
     return (
@@ -21,18 +24,18 @@ const HomeScreen = (props) => {
                 title=' About '
             />
             <ScrollView
-                style={styles.safeArea}
+                style={Styles.safeArea}
                 alwaysBounceVertical={true}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={styles.mainHeader}>
-                    <Text style={styles.mainHeaderText}>Corona Virus</Text>
+                <View style={Styles.mainHeader}>
+                    <Text style={Styles.mainHeaderText}>Corona Virus</Text>
                 </View>
 
                 <View style={styles.aboutContentContainer}>
                     <Image
                         style={{
-                            marginVertical: 40,
+                            marginVertical: 20,
                             height: 100,
                             width: 100,
                         }}
@@ -62,8 +65,10 @@ const HomeScreen = (props) => {
                     <TouchableOpacity onPress={() => Linking.openURL('https://www.who.int/health-topics/coronavirus') }>
                         <Text 
                             style={{
-                                color: 'white',
+                                color: 'black',
                                 textDecorationLine: 'underline',
+                                fontSize: 16,
+                                fontWeight: 'bold'
                             }}
                         >
                             Click Here to Know More
@@ -75,7 +80,7 @@ const HomeScreen = (props) => {
                     flex: 1,
                     padding: 20,
                     paddingHorizontal: 10,
-                    backgroundColor: '#112d4e',
+                    backgroundColor: '#FFC692',
                     marginBottom: 20,
                     borderRadius: 5,
                     justifyContent: 'center',
@@ -84,9 +89,10 @@ const HomeScreen = (props) => {
                     <Text
                         style={{
                             fontSize: 18,
-                            color: "white",
+                            color: "black",
                             textAlign: 'center',
                             fontFamily: '',
+                            fontWeight: 'bold'
                         }}
                     >
                         Support Project
@@ -96,11 +102,12 @@ const HomeScreen = (props) => {
                     >
                         <Text
                             style={{
-                                fontSize: 12,
-                                color: 'white',
+                                fontSize: 16,
+                                color: 'black',
                                 marginVertical: 20,
                                 textDecorationLine: 'underline' ,
-                                fontFamily: ''
+                                fontFamily: '',
+                                fontWeight: 'bold'
                             }}
                         >
                             Github
@@ -108,9 +115,11 @@ const HomeScreen = (props) => {
                     </TouchableOpacity>
                     <Text
                         style={{
-                            color: 'white',
+                            color: 'black',
                             textAlign: 'center',
                             fontFamily: '',
+                            fontWeight: 'bold',
+                            fontSize: 16
                         }}
                     >
                         Made with Love
@@ -122,31 +131,10 @@ const HomeScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        paddingHorizontal: 10,
-    },
-    mainHeader: {
-        flex: 1,
-        left: 0,
-        right: 0,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
-        paddingVertical: 100,
-        paddingBottom: 50,
-    },
-    mainHeaderText: {
-        textAlign: 'center',
-        fontSize: 52,
-        fontWeight: 'bold',
-        color: '#3f72af',
-        fontFamily: ''
-    }, 
     aboutContentContainer: {
-        backgroundColor: '#112d4e',
-        marginVertical: 10,
-        paddingVertical: 20,
+        backgroundColor: '#FFC692',
+        marginVertical: 30,
+        paddingVertical: 10,
         paddingHorizontal: 10,
         borderRadius: 5,
 
@@ -158,7 +146,7 @@ const styles = StyleSheet.create({
     aboutContent: {
         textAlign: 'justify',
         fontSize: 18,
-        color: 'white',
+        color: 'black',
         marginVertical: 10,
         fontFamily: ''
     }

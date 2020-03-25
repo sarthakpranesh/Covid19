@@ -27,13 +27,13 @@ class Country extends Component {
         const country = this.props.countryName;
         const data = this.props.data
         return (
-            <View style={styles.countrySection}>
+            <View style={[ styles.countrySection, { backgroundColor: this.props.containerStyle ? this.props.containerStyle : '#FFC692' } ]}>
                 <View style={styles.countryHeader}>
                     <Text style={styles.countrySectionTitle}>{ country ? country : " Unknown Country "} : </Text>
                 </View>
                 <RowStackResult 
                     data={data}
-                    textColor="white"
+                    textColor='black'
                 />
             </View>
         );
@@ -42,26 +42,27 @@ class Country extends Component {
 
 const styles = StyleSheet.create({
     countrySection: {
-        backgroundColor: '#112d4e',
-        marginBottom: 10,
-        marginTop: 10,
+        backgroundColor: '#FFC692',
+        marginTop: 0,
+        marginBottom: 20,
         paddingVertical: 20,
         paddingTop: 10,
         paddingHorizontal: 10,
-        borderRadius: 5,
+        borderRadius: 16,
     },
     countryHeader: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 10
     },
     countrySectionTitle: {
         textAlign: 'justify',
-        color: 'white',
+        color: 'black',
         marginTop: 0,
         fontSize: 28,
-        fontWeight: '800',
+        fontWeight: 'bold',
         fontFamily: '',
     },
 })
