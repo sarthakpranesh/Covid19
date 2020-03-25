@@ -12,7 +12,7 @@ Before you start your awesome work make sure you follow the below steps
 
 ## Some key points
 * Each feature/issue you work with should have a different branch which should follow the stated naming convention
-* Make sure you regularly pull changes from the develop branch, as it will bew kept up to date with latest changes.
+* Make sure you regularly pull changes from the develop branch, as it will be kept up to date with latest changes.
 
 # Community
 We are actively looking to build a community around this project to help those out in need. For now most of the discussion and ideation is focused on GitHub issues. So make sure you keep a regular check on it
