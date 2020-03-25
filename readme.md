@@ -27,3 +27,5 @@ To start the project follow the below steps<br/>
 
 ## Contributors
 * [Ankit Mishra](https://github.com/alexmishra) (Designer)
+
+Looking to be a part of the team, checkout our contribution guideline [HERE](https://github.com/sarthakpranesh/Covid19-ReactNative/blob/contribution/contributing.md) and get started
