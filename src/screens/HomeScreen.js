@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import {
     View,
     Text,
     StyleSheet,
     StatusBar,
     Image,
+    RefreshControl
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import PureChart from 'react-native-pure-chart';
@@ -20,14 +21,30 @@ import getCountries from '../hooks/getCountries';
 import getIndianStats from '../hooks/getIndianStats';
 
 // import common style
-import Style from '../Styles';
 import Styles from "../Styles";
+
+function wait(timeout) {
+    return new Promise(resolve => {
+      setTimeout(resolve, timeout);
+    });
+  }
 
 const HomeScreen = (props) => {
     const navigate = props.navigation;
     const [healthCoronaSearch, healthResults, err0] = getHealthStats();
     const [getCountryWiseData, countryWiseData, err1] = getCountries();
     const [getStats, indianStats, err2] = getIndianStats();
+
+    // for pull down to refresh
+    const [refreshing, setRefresh] = useState(false);
+    const onRefresh = useCallback(async () => {
+        setRefresh(true);
+        await getStats();
+        await getCountryWiseData();
+        await healthCoronaSearch();
+        setRefresh(false);
+    }, [refreshing]);
+
     return (
         <>
             <StatusBar backgroundColor='blue' barStyle='dark-content' hidden={true}/>
@@ -39,6 +56,7 @@ const HomeScreen = (props) => {
                 style={Styles.safeArea}
                 alwaysBounceVertical={true}
                 showsVerticalScrollIndicator={false}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
             >
 
                 <View style={Styles.mainHeader}>
