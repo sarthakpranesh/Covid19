@@ -13,7 +13,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignContent: 'center',
-        paddingVertical: 100,
+        paddingVertical: 60,
         paddingBottom: 50,
     },
     mainHeaderText: {

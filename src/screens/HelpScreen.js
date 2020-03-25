@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     number: {
-        color: 'black',
+        color: '#2400FF',
         textAlign: 'center',
         fontFamily: ''
     }
