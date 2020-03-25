@@ -2,7 +2,7 @@
 This is a simple React-Native project developed in support of people suffering and affected due to Covid 19 virus out break all around the world. The app lets the user track the growth of the virus and provides statistics from all around the world ( Focusing on India ).
 <br/>
 
-## Download App from [HERE](https://drive.google.com/file/d/14cAmUmprtBNcM3K6lmwNp4fl3J3aKndF/view?usp=sharing)
+## Download App from [HERE](https://drive.google.com/file/d/14cAmUmprtBNcM3K6lmwNp4fl3J3aKndF/view?usp=sharing) latest v2.1.0
 <br/>
 
 ## New Designs
