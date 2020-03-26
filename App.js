@@ -8,10 +8,14 @@ import HomeScreen from "./src/screens/HomeScreen";
 import AboutScreen from './src/screens/AboutScreen';
 import PrecautionScreen from './src/screens/PrecautionScreen';
 import HelpScreen from './src/screens/HelpScreen';
+import OtherCountries from './src/screens/OtherCountries';
 
 const Drawer = createDrawerNavigator({
     " Home ": {
         screen: HomeScreen,
+    },
+    " OtherCountries " : {
+        screen : OtherCountries
     },
     " Precaution ": {
         screen: PrecautionScreen,

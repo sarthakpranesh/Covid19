@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 5428,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "packagerPid": 1240,
+  "expoServerNgrokUrl": "https://hm-qr8.shubhamaniket.covid19-reactnative.exp.direct",
+  "packagerNgrokUrl": "https://packager.hm-qr8.shubhamaniket.covid19-reactnative.exp.direct",
+  "ngrokPid": 4852,
   "webpackServerPort": null
 }
