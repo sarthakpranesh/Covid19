@@ -12,7 +12,6 @@ import PureChart from 'react-native-pure-chart';
 
 // importing components
 import Drawer from '../components/Drawer';
-import RowStackResult from "../components/RowStackResult";
 import Country from '../components/Country';
 
 // importing hooks
