@@ -15,7 +15,7 @@ const getCountries = () => {
             }
             const arrayObjectKeys = Object.keys(resp.data.timelineitems[0]);
             var total_cases = [], total_deaths = [], total_recoveries = [];
-            arrayObjectKeys.slice(arrayObjectKeys, arrayObjectKeys.length - 1).forEach((date) => {
+            arrayObjectKeys.slice(arrayObjectKeys, arrayObjectKeys.length - 2).forEach((date) => {
 
                 total_cases.push({
                     x: date,

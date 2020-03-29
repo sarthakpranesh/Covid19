@@ -24,6 +24,7 @@ class PreventionCards extends Component {
                             marginLeft: 10,
                             marginBottom: 0,
                             flex: 1.6,
+                            borderRadius: 16
                         }}
                         source={src}
                     />

@@ -19,7 +19,7 @@ const Drawer = ({ navigate, title }) => {
         <>
         <View style={styles.header}>
             <TouchableOpacity style={styles.menu} onPress={onHamClick}>
-                <Feather name='menu' color='black' size={28}/>
+                <Feather name='menu' color='black' size={32}/>
             </TouchableOpacity>
             <View style={styles.titleContainer}>
                 <Text style={styles.headerText}>{title}</Text>
