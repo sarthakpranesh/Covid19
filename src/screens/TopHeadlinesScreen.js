@@ -4,7 +4,8 @@ import {
     Text,
     ScrollView,
     StatusBar,
-    RefreshControl
+    RefreshControl,
+    ActivityIndicator
 } from 'react-native';
 
 // importing components
@@ -18,7 +19,7 @@ import Styles from '../Styles';
 import getTopHeadlines from '../hooks/getTopHeadlines';
 
 const TopHeadlinesScreen = (props) => {
-    const navigate = props.navigate
+    const navigate = props.navigation;
     const [fetchTopHeadlines, topHeadlines, err] = getTopHeadlines();
 
     // for pull down to refresh
@@ -53,7 +54,7 @@ const TopHeadlinesScreen = (props) => {
                         topHeadlines={topHeadlines}
                     />
                     :
-                    null
+                    <ActivityIndicator size='large' color='black' />
                 }
             </ScrollView>
         </>

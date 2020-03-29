@@ -27,7 +27,7 @@ const Drawer = createDrawerNavigator({
         screen: AboutScreen
     }
 }, {
-  initialRouteName: ' Top Headlines ',
+  initialRouteName: ' Home ',
   drawerBackgroundColor: '#DEF7FF',
   keyboardDismissMode: 'on-drag',
   backBehavior: 'initialRoute',
