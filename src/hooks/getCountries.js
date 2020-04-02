@@ -9,7 +9,7 @@ const getCountries = () => {
 
     const getCountryWiseData = async () => {
         try {
-            const resp = await virusTrackerApi.get('/free-api?countryTimeline=IN');
+            const resp = await virusTrackerApi.get('/free-api?countryTimeline=in');
             if ( resp.data.timelineitems === undefined || null ) {
                 throw new Error();
             }

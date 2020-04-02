@@ -80,29 +80,29 @@ const HomeScreen = (props) => {
                     getCountry={getStats}
                 />
 
-                <View
-                    style={styles.lineChartContainer}
-                >
-                    <Text
-                        style={styles.lineChartText}
+                {
+                    countryWiseData.length === 0
+                    ?
+                    <View
+                        style={styles.lineChartContainer}
                     >
-                        India's Timeline
-                    </Text>
-                    <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
-                        Yellow: <Text style={{color: 'black'}}>Total Cases</Text>
-                    </Text>
-                    <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
-                        Red:    <Text style={{color: 'black'}}>Deaths</Text>
-                    </Text>
-                    <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
-                        Green:  <Text style={{color: 'black'}}>Recovered</Text>
-                    </Text>
-                    <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
-                        *Scroll horizontally to see latest trends
-                    </Text>
-                    {
-                        countryWiseData
-                        ?
+                        <Text
+                            style={styles.lineChartText}
+                        >
+                            India's Timeline
+                        </Text>
+                        <Text   style={{color: 'yellow', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
+                            Yellow: <Text style={{color: 'black'}}>Total Cases</Text>
+                        </Text>
+                        <Text   style={{color: 'red', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
+                            Red:    <Text style={{color: 'black'}}>Deaths</Text>
+                        </Text>
+                        <Text   style={{color: 'green', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
+                            Green:  <Text style={{color: 'black'}}>Recovered</Text>
+                        </Text>
+                        <Text   style={{color: 'black', textAlign: 'justify', fontSize: 12, paddingLeft: 10, fontFamily: '', fontWeight: 'bold'}}>
+                            *Scroll horizontally to see latest trends
+                        </Text>
                         <View
                             style={{
                                 paddingVertical: 20
@@ -117,10 +117,10 @@ const HomeScreen = (props) => {
                                 numberOfXAxisGuideLine={10}
                             />
                         </View>
-                        :
-                        null
-                    }
-                </View>
+                    </View>
+                    :
+                    null
+                }
 
             </ScrollView>
         </>
