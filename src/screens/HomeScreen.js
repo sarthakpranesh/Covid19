@@ -79,9 +79,8 @@ const HomeScreen = (props) => {
                     countryName=" India "
                     getCountry={getStats}
                 />
-
                 {
-                    countryWiseData.length === 0
+                    countryWiseData.length !== 0
                     ?
                     <View
                         style={styles.lineChartContainer}
@@ -121,7 +120,6 @@ const HomeScreen = (props) => {
                     :
                     null
                 }
-
             </ScrollView>
         </>
     );
