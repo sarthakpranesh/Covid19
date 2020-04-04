@@ -23,6 +23,8 @@
     "react-native-pure-chart": "0.0.24",
     "react-native-reanimated": "~1.4.0",
     "react-native-screens": "2.0.0-alpha.12",
+    "react-native-svg": "9.13.3",
+    "react-native-svg-charts": "^5.3.0",
     "react-native-unimodules": "~0.7.0",
     "react-navigation": "^4.3.1",
     "react-navigation-drawer": "^2.4.4"

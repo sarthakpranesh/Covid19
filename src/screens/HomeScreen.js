@@ -5,11 +5,13 @@ import {
     StyleSheet,
     StatusBar,
     Image,
-    RefreshControl
+    RefreshControl,
+    Dimensions,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import PureChart from 'react-native-pure-chart';
-
+import { LineChart, Grid } from 'react-native-svg-charts'
+ 
 // importing components
 import Drawer from '../components/Drawer';
 import Country from '../components/Country';
@@ -22,11 +24,7 @@ import getIndianStats from '../hooks/getIndianStats';
 // import common style
 import Styles from "../Styles";
 
-function wait(timeout) {
-    return new Promise(resolve => {
-      setTimeout(resolve, timeout);
-    });
-  }
+const data = [ 50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80 ]
 
 const HomeScreen = (props) => {
     const navigate = props.navigation;
@@ -80,7 +78,7 @@ const HomeScreen = (props) => {
                     getCountry={getStats}
                 />
                 {
-                    countryWiseData.length !== 0
+                    countryWiseData !== []
                     ?
                     <View
                         style={styles.lineChartContainer}
@@ -107,14 +105,27 @@ const HomeScreen = (props) => {
                                 paddingVertical: 20
                             }}
                         >
-                            <PureChart
-                                data={countryWiseData}
+                            {/* <PureChart
+                                data={countryWiseData[0].data}
                                 type='line'
                                 height={200}
                                 width={'100%'}
                                 numberOfYAxisGuideLine={10}
                                 numberOfXAxisGuideLine={10}
-                            />
+                            /> */}
+                            { console.log(countryWiseData) }
+                            <LineChart
+                                style={{ height: 200 }}
+                                data={ countryWiseData }
+                                svg={{ stroke: 'rgb(134, 65, 244)' }}
+                                contentInset={{ top: 20, bottom: 20 }}
+                                animate={true}
+                                animationDuration={500}
+                                numberOfTicks={20}
+                                showGrid={true}
+                            >
+                                <Grid/>
+                            </LineChart>
                         </View>
                     </View>
                     :

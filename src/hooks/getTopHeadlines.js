@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // importing API
-import newsApi from '../apis/newApi';
-import arraySort from 'array-sort';
+import newsApi from '../apis/newsApi';
 
 const getTopHeadlines = () => {
     const [results, setResults] = useState('');
