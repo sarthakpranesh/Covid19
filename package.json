@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "npx react-native start --reset-cache",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build-android": "cd ./android && ./gradlew clean && ./gradlew assembleRelease"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
@@ -25,7 +26,8 @@
     "react-native-screens": "^2.8.0",
     "react-native-svg": "^12.1.0",
     "react-native-unimodules": "^0.9.1",
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^4.3.9"
   },
   "devDependencies": {
     "@babel/core": "^7.10.0",
