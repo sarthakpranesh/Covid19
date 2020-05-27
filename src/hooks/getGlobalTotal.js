@@ -21,6 +21,7 @@ const getHealthStats = () => {
         deathsToday: resp.data.results[0].total_new_deaths_today,
       });
     } catch (err) {
+      setResults({});
       setErrorMessage(true);
     }
   };

@@ -4,22 +4,16 @@ import {
   View,
   Text,
   StyleSheet,
-  StatusBar,
   TouchableOpacity,
   Linking,
   FlatList,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-// importing components
-import Drawer from '../components/Drawer';
-
 // importing common styles
 import Styles from '../Styles';
 
-const HelpScreen = (props) => {
-  const navigate = props.navigation;
-
+const HelpScreen = ({style}) => {
   const data = [
     {
       state: 'Central Help Line Number',
@@ -172,9 +166,14 @@ const HelpScreen = (props) => {
   ];
 
   return (
-    <>
-      <StatusBar backgroundColor="red" barStyle="dark-content" hidden={true} />
-      <Drawer navigate={navigate} title=" Help Line " />
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        backgroundColor: 'pink',
+        ...style,
+      }}>
       <ScrollView
         style={Styles.safeArea}
         alwaysBounceVertical={true}
@@ -224,7 +223,7 @@ const HelpScreen = (props) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 };
 

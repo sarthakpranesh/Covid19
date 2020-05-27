@@ -10,17 +10,19 @@ import {
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-// importing Components
-import Drawer from '../components/Drawer';
-
 // importing common style
 import Styles from '../Styles';
 
-const HomeScreen = (props) => {
-  const navigate = props.navigation;
+const HomeScreen = ({style}) => {
   return (
-    <>
-      <Drawer navigate={navigate} title=" About " />
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        backgroundColor: 'pink',
+        ...style,
+      }}>
       <ScrollView
         style={Styles.safeArea}
         alwaysBounceVertical={true}
@@ -123,7 +125,7 @@ const HomeScreen = (props) => {
           </Text>
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 };
 

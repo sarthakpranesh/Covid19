@@ -1,15 +1,14 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useCallback} from 'react';
 import {
   View,
   Text,
   ScrollView,
-  StatusBar,
   RefreshControl,
   ActivityIndicator,
 } from 'react-native';
 
 // importing components
-import Drawer from '../components/Drawer';
 import NewsCards from '../components/NewsCards';
 
 // importing common style
@@ -18,8 +17,7 @@ import Styles from '../Styles';
 // importing hooks
 import getTopHeadlines from '../hooks/getTopHeadlines';
 
-const TopHeadlinesScreen = (props) => {
-  const navigate = props.navigation;
+const TopHeadlinesScreen = ({style}) => {
   const [fetchTopHeadlines, topHeadlines, err] = getTopHeadlines();
 
   // for pull down to refresh
@@ -31,9 +29,14 @@ const TopHeadlinesScreen = (props) => {
   }, [fetchTopHeadlines]);
 
   return (
-    <>
-      <StatusBar backgroundColor="blue" barStyle="dark-content" hidden={true} />
-      <Drawer navigate={navigate} title=" Top Headlines " />
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        backgroundColor: 'pink',
+        ...style,
+      }}>
       <ScrollView
         style={Styles.safeArea}
         alwaysBounceVertical={true}
@@ -51,7 +54,7 @@ const TopHeadlinesScreen = (props) => {
           <ActivityIndicator size="large" color="black" />
         )}
       </ScrollView>
-    </>
+    </View>
   );
 };
 

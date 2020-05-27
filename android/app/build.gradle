@@ -127,6 +127,10 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", true);
 
 android {
+    dexOptions {
+        javaMaxHeapSize "4g"
+    } 
+    
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
@@ -226,6 +230,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation project(':react-native-splash-screen')
 }
 
 // Run this once to be able to run the application with BUCK

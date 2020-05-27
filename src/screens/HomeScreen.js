@@ -1,9 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useCallback} from 'react';
-import {View, StyleSheet, StatusBar, Image, RefreshControl} from 'react-native';
+import {View, StyleSheet, Image, RefreshControl} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import SplashScreen from 'react-native-splash-screen';
 
 // importing components
-import Drawer from '../components/Drawer';
 import Country from '../components/Country';
 
 // importing hooks
@@ -13,13 +14,11 @@ import getIndianStats from '../hooks/getIndianStats';
 // import common style
 import Styles from '../Styles';
 
-const HomeScreen = (props) => {
-  const navigate = props.navigation;
+const HomeScreen = ({style, navigation}) => {
+  const [refreshing, setRefresh] = useState();
   const [healthCoronaSearch, healthResults, err0] = getHealthStats();
   const [getStats, indianStats, err2] = getIndianStats();
 
-  // for pull down to refresh
-  const [refreshing, setRefresh] = useState(false);
   const onRefresh = useCallback(async () => {
     setRefresh(true);
     await getStats();
@@ -27,10 +26,19 @@ const HomeScreen = (props) => {
     setRefresh(false);
   }, [getStats, healthCoronaSearch]);
 
+  if (healthResults && indianStats) {
+    SplashScreen.hide();
+  }
+
   return (
-    <>
-      <StatusBar backgroundColor="blue" barStyle="dark-content" hidden={true} />
-      <Drawer navigate={navigate} title=" Home " />
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        backgroundColor: 'pink',
+        ...style,
+      }}>
       <ScrollView
         style={Styles.safeArea}
         alwaysBounceVertical={true}
@@ -60,7 +68,7 @@ const HomeScreen = (props) => {
           getCountry={getStats}
         />
       </ScrollView>
-    </>
+    </View>
   );
 };
 

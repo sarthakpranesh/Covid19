@@ -1,19 +1,23 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 
 // importing components
-import Drawer from '../components/Drawer';
 import PreventionCards from '../components/PreventionCards';
 
 // importing common style
 import Styles from '../Styles';
 
-const Precaution = (props) => {
-  const navigate = props.navigation;
-
+const Precaution = ({style}) => {
   return (
-    <>
-      <Drawer navigate={navigate} title=" Precaution " />
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        backgroundColor: 'pink',
+        ...style,
+      }}>
       <ScrollView
         style={Styles.safeArea}
         alwaysBounceVertical={true}
@@ -63,7 +67,7 @@ const Precaution = (props) => {
           src={require('../../assets/img/dt.png')}
         />
       </ScrollView>
-    </>
+    </View>
   );
 };
 

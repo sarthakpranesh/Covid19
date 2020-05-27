@@ -28,7 +28,7 @@ export const Screens = ({navigation, style}) => {
           headerLeft: () => (
             <IconButton
               icon={({size, color}) => (
-                <Icon name="menu" size={size} color={color} />
+                <Icon name="menu" size={size} color="black" />
               )}
               onPress={() => navigation.openDrawer()}
             />
@@ -109,7 +109,7 @@ export const DrawerContent = (props) => {
           />
         </View>
         <View style={{position: 'absolute', bottom: 10}}>
-          <Drawer.Item
+          {/* <Drawer.Item
             label="Logout"
             labelStyle={{color: 'white'}}
             icon={({size}) => <Icon name="log-out" size={size} color="white" />}
@@ -121,7 +121,7 @@ export const DrawerContent = (props) => {
                 {cancelable: false},
               )
             }
-          />
+          /> */}
         </View>
       </View>
     </DrawerContentScrollView>
