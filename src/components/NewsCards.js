@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  Linking,
-  Image,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import {Linking, FlatList, TouchableOpacity} from 'react-native';
 
 // importing component
 import Precaution from './PreventionCards';
