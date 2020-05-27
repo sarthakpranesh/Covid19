@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 import {NavigationContainer} from '@react-navigation/native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -7,7 +8,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import Animated from 'react-native-reanimated';
 
 import {DrawerContent, Screens} from './src/components/navigation/Drawer.js';
-import {View, Text} from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
@@ -26,7 +26,9 @@ const MainApp = () => {
 
   return (
     <NavigationContainer>
-      <View style={{flex: 1, backgroundColor: 'black'}}>
+      <LinearGradient
+        colors={['#DEF7FF', '#B1ECFF']}
+        style={{flex: 1, backgroundColor: 'white'}}>
         <Drawer.Navigator
           headerMode="none"
           edgeWidth={200}
@@ -37,8 +39,8 @@ const MainApp = () => {
           contentContainerStyle={{flex: 1}}
           drawerContentOptions={{
             activeBackgroundColor: 'transparent',
-            activeTintColor: 'white',
-            inactiveTintColor: 'white',
+            activeTintColor: 'black',
+            inactiveTintColor: 'black',
           }}
           sceneContainerStyle={{backgroundColor: 'transparent'}}
           drawerContent={(p) => {
@@ -49,22 +51,13 @@ const MainApp = () => {
             {(p) => <Screens {...p} style={animatedStyle} />}
           </Drawer.Screen>
         </Drawer.Navigator>
-      </View>
+      </LinearGradient>
     </NavigationContainer>
-  );
-};
-
-const splash = () => {
-  return (
-    <View>
-      <Text>Starting</Text>
-    </View>
   );
 };
 
 const UserStartingSwitch = createSwitchNavigator(
   {
-    splash,
     MainApp,
   },
   {

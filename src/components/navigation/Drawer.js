@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Feather';
-import {Drawer, IconButton} from 'react-native-paper';
+import {Drawer, IconButton, DefaultTheme} from 'react-native-paper';
 
 // // importing Screens
 import HomeScreen from '../../screens/HomeScreen';
@@ -27,6 +27,16 @@ export const Screens = ({navigation, style}) => {
           headerTitle: null,
           headerLeft: () => (
             <IconButton
+              style={{
+                backgroundColor: '#DEF7FF',
+                marginLeft: 10,
+                borderWidth: 0,
+                borderRadius: 8,
+                shadowColor: '#000',
+                shadowOpacity: 1,
+                shadowRadius: 8,
+                elevation: 10,
+              }}
               icon={({size, color}) => (
                 <Icon name="menu" size={size} color="black" />
               )}
@@ -70,49 +80,49 @@ export const DrawerContent = (props) => {
         <View>
           <Drawer.Item
             label="Home"
-            labelStyle={{color: 'white'}}
-            style={{alignItems: 'flex-start', marginVertical: 0}}
+            theme={DefaultTheme}
+            style={styles.drawerItem}
             onPress={() => props.navigation.navigate('Home')}
-            icon={({size}) => <Icon name="home" size={size} color="white" />}
+            icon={({size}) => <Icon name="home" size={size} color="black" />}
           />
           <Drawer.Item
             label="Headline"
-            labelStyle={{color: 'white'}}
-            style={{alignItems: 'flex-start', marginVertical: 0}}
+            theme={DefaultTheme}
+            style={styles.drawerItem}
             onPress={() => props.navigation.navigate('Headline')}
-            icon={({size}) => <Icon name="columns" size={size} color="white" />}
+            icon={({size}) => <Icon name="columns" size={size} color="black" />}
           />
           <Drawer.Item
             label="Precaution"
-            labelStyle={{color: 'white'}}
-            style={{alignItems: 'flex-start', marginVertical: 0}}
+            theme={DefaultTheme}
+            style={styles.drawerItem}
             onPress={() => props.navigation.navigate('Precaution')}
             icon={({size}) => (
-              <Icon name="alert-octagon" size={size} color="white" />
+              <Icon name="alert-octagon" size={size} color="black" />
             )}
           />
           <Drawer.Item
             label="Help"
-            labelStyle={{color: 'white'}}
-            style={{alignItems: 'flex-start', marginVertical: 0}}
+            theme={DefaultTheme}
+            style={styles.drawerItem}
             onPress={() => props.navigation.navigate('Help')}
             icon={({size}) => (
-              <Icon name="help-circle" size={size} color="white" />
+              <Icon name="help-circle" size={size} color="black" />
             )}
           />
           <Drawer.Item
             label="About"
-            labelStyle={{color: 'white'}}
-            style={{alignItems: 'flex-start', marginVertical: 0}}
+            theme={DefaultTheme}
+            style={styles.drawerItem}
             onPress={() => props.navigation.navigate('About')}
-            icon={({size}) => <Icon name="github" size={size} color="white" />}
+            icon={({size}) => <Icon name="github" size={size} color="black" />}
           />
         </View>
         <View style={{position: 'absolute', bottom: 10}}>
           {/* <Drawer.Item
             label="Logout"
-            labelStyle={{color: 'white'}}
-            icon={({size}) => <Icon name="log-out" size={size} color="white" />}
+            theme={DefaultTheme}
+            icon={({size}) => <Icon name="log-out" size={size} color="black" />}
             onPress={() =>
               Alert.alert(
                 'Log Out',
@@ -131,21 +141,19 @@ export const DrawerContent = (props) => {
 const styles = StyleSheet.create({
   stack: {
     flex: 1,
-    shadowColor: '#FFF',
+    shadowColor: '#000',
     shadowOffset: {
-      width: 0,
+      width: 2,
       height: 8,
     },
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
-    elevation: 5,
+    elevation: 10,
   },
-  drawerItem: {alignItems: 'flex-start', marginVertical: 0},
-  drawerLabel: {color: 'white', marginLeft: -16},
-  avatar: {
-    borderRadius: 60,
-    marginBottom: 16,
-    borderColor: 'white',
-    borderWidth: StyleSheet.hairlineWidth,
+  drawerItem: {
+    alignItems: 'flex-start',
+    marginVertical: 0,
+    textAlign: 'left',
+    fontSize: 32,
   },
 });
