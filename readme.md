@@ -4,6 +4,7 @@
 
 # Covid 19
 
+[![Build Status](https://travis-ci.com/sarthakpranesh/Covid19.svg?branch=master)](https://travis-ci.com/sarthakpranesh/Covid19)
 [![GitHub top language](https://img.shields.io/github/languages/top/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19)
 [![GitHub issues](https://img.shields.io/github/issues/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/pulls)
