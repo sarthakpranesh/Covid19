@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
+import {View, StyleSheet, Alert, Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import Animated from 'react-native-reanimated';
@@ -29,7 +29,7 @@ export const Screens = ({navigation, style}) => {
             <IconButton
               style={{
                 backgroundColor: '#DEF7FF',
-                marginLeft: 10,
+                marginLeft: 14,
                 borderWidth: 0,
                 borderRadius: 8,
                 shadowColor: '#000',
@@ -75,8 +75,13 @@ export const DrawerContent = (props) => {
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'flex-start',
+          alignItems: 'center',
         }}>
+        <Image
+          style={{margin: 20, marginTop: -20}}
+          source={require('../../../assets/C19.png')}
+          size={100}
+        />
         <View>
           <Drawer.Item
             label="Home"
