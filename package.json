@@ -1,0 +1,44 @@
+{
+  "name": "Covid19",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "npx react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "npx react-native start --reset-cache",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-navigation/drawer": "^5.8.0",
+    "@react-navigation/native": "^5.4.3",
+    "array-sort": "^1.0.0",
+    "axios": "^0.19.2",
+    "react": "16.11.0",
+    "react-native": "0.62.2",
+    "react-native-easy-grid": "^0.2.2",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-pure-chart": "^0.0.24",
+    "react-native-reanimated": "^1.9.0",
+    "react-native-screens": "^2.8.0",
+    "react-native-svg": "^12.1.0",
+    "react-native-svg-charts": "^5.4.0",
+    "react-native-unimodules": "^0.9.1",
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^4.3.9",
+    "react-navigation-drawer": "^2.4.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.0",
+    "@babel/runtime": "^7.10.0",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.1.0",
+    "jest": "^26.0.1",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "16.11.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
