@@ -1,41 +1,42 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, {useState, useEffect} from 'react';
 
 // importing API
 import newsApi from '../apis/newsApi';
 
 const getTopHeadlines = () => {
-    const [results, setResults] = useState('');
-    const [isErr, setIsError] = useState(false);
+  const [results, setResults] = useState('');
+  const [isErr, setIsError] = useState(false);
 
-    const fetchTopHeadlines = async () => {
-        try {
-            const r = await newsApi.get('/articles');
-            if (r.data == undefined) {
-                throw new Error("No data received")
-            }
-            const arrayOfNews = r.data.map((news) => {
-                const result = {
-                    author: news.author,
-                    title: news.title,
-                    description: news.description,
-                    name: news.source.name,
-                    url: news.url,
-                    image: news.urlToImage
-                }
-                return result
-            })
-            setResults(arrayOfNews)
-        } catch (err) {
-            console.log(err);
-            setIsError(true);
-        }
+  const fetchTopHeadlines = async () => {
+    try {
+      const r = await newsApi.get('/articles');
+      if (r.data == undefined) {
+        throw new Error('No data received');
+      }
+      const arrayOfNews = r.data.map((news) => {
+        const result = {
+          author: news.author,
+          title: news.title,
+          description: news.description,
+          name: news.source.name,
+          url: news.url,
+          image: news.urlToImage,
+        };
+        return result;
+      });
+      setResults(arrayOfNews);
+    } catch (err) {
+      console.log(err);
+      setIsError(true);
     }
+  };
 
-    useEffect(() => {
-        fetchTopHeadlines();
-    }, [] )
+  useEffect(() => {
+    fetchTopHeadlines();
+  }, []);
 
-    return [fetchTopHeadlines, results, isErr];
-}
+  return [fetchTopHeadlines, results, isErr];
+};
 
 export default getTopHeadlines;

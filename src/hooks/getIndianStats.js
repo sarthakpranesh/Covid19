@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {useState, useEffect} from 'react';
 
 import virusTrackerApi from '../apis/virusTrackerApi';
