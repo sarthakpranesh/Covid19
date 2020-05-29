@@ -9,8 +9,8 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
   git config --global user.email "sarthak.pranesh2018@vitstudent.ac.in" 
   git config --global user.name "sarthakpranesh" 
 
-  mkdir formilioReactNative
-  cd formilioReactNative
+  mkdir Covid19
+  cd Covid19
   git init
   git remote add origin https://sarthakpranesh:$GITHUB_API_KEY@github.com/sarthakpranesh/Covid19.git
   git checkout -b build
