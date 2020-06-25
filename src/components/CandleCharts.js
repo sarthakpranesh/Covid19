@@ -44,7 +44,7 @@ const CandleCharts = ({data, country}) => {
         horizontal={true}
         scrollEventThrottle={16}>
         {data.length !== 0 ? (
-          <Svg width={svgWidth + 20} height={width} fill="blue">
+          <Svg width={svgWidth + 20} height={width}>
             {data.map((d, index) => {
               return (
                 <Rect
