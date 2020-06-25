@@ -12,17 +12,23 @@
 
 </div>
 
-This is a simple React-Native project developed in support of people suffering and affected due to Covid 19 virus out break all around the world. The app lets the user track the growth of the virus and provides statistics from all around the world ( Focusing on India ).
-<br/>
+## Introduction
+<p>
+A simple React-Native project developed in support of people suffering and affected due to Covid-19 {Corona} virus all around the world. The app has a simple yet innovative design with multiple features like - showing India's Timeline, Precautions, Latest News about the virus, helpline contact info for each state, etc. The app lets the user track the growth of the virus and provides statistics from all around the world ( Focusing on India ) without tracking any information about its users.
+</p>
 
 ## Designs
-#### Project - [HERE](https://www.figma.com/file/g9ChMLNWBmOwaKFCAv5e7C/Covid-19)
-#### Prototype - [HERE](https://www.figma.com/proto/g9ChMLNWBmOwaKFCAv5e7C/Covid-19?node-id=2%3A48&viewport=1246%2C-2727%2C0.8731774091720581&scaling=scale-down)
+Our designer worked really hard for coming up with a simple and innovative design, credits to - [Ankit Mishra](https://github.com/alexmishra)
+
+| Title | Link |
+| --- | --- |
+| Project | https://www.figma.com/file/g9ChMLNWBmOwaKFCAv5e7C/Covid-19  |
+| Prototype | https://www.figma.com/proto/g9ChMLNWBmOwaKFCAv5e7C/Covid-19?node-id=2%3A48&viewport=1246%2C-2727%2C0.8731774091720581&scaling=scale-down |
 
 <br/>
 
 ## APIs used
-1. [Health-api](https://health-api.com/)
+1. [covid19api](https://api.covid19api.com/)
 2. [Coronavirus Tracker](https://thevirustracker.com/)
 3. [Some News Api](https://github.com/sarthakpranesh/newsApiFetcher)
 
@@ -30,14 +36,16 @@ This is a simple React-Native project developed in support of people suffering a
 
 ## For Developers
 To start the project follow the below steps
-1. git clone https://github.com/sarthakpranesh/Covid19.git
-2. cd Covid19
-3. npm i
-4. npm run start
+1. `git clone https://github.com/sarthakpranesh/Covid19.git`
+2. `cd Covid19`
+3. `yarn i`
+4. `yarn start` - leave metro bundler running in another terminal
+5. `yarn android` - this will start your android app
 
 <br/>
 
 ## Contributors
 * [Ankit Mishra](https://github.com/alexmishra) (Designer)
+* [Aryan Shridhar](https://github.com/aryanshridhar)
 
 Looking to be a part of the team, checkout our contribution guideline [HERE](https://github.com/sarthakpranesh/Covid19-ReactNative/blob/contribution/contributing.md) and get started
