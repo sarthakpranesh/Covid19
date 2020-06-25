@@ -6,6 +6,7 @@ const {width} = Dimensions.get('screen');
 const svgWidth = width * 2;
 
 const CandleCharts = ({data, country}) => {
+  let scrollView;
   let widthOfCandle = 10;
   let xWidth = 12;
   let heightScale = 1;
@@ -24,6 +25,10 @@ const CandleCharts = ({data, country}) => {
         </Text>
       </View>
       <ScrollView
+        ref={(ref) => {
+          scrollView = ref;
+        }}
+        onContentSizeChange={() => scrollView.scrollToEnd({animated: true})}
         style={styles.graphContainer}
         horizontal={true}
         scrollEventThrottle={16}>
