@@ -26,22 +26,24 @@ export const Screens = ({navigation, style}) => {
           headerTransparent: true,
           headerTitle: null,
           headerLeft: () => (
-            <IconButton
+            <View
               style={{
                 backgroundColor: '#DEF7FF',
                 marginLeft: 14,
-                borderWidth: 0,
                 borderRadius: 8,
                 shadowColor: '#000',
                 shadowOpacity: 1,
                 shadowRadius: 8,
                 elevation: 10,
-              }}
-              icon={({size, color}) => (
-                <Icon name="menu" size={size} color="black" />
-              )}
-              onPress={() => navigation.openDrawer()}
-            />
+              }}>
+              <IconButton
+                style={{margin: 0}}
+                icon={({size, color}) => (
+                  <Icon name="menu" size={size} color="black" />
+                )}
+                onPress={() => navigation.openDrawer()}
+              />
+            </View>
           ),
         }}>
         <Stack.Screen name="Home">
@@ -75,7 +77,7 @@ export const DrawerContent = (props) => {
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'flex-start',
         }}>
         <Image
           style={{margin: 20, marginTop: -20}}
@@ -141,9 +143,10 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   drawerItem: {
-    alignItems: 'stretch',
-    marginVertical: 0,
-    textAlign: 'left',
-    fontSize: 32,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    margin: 0,
+    padding: 0,
   },
 });

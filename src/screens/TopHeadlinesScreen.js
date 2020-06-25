@@ -2,11 +2,11 @@
 import React, {useState, useCallback} from 'react';
 import {
   View,
-  Text,
   ScrollView,
   RefreshControl,
   ActivityIndicator,
 } from 'react-native';
+import {Headline} from 'react-native-paper';
 
 // importing components
 import NewsCards from '../components/NewsCards';
@@ -45,7 +45,7 @@ const TopHeadlinesScreen = ({style}) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <View style={Styles.mainHeader}>
-          <Text style={Styles.mainHeaderText}>Top Headlines</Text>
+          <Headline style={Styles.mainHeaderText}>Top Headlines</Headline>
         </View>
 
         {topHeadlines ? (

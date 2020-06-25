@@ -2,12 +2,12 @@
 import React from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   Linking,
   FlatList,
 } from 'react-native';
+import {Text, Subheading, Headline} from 'react-native-paper';
 import {ScrollView} from 'react-native-gesture-handler';
 
 // importing common styles
@@ -179,7 +179,7 @@ const HelpScreen = ({style}) => {
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>
-          <Text style={Styles.mainHeaderText}>Help Line Numbers</Text>
+          <Headline style={Styles.mainHeaderText}>Help Line Numbers</Headline>
         </View>
 
         <View style={styles.helpContentContainer}>
@@ -189,7 +189,9 @@ const HelpScreen = ({style}) => {
             renderItem={({item}) => {
               return (
                 <View style={styles.listItemHelp}>
-                  <Text style={styles.helpLineText}>{item.state}</Text>
+                  <Subheading style={styles.helpLineText}>
+                    {item.state}
+                  </Subheading>
                   <TouchableOpacity
                     onPress={() => Linking.openURL(`tel:${item.number}`)}
                     style={styles.numberContainer}>
@@ -236,7 +238,6 @@ const styles = StyleSheet.create({
   },
   helpLineText: {
     textAlign: 'center',
-    fontSize: 22,
     fontFamily: '',
     color: 'black',
   },

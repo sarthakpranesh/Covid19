@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {Title} from 'react-native-paper';
 
 // importing components
 import RowStackResult from './RowStackResult';
@@ -34,9 +35,9 @@ class Country extends Component {
           },
         ]}>
         <View style={styles.countryHeader}>
-          <Text style={styles.countrySectionTitle}>
-            {country ? country : ' Unknown Country '} :{' '}
-          </Text>
+          <Title style={styles.countrySectionTitle}>
+            {country ? country : ' Unknown Country '}:{' '}
+          </Title>
         </View>
         <RowStackResult data={data} textColor="black" />
       </View>
@@ -65,7 +66,6 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     color: 'black',
     marginTop: 0,
-    fontSize: 28,
     fontWeight: 'bold',
     fontFamily: '',
   },

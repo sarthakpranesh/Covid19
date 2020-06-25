@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, ScrollView, Dimensions} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet, ScrollView, Dimensions} from 'react-native';
+import {Title, Text} from 'react-native-paper';
 import Svg, {Rect} from 'react-native-svg';
 import Animated from 'react-native-reanimated';
 
@@ -23,9 +24,9 @@ const CandleCharts = ({data, country}) => {
   return (
     <View style={styles.countrySection}>
       <View style={styles.countryHeader}>
-        <Text style={styles.countrySectionTitle}>
-          {country ? `${country}'s Timeline` : ' Unknown Country '} :{' '}
-        </Text>
+        <Title style={styles.countrySectionTitle}>
+          {country ? `${country}'s Timeline` : ' Unknown Country '}:{' '}
+        </Title>
       </View>
       <Animated.View
         style={[styles.animatedDataDialog, {opacity: animatedOpacity}]}>
@@ -89,7 +90,6 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     color: 'black',
     marginTop: 0,
-    fontSize: 28,
     fontWeight: 'bold',
     fontFamily: '',
   },

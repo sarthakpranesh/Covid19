@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {Text} from 'react-native-paper';
 
 class RowStackResult extends Component {
   render() {
@@ -178,12 +179,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   subResultText: {
-    fontSize: 16,
     textAlign: 'center',
     fontFamily: '',
   },
   resultNumbers: {
-    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: '',

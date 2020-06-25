@@ -1,13 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Linking,
-  TouchableOpacity,
-} from 'react-native';
+import {View, StyleSheet, Image, Linking, TouchableOpacity} from 'react-native';
+import {Text, Headline} from 'react-native-paper';
 import {ScrollView} from 'react-native-gesture-handler';
 
 // importing common style
@@ -28,7 +22,7 @@ const HomeScreen = ({style}) => {
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>
-          <Text style={Styles.mainHeaderText}>Corona Virus</Text>
+          <Headline style={Styles.mainHeaderText}>Corona Virus</Headline>
         </View>
 
         <View style={styles.aboutContentContainer}>
@@ -65,7 +59,6 @@ const HomeScreen = ({style}) => {
               style={{
                 color: 'black',
                 textDecorationLine: 'underline',
-                fontSize: 16,
                 fontFamily: '',
                 fontWeight: 'bold',
               }}>
@@ -87,7 +80,6 @@ const HomeScreen = ({style}) => {
           }}>
           <Text
             style={{
-              fontSize: 18,
               color: 'black',
               textAlign: 'center',
               fontFamily: '',
@@ -103,7 +95,6 @@ const HomeScreen = ({style}) => {
             }>
             <Text
               style={{
-                fontSize: 16,
                 color: 'black',
                 marginVertical: 20,
                 textDecorationLine: 'underline',
@@ -119,7 +110,6 @@ const HomeScreen = ({style}) => {
               textAlign: 'center',
               fontFamily: '',
               fontWeight: 'bold',
-              fontSize: 16,
             }}>
             Made with Love
           </Text>
@@ -144,7 +134,6 @@ const styles = StyleSheet.create({
   },
   aboutContent: {
     textAlign: 'justify',
-    fontSize: 18,
     color: 'black',
     marginVertical: 10,
     fontFamily: '',

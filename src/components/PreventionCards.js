@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
+import {Text, Subheading} from 'react-native-paper';
 
 class PreventionCards extends Component {
   render() {
@@ -13,7 +14,7 @@ class PreventionCards extends Component {
       : require('../../assets/img/wh.png');
     return (
       <View style={styles.mainPreventionContainer}>
-        <Text style={styles.mainPreventionTitle}>{title}</Text>
+        <Subheading style={styles.mainPreventionTitle}>{title}</Subheading>
         <View style={styles.preventionContentContainer}>
           <Text style={styles.preventionContent}>{content}</Text>
           <Image
@@ -43,7 +44,6 @@ const styles = StyleSheet.create({
   },
   mainPreventionTitle: {
     color: 'black',
-    fontSize: 18,
     fontWeight: 'bold',
     fontFamily: '',
   },
@@ -58,8 +58,6 @@ const styles = StyleSheet.create({
   preventionContent: {
     flex: 2,
     color: 'black',
-    fontWeight: 'bold',
-    fontSize: 12,
     fontFamily: '',
     flexWrap: 'wrap',
     textAlign: 'justify',
