@@ -1,32 +1,76 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useCallback} from 'react';
-import {View, StyleSheet, Image, RefreshControl} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  RefreshControl,
+  Alert,
+  BackHandler,
+} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 
 // importing components
-import Country from '../components/Country';
+import Country from '../components/Country.js';
+import CandleCharts from '../components/CandleCharts.js';
 
 // importing hooks
-import getHealthStats from '../hooks/getGlobalTotal';
+import getGlobalTotal from '../hooks/getGlobalTotal';
 import getIndianStats from '../hooks/getIndianStats';
+import getIndianTimeline from '../hooks/getIndianTimeline.js';
 
 // import common style
 import Styles from '../Styles';
 
 const HomeScreen = ({style, navigation}) => {
+  const [errorShowed, setErrorShowed] = useState(false);
   const [refreshing, setRefresh] = useState();
-  const [healthCoronaSearch, healthResults, err0] = getHealthStats();
+  const [healthCoronaSearch, healthResults, err1] = getGlobalTotal();
   const [getStats, indianStats, err2] = getIndianStats();
+  const [fetchIndianTimeline, indianTimeline, err3] = getIndianTimeline();
 
   const onRefresh = useCallback(async () => {
     setRefresh(true);
-    await getStats();
-    await healthCoronaSearch();
+    await Promise.all([
+      fetchIndianTimeline(),
+      getStats(),
+      healthCoronaSearch(),
+    ]);
     setRefresh(false);
-  }, [getStats, healthCoronaSearch]);
+    setErrorShowed(false);
+  }, [fetchIndianTimeline, getStats, healthCoronaSearch]);
 
-  if (healthResults && indianStats) {
+  if (healthResults && indianStats && indianTimeline !== []) {
+    SplashScreen.hide();
+  }
+
+  if ((err1 !== '' || err2 !== '' || err3 !== '') && !errorShowed) {
+    setErrorShowed(true);
+    let errMessage;
+    if (err1 !== '') {
+      errMessage = err1;
+    } else if (err2 !== '') {
+      errMessage = err2;
+    } else if (err3 !== '') {
+      errMessage = err3;
+    } else {
+      errMessage = 'Some unknown message occured';
+    }
+    Alert.alert(
+      'Error',
+      errMessage,
+      [
+        {
+          text: 'Retry',
+          onPress: () => {
+            onRefresh();
+          },
+        },
+        {text: 'Exit', onPress: () => BackHandler.exitApp()},
+      ],
+      {cancelable: false},
+    );
     SplashScreen.hide();
   }
 
@@ -55,7 +99,7 @@ const HomeScreen = ({style, navigation}) => {
 
         <Country
           data={healthResults}
-          isError={err2}
+          isError={err1}
           countryName=" World "
           getCountry={getStats}
           containerStyle={'#B1ECFF'}
@@ -67,6 +111,7 @@ const HomeScreen = ({style, navigation}) => {
           countryName=" India "
           getCountry={getStats}
         />
+        <CandleCharts country="India" data={indianTimeline} />
       </ScrollView>
     </View>
   );

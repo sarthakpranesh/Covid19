@@ -2,9 +2,9 @@
 import {useState, useEffect} from 'react';
 import virusTrackerApi from '../apis/virusTrackerApi';
 
-const getHealthStats = () => {
+const getGlobalTotal = () => {
   const [results, setResults] = useState('');
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const coronaSearch = async () => {
     try {
@@ -21,9 +21,10 @@ const getHealthStats = () => {
         totalSerious: resp.data.results[0].total_serious_cases,
         deathsToday: resp.data.results[0].total_new_deaths_today,
       });
+      setErrorMessage('');
     } catch (err) {
       setResults({});
-      setErrorMessage(true);
+      setErrorMessage(err.message);
     }
   };
 
@@ -34,4 +35,4 @@ const getHealthStats = () => {
   return [coronaSearch, results, errorMessage];
 };
 
-export default getHealthStats;
+export default getGlobalTotal;

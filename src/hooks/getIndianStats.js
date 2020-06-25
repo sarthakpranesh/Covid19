@@ -5,7 +5,7 @@ import virusTrackerApi from '../apis/virusTrackerApi';
 
 const getIndianStats = () => {
   const [indianResults, setIndianResults] = useState('');
-  const [isError, setError] = useState(false);
+  const [errMessage, setErrorMessage] = useState('');
 
   const getStats = async () => {
     try {
@@ -22,9 +22,10 @@ const getIndianStats = () => {
         newConfirmed: resp.data.countrydata[0].total_new_cases_today,
         totalSerious: resp.data.countrydata[0].total_serious_cases,
       });
+      setErrorMessage('');
     } catch (err) {
       setIndianResults({});
-      setError(true);
+      setErrorMessage(err.message);
     }
   };
 
@@ -32,7 +33,7 @@ const getIndianStats = () => {
     getStats();
   }, []);
 
-  return [getStats, indianResults, isError];
+  return [getStats, indianResults, errMessage];
 };
 
 export default getIndianStats;
