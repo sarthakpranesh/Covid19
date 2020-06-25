@@ -9,6 +9,8 @@
 [![GitHub issues](https://img.shields.io/github/issues/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/pulls)
 [![GitHub](https://img.shields.io/github/license/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/blob/master/LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/tags)
+[![GitHub All Releases](https://img.shields.io/github/downloads/sarthakpranesh/Covid19/total)](https://github.com/sarthakpranesh/Covid19/releases)
 
 </div>
 
