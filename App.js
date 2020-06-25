@@ -31,7 +31,7 @@ const MainApp = () => {
         style={{flex: 1, backgroundColor: 'white'}}>
         <Drawer.Navigator
           headerMode="none"
-          edgeWidth={200}
+          edgeWidth={100}
           initialRouteName="Screens"
           drawerType="slide"
           overlayColor="transparent"

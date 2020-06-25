@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, StyleSheet, Alert, Image} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import Animated from 'react-native-reanimated';
@@ -123,21 +123,6 @@ export const DrawerContent = (props) => {
             icon={({size}) => <Icon name="github" size={size} color="black" />}
           />
         </View>
-        <View style={{position: 'absolute', bottom: 10}}>
-          {/* <Drawer.Item
-            label="Logout"
-            theme={DefaultTheme}
-            icon={({size}) => <Icon name="log-out" size={size} color="black" />}
-            onPress={() =>
-              Alert.alert(
-                'Log Out',
-                'Are you sure you want to log out?',
-                [{text: 'Cancel'}, {text: 'OK'}],
-                {cancelable: false},
-              )
-            }
-          /> */}
-        </View>
       </View>
     </DrawerContentScrollView>
   );
@@ -156,7 +141,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   drawerItem: {
-    alignItems: 'flex-start',
+    alignItems: 'stretch',
     marginVertical: 0,
     textAlign: 'left',
     fontSize: 32,
