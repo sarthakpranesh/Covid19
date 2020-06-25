@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 10,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   countrySectionTitle: {
     textAlign: 'justify',

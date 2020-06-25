@@ -80,7 +80,7 @@ export const DrawerContent = (props) => {
           alignItems: 'flex-start',
         }}>
         <Image
-          style={{margin: 20, marginTop: -20}}
+          style={{margin: 20, marginTop: -20, alignSelf: 'center'}}
           source={require('../../../assets/C19.png')}
           size={100}
         />
@@ -143,9 +143,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   drawerItem: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    alignSelf: 'stretch',
     margin: 0,
     padding: 0,
   },

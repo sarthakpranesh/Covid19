@@ -100,7 +100,7 @@ const HomeScreen = ({style, navigation}) => {
         <Country
           data={healthResults}
           isError={err1}
-          countryName=" World "
+          countryName="World"
           getCountry={getStats}
           containerStyle={'#B1ECFF'}
         />
@@ -108,7 +108,7 @@ const HomeScreen = ({style, navigation}) => {
         <Country
           data={indianStats}
           isError={err2}
-          countryName=" India "
+          countryName="India"
           getCountry={getStats}
         />
         <CandleCharts country="India" data={indianTimeline} />
