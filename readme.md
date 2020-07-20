@@ -40,7 +40,7 @@ Our designer worked really hard for coming up with a simple and innovative desig
 To start the project follow the below steps
 1. `git clone https://github.com/sarthakpranesh/Covid19.git`
 2. `cd Covid19`
-3. `yarn i`
+3. `yarn install`
 4. `yarn start` - leave metro bundler running in another terminal
 5. `yarn android` - this will start your android app
 
