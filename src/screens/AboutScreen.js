@@ -7,7 +7,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 // importing common style
 import Styles from '../Styles';
 
-const HomeScreen = ({style}) => {
+const AboutScreen = ({style}) => {
   return (
     <View
       style={{
@@ -140,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default AboutScreen;
