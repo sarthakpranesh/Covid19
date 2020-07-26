@@ -6,7 +6,7 @@ const getTopHeadlines = () => {
   const [isErr, setIsError] = useState(false);
 
   const fetchTopHeadlines = async () => {
-    fetch('https://some-news-api.herokuapp.com')
+    fetch('https://some-news-api.herokuapp.com/articles')
       .then((resp) => resp.json())
       .then((respData) => {
         if (respData === undefined) {
