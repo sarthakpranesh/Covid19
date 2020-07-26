@@ -15,11 +15,11 @@ const CandleCharts = ({data, country}) => {
   let xWidth = 12;
   let heightScale = 1;
   if (data.length !== 0) {
-    const max = data[data.length - 1].cases;
-    data = data.filter((d) => d.cases / max > 0.001);
+    const max = data[data.length - 1].totalCases;
+    data = data.filter((d) => d.totalCases / max > 0.001);
     xWidth = svgWidth / data.length;
     widthOfCandle = xWidth - 1;
-    heightScale = width / data[data.length - 1].cases;
+    heightScale = width / data[data.length - 1].totalCases;
   }
   return (
     <View style={styles.countrySection}>
@@ -30,11 +30,10 @@ const CandleCharts = ({data, country}) => {
       </View>
       <Animated.View
         style={[styles.animatedDataDialog, {opacity: animatedOpacity}]}>
-        <Text>Total Cases: {pressedData.cases ? pressedData.cases : 0}</Text>
         <Text>
-          Date:{' '}
-          {pressedData.date ? new Date(pressedData.date).toDateString() : 0}
+          Total Cases: {pressedData.totalCases ? pressedData.totalCases : 0}
         </Text>
+        <Text>Date: {pressedData.date ? pressedData.date : 0}</Text>
       </Animated.View>
       <ScrollView
         ref={(ref) => {
@@ -51,9 +50,9 @@ const CandleCharts = ({data, country}) => {
                 <Rect
                   key={`${index}`}
                   x={xWidth * index}
-                  y={width - heightScale * d.cases}
+                  y={width - heightScale * d.totalCases}
                   width={widthOfCandle}
-                  height={heightScale * d.cases}
+                  height={heightScale * d.totalCases}
                   fill="red"
                   stroke={d.date === pressedData.date ? 'black' : null}
                   onPress={() => {
