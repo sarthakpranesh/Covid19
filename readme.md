@@ -1,16 +1,14 @@
 <div align="center">
 
-<image src="./assets/C19.png" />
-
-# Covid 19
+<image src="./readmeHeader.png" />
 
 [![Build Status](https://travis-ci.com/sarthakpranesh/Covid19.svg?branch=master)](https://travis-ci.com/sarthakpranesh/Covid19)
 [![GitHub top language](https://img.shields.io/github/languages/top/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19)
 [![GitHub issues](https://img.shields.io/github/issues/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/pulls)
-[![GitHub](https://img.shields.io/github/license/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/blob/master/LICENSE)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/tags)
 [![GitHub All Releases](https://img.shields.io/github/downloads/sarthakpranesh/Covid19/total)](https://github.com/sarthakpranesh/Covid19/releases)
+[![GitHub](https://img.shields.io/github/license/sarthakpranesh/Covid19)](https://github.com/sarthakpranesh/Covid19/blob/master/LICENSE)
 
 </div>
 
@@ -30,8 +28,8 @@ Our designer worked really hard for coming up with a simple and innovative desig
 <br/>
 
 ## APIs used
-1. [covid19api](https://api.covid19api.com/)
-2. [Coronavirus Tracker](https://thevirustracker.com/)
+1. [corona.lmao.ninja](https://corona.lmao.ninja/)
+2. [covid19india](https://api.covid19india.org/)
 3. [Some News Api](https://github.com/sarthakpranesh/newsApiFetcher)
 
 <br/>
