@@ -12,11 +12,9 @@ const getIndianTimeline = () => {
         const filteredData = respData.cases_time_series.map((data) => {
           return {
             date: data.date,
-            totalCases: data.totalconfirmed,
-            totalRecovered: data.totalrecovered,
+            difference: data.totalconfirmed - data.totalrecovered,
           };
         });
-        console.log(filteredData[filteredData.length - 1]);
         setIndianTimeline(filteredData);
         setErrorMesssage('');
       })

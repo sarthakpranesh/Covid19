@@ -15,12 +15,13 @@ const CandleCharts = ({data, country}) => {
   let xWidth = 12;
   let heightScale = 1;
   if (data.length !== 0) {
-    const max = data[data.length - 1].totalCases;
-    data = data.filter((d) => d.totalCases / max > 0.001);
+    const max = data[data.length - 1].difference;
+    data = data.filter((d) => d.difference / max > 0.001);
     xWidth = svgWidth / data.length;
     widthOfCandle = xWidth - 1;
-    heightScale = width / data[data.length - 1].totalCases;
+    heightScale = width / data[data.length - 1].difference;
   }
+  let color = 'red';
   return (
     <View style={styles.countrySection}>
       <View style={styles.countryHeader}>
@@ -31,7 +32,7 @@ const CandleCharts = ({data, country}) => {
       <Animated.View
         style={[styles.animatedDataDialog, {opacity: animatedOpacity}]}>
         <Text>
-          Total Cases: {pressedData.totalCases ? pressedData.totalCases : 0}
+          Active Cases: {pressedData.difference ? pressedData.difference : 0}
         </Text>
         <Text>Date: {pressedData.date ? pressedData.date : 0}</Text>
       </Animated.View>
@@ -46,14 +47,23 @@ const CandleCharts = ({data, country}) => {
         {data.length !== 0 ? (
           <Svg width={svgWidth + 20} height={width}>
             {data.map((d, index) => {
+              if (index !== 0) {
+                if (d.difference - data[index - 1].difference < 0) {
+                  color = 'green';
+                } else if (d.difference - data[index - 1].difference === 0) {
+                  color = 'yellow';
+                } else {
+                  color = 'red';
+                }
+              }
               return (
                 <Rect
-                  key={`${index}`}
+                  key={`case${index}`}
                   x={xWidth * index}
-                  y={width - heightScale * d.totalCases}
+                  y={width - heightScale * d.difference}
                   width={widthOfCandle}
-                  height={heightScale * d.totalCases}
-                  fill="red"
+                  height={heightScale * d.difference}
+                  fill={color}
                   stroke={d.date === pressedData.date ? 'black' : null}
                   onPress={() => {
                     setPressedData(d);
