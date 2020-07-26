@@ -49,6 +49,7 @@ const CandleCharts = ({data, country}) => {
             {data.map((d, index) => {
               return (
                 <Rect
+                  key={`${index}`}
                   x={xWidth * index}
                   y={width - heightScale * d.cases}
                   width={widthOfCandle}

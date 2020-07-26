@@ -1,28 +1,28 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {useState, useEffect} from 'react';
 
-// importing api
-import covid19India from '../apis/covid19India.js';
-
 const getIndianTimeline = () => {
   const [indianTimeline, setIndianTimeline] = useState([]);
   const [errMessage, setErrorMesssage] = useState('');
 
   const fetchIndianTimeline = async () => {
-    try {
-      const r = await covid19India.get();
-      const filteredData = r.data.map((data) => {
-        return {
-          date: data.Date,
-          cases: data.Cases,
-        };
+    fetch('https://api.covid19api.com/total/country/india/status/confirmed')
+      .then((resp) => resp.json())
+      .then((respData) => {
+        const filteredData = respData.map((data) => {
+          return {
+            date: data.Date,
+            cases: data.Cases,
+          };
+        });
+        setIndianTimeline(filteredData);
+        setErrorMesssage('');
+      })
+      .catch((err) => {
+        console.log('From Timeline: ' + err.message);
+        setIndianTimeline([]);
+        setErrorMesssage(err.message);
       });
-      setIndianTimeline(filteredData);
-      setErrorMesssage('');
-    } catch (e) {
-      setIndianTimeline([]);
-      setErrorMesssage(e.message);
-    }
   };
 
   useEffect(() => {

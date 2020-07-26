@@ -1,31 +1,33 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {useState, useEffect} from 'react';
-import virusTrackerApi from '../apis/virusTrackerApi';
 
 const getGlobalTotal = () => {
   const [results, setResults] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const coronaSearch = async () => {
-    try {
-      const resp = await virusTrackerApi.get('/free-api?global=stats');
-      if (!resp.data.results[0]) {
-        console.log('No data retrieved');
-        throw new Error();
-      }
-      setResults({
-        confirmed: resp.data.results[0].total_cases,
-        deaths: resp.data.results[0].total_deaths,
-        recovered: resp.data.results[0].total_recovered,
-        newConfirmed: resp.data.results[0].total_new_cases_today,
-        totalSerious: resp.data.results[0].total_serious_cases,
-        deathsToday: resp.data.results[0].total_new_deaths_today,
+    fetch('https://corona.lmao.ninja/v2/all')
+      .then((resp) => resp.json())
+      .then((respData) => {
+        if (!respData.cases) {
+          console.log('No Data received');
+          throw new Error();
+        }
+        setResults({
+          confirmed: respData.cases,
+          deaths: respData.deaths,
+          recovered: respData.recovered,
+          deathsToday: respData.todayDeaths,
+          newConfirmed: respData.todayCases,
+          totalSerious: respData.critical,
+        });
+        setErrorMessage('');
+      })
+      .catch((err) => {
+        console.log('From Global stats: ' + err.message);
+        setResults({});
+        setErrorMessage(err.message);
       });
-      setErrorMessage('');
-    } catch (err) {
-      setResults({});
-      setErrorMessage(err.message);
-    }
   };
 
   useEffect(() => {
