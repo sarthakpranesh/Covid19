@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   drawerItem: {
-    alignSelf: 'stretch',
+    alignSelf: 'flex-start',
     margin: 0,
     padding: 0,
   },
