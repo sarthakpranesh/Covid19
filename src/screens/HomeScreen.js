@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -16,9 +17,9 @@ import Country from '../components/Country.js';
 import CandleCharts from '../components/CandleCharts.js';
 
 // importing hooks
-import getGlobalTotal from '../hooks/getGlobalTotal';
-import getIndianStats from '../hooks/getIndianStats';
-import getIndianTimeline from '../hooks/getIndianTimeline.js';
+import getGlobalTotalHook from '../hooks/getGlobalTotalHook.js';
+import getStatsHook from '../hooks/getStatsHook.js';
+import getTimelineHook from '../hooks/getTimelineHook.js';
 
 // import common style
 import Styles from '../Styles';
@@ -26,24 +27,10 @@ import Styles from '../Styles';
 const HomeScreen = ({style, country}) => {
   const [errorShowed, setErrorShowed] = useState(false);
   const [refreshing, setRefresh] = useState();
-  const [healthCoronaSearch, healthResults, err1] = getGlobalTotal();
-  const [getStats, indianStats, err2] = getIndianStats(country);
-  const [fetchIndianTimeline, indianTimeline, err3] = getIndianTimeline();
 
-  const onRefresh = useCallback(async () => {
-    setRefresh(true);
-    await Promise.all([
-      fetchIndianTimeline(),
-      getStats(),
-      healthCoronaSearch(),
-    ]);
-    setRefresh(false);
-    setErrorShowed(false);
-  }, [fetchIndianTimeline, getStats, healthCoronaSearch]);
-
-  if (healthResults && indianStats && indianTimeline !== []) {
-    SplashScreen.hide();
-  }
+  const [getGlobalTotal, globalTotal, err1] = getGlobalTotalHook();
+  const [getStats, stats, err2] = getStatsHook();
+  const [getTimeline, timeline, err3] = getTimelineHook();
 
   if ((err1 !== '' || err2 !== '' || err3 !== '') && !errorShowed) {
     setErrorShowed(true);
@@ -74,6 +61,29 @@ const HomeScreen = ({style, country}) => {
     SplashScreen.hide();
   }
 
+  useEffect(() => {
+    console.log('Initial data load');
+    Promise.all([
+      getGlobalTotal(),
+      getStats(country),
+      getTimeline(country),
+    ]).then(() => SplashScreen.hide());
+    setInterval(() => {
+      Promise.all([
+        getGlobalTotal(),
+        getStats(country),
+        getTimeline(country),
+      ]).then(() => console.log('Reloaded data'));
+    }, 5 * 60000);
+  }, [country]);
+
+  const onRefresh = useCallback(async () => {
+    setRefresh(true);
+    await Promise.all([getGlobalTotal(), getStats(), getTimeline()]);
+    setRefresh(false);
+    setErrorShowed(false);
+  }, [getGlobalTotal, getStats, getTimeline]);
+
   return (
     <View
       style={{
@@ -98,20 +108,14 @@ const HomeScreen = ({style, country}) => {
         </View>
 
         <Country
-          data={healthResults}
+          data={globalTotal}
           isError={err1}
           countryName="World"
-          getCountry={getStats}
           containerStyle={'#B1ECFF'}
         />
 
-        <Country
-          data={indianStats}
-          isError={err2}
-          countryName={country}
-          getCountry={getStats}
-        />
-        <CandleCharts country="India" data={indianTimeline} />
+        <Country data={stats} isError={err2} countryName={country} />
+        <CandleCharts country={country} data={timeline} />
       </ScrollView>
     </View>
   );

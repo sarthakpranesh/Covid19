@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
-const getIndianStats = (country) => {
-  const [indianResults, setIndianResults] = useState('');
+const getStatsHook = () => {
+  const [results, setResults] = useState('');
   const [errMessage, setErrorMessage] = useState('');
 
   const getStats = async (country) => {
-    console.log('From get stats: ', country);
     fetch(
       `https://corona.lmao.ninja/v2/countries/${country}?today&strict&query%20`,
     )
@@ -16,7 +15,7 @@ const getIndianStats = (country) => {
           console.log('No Data received');
           throw new Error();
         }
-        setIndianResults({
+        setResults({
           confirmed: respData.cases,
           deaths: respData.deaths,
           recovered: respData.recovered,
@@ -28,16 +27,12 @@ const getIndianStats = (country) => {
       })
       .catch((err) => {
         console.log(err.message);
-        setIndianResults({});
+        setResults({});
         setErrorMessage(err.message);
       });
   };
 
-  useEffect(() => {
-    getStats(country);
-  }, [country]);
-
-  return [getStats, indianResults, errMessage];
+  return [getStats, results, errMessage];
 };
 
-export default getIndianStats;
+export default getStatsHook;

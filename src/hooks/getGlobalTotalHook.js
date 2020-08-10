@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
-const getGlobalTotal = () => {
+const getGlobalTotalHook = () => {
   const [results, setResults] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const coronaSearch = async () => {
+  const getGlobalTotal = async () => {
     fetch('https://corona.lmao.ninja/v2/all')
       .then((resp) => resp.json())
       .then((respData) => {
@@ -30,11 +30,7 @@ const getGlobalTotal = () => {
       });
   };
 
-  useEffect(() => {
-    coronaSearch();
-  }, []);
-
-  return [coronaSearch, results, errorMessage];
+  return [getGlobalTotal, results, errorMessage];
 };
 
-export default getGlobalTotal;
+export default getGlobalTotalHook;

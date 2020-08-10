@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
 import {PermissionsAndroid} from 'react-native';
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-geolocation-service';
 import LinearGradient from 'react-native-linear-gradient';
 import {NavigationContainer} from '@react-navigation/native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
@@ -30,26 +31,33 @@ const MainApp = () => {
   const animatedStyle = {borderRadius, transform: [{scale}]};
 
   useEffect(() => {
-    console.log('App.js use effect called');
     PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       {
         title: 'Covid-19 App',
         message:
-          'We need to access your phones location ' +
-          'to setup the app. You can cancel this step ' +
-          'but then the app will use India as default',
+          "App needs to access your phone's location to work correctly. " +
+          'You can cancel this step but then app will default to Indian Stats',
         buttonNeutral: 'Ask Me Later',
         buttonNegative: 'Cancel',
         buttonPositive: 'OK',
       },
-    );
-    Geolocation.getCurrentPosition(async (pos) => {
-      await getLocation({long: pos.coords.longitude, lat: pos.coords.latitude});
+    ).then(() => {
+      Geolocation.getCurrentPosition(
+        async (pos) => {
+          await getLocation({
+            long: pos.coords.longitude,
+            lat: pos.coords.latitude,
+          });
+        },
+        (err) => {
+          console.log(err.message);
+          getLocation({lat: '28.644800', long: '77.216721'});
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      );
     });
-  });
-
-  console.log('App.js country: ', country);
+  }, []);
 
   return ![undefined, false].includes(country) ? (
     <NavigationContainer>

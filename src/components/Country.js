@@ -11,16 +11,6 @@ class Country extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.getCountry();
-    }, 5 * 60000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
   render() {
     const country = this.props.countryName;
     const data = this.props.data;

@@ -79,11 +79,6 @@ export const DrawerContent = (props) => {
           justifyContent: 'center',
           alignItems: 'flex-start',
         }}>
-        <Image
-          style={{margin: 20, marginTop: -20, alignSelf: 'center'}}
-          source={require('../../../assets/C19.png')}
-          size={100}
-        />
         <View>
           <Drawer.Item
             label="Home"
