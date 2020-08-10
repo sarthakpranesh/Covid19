@@ -23,11 +23,11 @@ import getIndianTimeline from '../hooks/getIndianTimeline.js';
 // import common style
 import Styles from '../Styles';
 
-const HomeScreen = ({style, navigation}) => {
+const HomeScreen = ({style, country}) => {
   const [errorShowed, setErrorShowed] = useState(false);
   const [refreshing, setRefresh] = useState();
   const [healthCoronaSearch, healthResults, err1] = getGlobalTotal();
-  const [getStats, indianStats, err2] = getIndianStats();
+  const [getStats, indianStats, err2] = getIndianStats(country);
   const [fetchIndianTimeline, indianTimeline, err3] = getIndianTimeline();
 
   const onRefresh = useCallback(async () => {
@@ -108,7 +108,7 @@ const HomeScreen = ({style, navigation}) => {
         <Country
           data={indianStats}
           isError={err2}
-          countryName="India"
+          countryName={country}
           getCountry={getStats}
         />
         <CandleCharts country="India" data={indianTimeline} />

@@ -16,7 +16,7 @@ import TopHeadlinesScreen from '../../screens/TopHeadlinesScreen';
 
 const Stack = createStackNavigator();
 
-export const Screens = ({navigation, style}) => {
+export const Screens = ({navigation, style, country}) => {
   return (
     <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
       <Stack.Navigator
@@ -47,7 +47,7 @@ export const Screens = ({navigation, style}) => {
           ),
         }}>
         <Stack.Screen name="Home">
-          {(props) => <HomeScreen {...props} />}
+          {(props) => <HomeScreen {...props} country={country} />}
         </Stack.Screen>
         <Stack.Screen name="Headline">
           {(props) => <TopHeadlinesScreen {...props} />}

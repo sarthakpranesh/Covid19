@@ -1,5 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
+import {PermissionsAndroid} from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 import LinearGradient from 'react-native-linear-gradient';
 import {NavigationContainer} from '@react-navigation/native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
@@ -9,9 +11,12 @@ import Animated from 'react-native-reanimated';
 
 import {DrawerContent, Screens} from './src/components/navigation/Drawer.js';
 
+import getLocationHook from './src/hooks/getLocationHook.js';
+
 const Drawer = createDrawerNavigator();
 
 const MainApp = () => {
+  const [getLocation, country] = getLocationHook();
   const [progress, setProgress] = React.useState(new Animated.Value(0));
   const scale = Animated.interpolate(progress, {
     inputRange: [0, 1],
@@ -24,7 +29,29 @@ const MainApp = () => {
 
   const animatedStyle = {borderRadius, transform: [{scale}]};
 
-  return (
+  useEffect(() => {
+    console.log('App.js use effect called');
+    PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Covid-19 App',
+        message:
+          'We need to access your phones location ' +
+          'to setup the app. You can cancel this step ' +
+          'but then the app will use India as default',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    Geolocation.getCurrentPosition(async (pos) => {
+      await getLocation({long: pos.coords.longitude, lat: pos.coords.latitude});
+    });
+  });
+
+  console.log('App.js country: ', country);
+
+  return ![undefined, false].includes(country) ? (
     <NavigationContainer>
       <LinearGradient
         colors={['#DEF7FF', '#B1ECFF']}
@@ -48,12 +75,12 @@ const MainApp = () => {
             return <DrawerContent {...p} />;
           }}>
           <Drawer.Screen name="Screens">
-            {(p) => <Screens {...p} style={animatedStyle} />}
+            {(p) => <Screens {...p} style={animatedStyle} country={country} />}
           </Drawer.Screen>
         </Drawer.Navigator>
       </LinearGradient>
     </NavigationContainer>
-  );
+  ) : null;
 };
 
 const UserStartingSwitch = createSwitchNavigator(

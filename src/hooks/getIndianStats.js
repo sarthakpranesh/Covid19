@@ -1,12 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {useState, useEffect} from 'react';
 
-const getIndianStats = () => {
+const getIndianStats = (country) => {
   const [indianResults, setIndianResults] = useState('');
   const [errMessage, setErrorMessage] = useState('');
 
-  const getStats = async () => {
-    fetch('https://corona.lmao.ninja/v2/countries/India?today&strict&query%20')
+  const getStats = async (country) => {
+    console.log('From get stats: ', country);
+    fetch(
+      `https://corona.lmao.ninja/v2/countries/${country}?today&strict&query%20`,
+    )
       .then((resp) => resp.json())
       .then((respData) => {
         if (!respData.cases) {
@@ -31,8 +34,8 @@ const getIndianStats = () => {
   };
 
   useEffect(() => {
-    getStats();
-  }, []);
+    getStats(country);
+  }, [country]);
 
   return [getStats, indianResults, errMessage];
 };
