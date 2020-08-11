@@ -12,7 +12,7 @@ export default function Main() {
     <PaperProvider theme={DefaultTheme}>
       <StatusBar
         translucent={false}
-        hidden={false}
+        hidden={true}
         animated={true}
         backgroundColor="#DEF7FF"
         barStyle="dark-content"

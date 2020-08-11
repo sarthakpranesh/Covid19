@@ -14,8 +14,10 @@
 
 ## Introduction
 <p>
-A simple React-Native project developed in support of people suffering and affected due to Covid-19 {Corona} virus all around the world. The app has a simple yet innovative design with multiple features like - showing India's Timeline, Precautions, Latest News about the virus, helpline contact info for each state, etc. The app lets the user track the growth of the virus and provides statistics from all around the world ( Focusing on India ) without tracking any information about its users.
+A simple React-Native project developed in support of people suffering and affected due to Covid-19 {Corona} virus all around the world. The app has a simple yet innovative design with multiple features like - showing India's Timeline, Precautions, Latest News about the virus, helpline contact info for each state, etc. The app lets the user track the growth of the virus and provides statistics from all around the world without logging any tracking information about its users.
 </p>
+
+<caption>v2.3.0 Introduces automatic location retrieval first time in the app, so if you find any bugs related to it. Please help me by opening a issue, Thanks in advance! </caption>
 
 ## Designs
 Our designer worked really hard for coming up with a simple and innovative design, credits to - [Ankit Mishra](https://github.com/alexmishra)
@@ -29,7 +31,6 @@ Our designer worked really hard for coming up with a simple and innovative desig
 
 ## APIs used
 1. [corona.lmao.ninja](https://corona.lmao.ninja/)
-2. [covid19india](https://api.covid19india.org/)
 3. [Some News Api](https://github.com/sarthakpranesh/newsApiFetcher)
 
 <br/>
