@@ -79,7 +79,11 @@ const HomeScreen = ({style, country}) => {
 
   const onRefresh = useCallback(async () => {
     setRefresh(true);
-    await Promise.all([getGlobalTotal(), getStats(), getTimeline()]);
+    await Promise.all([
+      getGlobalTotal(),
+      getStats(country),
+      getTimeline(country),
+    ]);
     setRefresh(false);
     setErrorShowed(false);
   }, [getGlobalTotal, getStats, getTimeline]);
