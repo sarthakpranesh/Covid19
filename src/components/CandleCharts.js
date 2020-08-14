@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   countrySectionTitle: {
-    textAlign: 'justify',
+    textAlign: 'left',
     color: 'black',
     marginTop: 0,
     fontWeight: 'bold',

@@ -61,6 +61,10 @@ const HomeScreen = ({style, country}) => {
     SplashScreen.hide();
   }
 
+  if (!!getGlobalTotal && !!getStats && !!getTimeline) {
+    SplashScreen.hide();
+  }
+
   useEffect(() => {
     console.log('Initial data load');
     Promise.all([
