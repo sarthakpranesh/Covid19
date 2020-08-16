@@ -22,8 +22,7 @@ export interface ScreensProps {
   country: String;
 }
 
-export const Screens = (props: ScreensProps) => {
-  const {navigation, style, country} = props;
+export const Screens = ({navigation, style, country}: ScreensProps) => {
   return (
     <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
       <Stack.Navigator
@@ -31,6 +30,7 @@ export const Screens = (props: ScreensProps) => {
         screenOptions={{
           animationEnabled: false,
           headerTransparent: true,
+          title: '',
           headerLeft: () => (
             <View
               style={{

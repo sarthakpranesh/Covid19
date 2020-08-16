@@ -13,7 +13,7 @@ export interface PrecautionProps {
   style: any;
 }
 
-const Precaution = (props: PrecautionProps) => {
+const Precaution = ({style}: PrecautionProps) => {
   return (
     <View
       style={{
@@ -21,7 +21,7 @@ const Precaution = (props: PrecautionProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...props.style,
+        ...style,
       }}>
       <ScrollView
         style={Styles.safeArea}

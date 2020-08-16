@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useCallback, useEffect} from 'react';
 import {
   View,
@@ -29,8 +29,7 @@ export interface HomeProps {
   country: String;
 }
 
-const HomeScreen = (props: HomeProps) => {
-  const {style, country} = props;
+const HomeScreen = ({style, country}: HomeProps) => {
   const [errorShowed, setErrorShowed] = useState<boolean>(false);
   const [refreshing, setRefresh] = useState<boolean>(false);
 

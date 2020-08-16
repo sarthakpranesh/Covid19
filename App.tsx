@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {PermissionsAndroid} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import LinearGradient from 'react-native-linear-gradient';
@@ -18,7 +18,9 @@ const Drawer = createDrawerNavigator();
 
 const MainApp = () => {
   const [getLocation, country] = getLocationHook();
-  const [progress, setProgress] = React.useState(new Animated.Value(0));
+  const [progress, setProgress] = useState<Animated.Node<number>>(
+    new Animated.Value(0),
+  );
   const scale = Animated.interpolate(progress, {
     inputRange: [0, 1],
     outputRange: [1, 0.8],
@@ -65,13 +67,11 @@ const MainApp = () => {
         colors={['#DEF7FF', '#B1ECFF']}
         style={{flex: 1, backgroundColor: 'white'}}>
         <Drawer.Navigator
-          headerMode="none"
           edgeWidth={100}
           initialRouteName="Screens"
           drawerType="slide"
           overlayColor="transparent"
           drawerStyle={{flex: 1, width: '50%', backgroundColor: 'transparent'}}
-          contentContainerStyle={{flex: 1}}
           drawerContentOptions={{
             activeBackgroundColor: 'transparent',
             activeTintColor: 'black',

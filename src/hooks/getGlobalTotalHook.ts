@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {useState} from 'react';
 
-const getGlobalTotalHook = () => {
-  const [results, setResults] = useState<any>({});
+const getGlobalTotalHook = (): [Function, any, String] => {
+  const [results, setResults] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
 
   const getGlobalTotal = async () => {

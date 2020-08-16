@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {useState} from 'react';
 
-const getStatsHook = () => {
-  const [results, setResults] = useState<any>({});
+const getStatsHook = (): [Function, any, String] => {
+  const [results, setResults] = useState({});
   const [errMessage, setErrorMessage] = useState('');
 
   const getStats = async (country: String) => {

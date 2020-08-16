@@ -2,16 +2,16 @@
 import {useState, useEffect} from 'react';
 
 export interface News {
-  author: String;
-  title: String;
-  description: String;
+  author: string;
+  title: string;
+  description: string;
   source: any;
-  url: String;
-  urlToImage: String;
+  url: string;
+  image: string;
 }
 
-const getTopHeadlines = () => {
-  const [results, setResults] = useState<any>([]);
+const getTopHeadlines = (): [Function, any, Boolean] => {
+  const [results, setResults] = useState([]);
   const [isErr, setIsError] = useState(false);
 
   const fetchTopHeadlines = async () => {

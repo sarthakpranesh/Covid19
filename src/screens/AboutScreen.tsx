@@ -11,7 +11,7 @@ export interface AboutProps {
   style: any;
 }
 
-const AboutScreen = (props: AboutProps) => {
+const AboutScreen = ({style}: AboutProps) => {
   return (
     <View
       style={{
@@ -19,7 +19,7 @@ const AboutScreen = (props: AboutProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...props.style,
+        ...style,
       }}>
       <ScrollView
         style={Styles.safeArea}

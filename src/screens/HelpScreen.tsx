@@ -168,7 +168,7 @@ export interface HelpProps {
   style: any;
 }
 
-const HelpScreen = (props: HelpProps) => {
+const HelpScreen = ({style}: HelpProps) => {
   return (
     <View
       style={{
@@ -176,7 +176,7 @@ const HelpScreen = (props: HelpProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...props.style,
+        ...style,
       }}>
       <ScrollView
         style={Styles.safeArea}

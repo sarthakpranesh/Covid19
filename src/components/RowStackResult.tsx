@@ -10,7 +10,7 @@ export interface RowStackProps {
 
 class RowStackResult extends Component<RowStackProps> {
   render() {
-    const healthResults = this.props.data;
+    const {data, textColor} = this.props;
 
     return (
       <>
@@ -19,21 +19,19 @@ class RowStackResult extends Component<RowStackProps> {
             <Text
               style={[
                 styles.subResultText,
-                {color: this.props.textColor ? this.props.textColor : 'black'},
+                {color: textColor ? textColor : 'black'},
               ]}>
               Total Cases
             </Text>
-            {healthResults ? (
+            {data ? (
               <Text
                 style={[
                   styles.resultNumbers,
                   {
-                    color: this.props.textColor
-                      ? this.props.textColor
-                      : 'black',
+                    color: textColor ? textColor : 'black',
                   },
                 ]}>
-                {healthResults.confirmed}
+                {data.confirmed}
               </Text>
             ) : (
               <Text>...</Text>
@@ -47,7 +45,7 @@ class RowStackResult extends Component<RowStackProps> {
               ]}>
               Total Deaths
             </Text>
-            {healthResults ? (
+            {data ? (
               <Text
                 style={[
                   styles.resultNumbers,
@@ -57,7 +55,7 @@ class RowStackResult extends Component<RowStackProps> {
                       : 'black',
                   },
                 ]}>
-                {healthResults.deaths}
+                {data.deaths}
               </Text>
             ) : (
               <Text>...</Text>
@@ -71,7 +69,7 @@ class RowStackResult extends Component<RowStackProps> {
               ]}>
               Total Recover
             </Text>
-            {healthResults ? (
+            {data ? (
               <Text
                 style={[
                   styles.resultNumbers,
@@ -81,7 +79,7 @@ class RowStackResult extends Component<RowStackProps> {
                       : 'black',
                   },
                 ]}>
-                {healthResults.recovered}
+                {data.recovered}
               </Text>
             ) : (
               <Text>...</Text>
@@ -97,7 +95,7 @@ class RowStackResult extends Component<RowStackProps> {
               ]}>
               New Cases
             </Text>
-            {healthResults ? (
+            {data ? (
               <Text
                 style={[
                   styles.resultNumbers,
@@ -107,7 +105,7 @@ class RowStackResult extends Component<RowStackProps> {
                       : 'black',
                   },
                 ]}>
-                {healthResults.newConfirmed}
+                {data.newConfirmed}
               </Text>
             ) : (
               <Text>...</Text>
@@ -121,7 +119,7 @@ class RowStackResult extends Component<RowStackProps> {
               ]}>
               Serious
             </Text>
-            {healthResults ? (
+            {data ? (
               <Text
                 style={[
                   styles.resultNumbers,
@@ -131,7 +129,7 @@ class RowStackResult extends Component<RowStackProps> {
                       : 'black',
                   },
                 ]}>
-                {healthResults.totalSerious}
+                {data.totalSerious}
               </Text>
             ) : (
               <Text>...</Text>
@@ -145,7 +143,7 @@ class RowStackResult extends Component<RowStackProps> {
               ]}>
               Deaths Today
             </Text>
-            {healthResults ? (
+            {data ? (
               <Text
                 style={[
                   styles.resultNumbers,
@@ -155,7 +153,7 @@ class RowStackResult extends Component<RowStackProps> {
                       : 'black',
                   },
                 ]}>
-                {healthResults.deathsToday}
+                {data.deathsToday}
               </Text>
             ) : (
               <Text>...</Text>

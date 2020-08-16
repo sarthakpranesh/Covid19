@@ -22,7 +22,7 @@ export interface TopHeadlineProps {
   navigation: any;
 }
 
-const TopHeadlinesScreen = (props: TopHeadlineProps) => {
+const TopHeadlinesScreen = ({style, navigation}: TopHeadlineProps) => {
   const [fetchTopHeadlines, topHeadlines, err] = getTopHeadlines();
 
   // for pull down to refresh
@@ -34,7 +34,7 @@ const TopHeadlinesScreen = (props: TopHeadlineProps) => {
   }, [fetchTopHeadlines]);
 
   if (err !== false) {
-    props.navigation.navigate.goBack();
+    navigation.navigate.goBack();
   }
 
   return (
@@ -44,7 +44,7 @@ const TopHeadlinesScreen = (props: TopHeadlineProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...props.style,
+        ...style,
       }}>
       <ScrollView
         style={Styles.safeArea}

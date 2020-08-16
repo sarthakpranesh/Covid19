@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {useState} from 'react';
 
-const getTimelineHook = () => {
+const getTimelineHook = (): [Function, any, String] => {
   const [results, setResults] = useState<any>([]);
   const [errMessage, setErrorMessage] = useState('');
 
@@ -22,7 +22,7 @@ const getTimelineHook = () => {
       })
       .catch((err) => {
         console.log('From Timeline: ' + err.message);
-        setResults({});
+        setResults([]);
         setErrorMessage(err.message);
       });
   };
