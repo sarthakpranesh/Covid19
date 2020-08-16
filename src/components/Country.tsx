@@ -1,10 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Title} from 'react-native-paper';
+import React, { Component } from 'react'
+import { View, StyleSheet } from 'react-native'
+import { Title } from 'react-native-paper'
 
 // importing components
-import RowStackResult from './RowStackResult';
+import RowStackResult from './RowStackResult'
 
 export interface CountryProps {
   data: any;
@@ -14,24 +14,24 @@ export interface CountryProps {
 }
 
 class Country extends Component<CountryProps> {
-  render() {
-    const {containerStyle, countryName, data} = this.props;
+  render () {
+    const { containerStyle, countryName, data } = this.props
     return (
       <View
         style={[
           styles.countrySection,
           {
-            backgroundColor: containerStyle ? containerStyle : '#FFC692',
-          },
+            backgroundColor: containerStyle || '#FFC692'
+          }
         ]}>
         <View style={styles.countryHeader}>
           <Title style={styles.countrySectionTitle}>
-            {countryName ? countryName : 'Unknown Country'}:{' '}
+            {countryName || 'Unknown Country'}:{' '}
           </Title>
         </View>
         <RowStackResult data={data} textColor="black" />
       </View>
-    );
+    )
   }
 }
 
@@ -43,22 +43,22 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingTop: 10,
     paddingHorizontal: 10,
-    borderRadius: 16,
+    borderRadius: 16
   },
   countryHeader: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 10
   },
   countrySectionTitle: {
     textAlign: 'justify',
     color: 'black',
     marginTop: 0,
     fontWeight: 'bold',
-    fontFamily: '',
-  },
-});
+    fontFamily: ''
+  }
+})
 
-export default Country;
+export default Country

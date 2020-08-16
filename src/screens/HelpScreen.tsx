@@ -1,174 +1,173 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React from 'react'
 import {
   View,
   StyleSheet,
   TouchableOpacity,
   Linking,
-  FlatList,
-} from 'react-native';
-import {Text, Subheading, Headline} from 'react-native-paper';
-import {ScrollView} from 'react-native-gesture-handler';
+  FlatList
+} from 'react-native'
+import { Text, Subheading, Headline } from 'react-native-paper'
+import { ScrollView } from 'react-native-gesture-handler'
 
 // importing common styles
-import Styles from '../Styles';
+import Styles from '../Styles'
 
 const data = [
   {
     state: 'Central Help Line Number',
-    number: '91-11-23978046',
+    number: '91-11-23978046'
   },
   {
     state: 'Andhra Pradesh',
-    number: '0866-2410978',
+    number: '0866-2410978'
   },
   {
     state: 'Arunachal Pradesh',
-    number: '9436055743',
+    number: '9436055743'
   },
   {
     state: 'Assam',
-    number: '6913347770',
+    number: '6913347770'
   },
   {
     state: 'Bihar',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Chhattisgarh',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Goa',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Gujarat',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Haryana',
-    number: '8558893911',
+    number: '8558893911'
   },
   {
     state: 'Himachal Pradesh',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Jharkhand',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Karnataka',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Kerala',
-    number: '0471-2552056',
+    number: '0471-2552056'
   },
   {
     state: 'Madhya Pradesh',
-    number: '0755-2527177',
+    number: '0755-2527177'
   },
   {
     state: 'Maharashtra',
-    number: '020-26127394',
+    number: '020-26127394'
   },
   {
     state: 'Manipur',
-    number: '3852411668',
+    number: '3852411668'
   },
   {
     state: 'Meghalaya',
-    number: '108',
+    number: '108'
   },
   {
     state: 'Mizoram',
-    number: '102',
+    number: '102'
   },
   {
     state: 'Nagaland',
-    number: '7005539653',
+    number: '7005539653'
   },
   {
     state: 'Odisha',
-    number: '9439994859',
+    number: '9439994859'
   },
   {
     state: 'Punjab',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Rajasthan',
-    number: '0141-2225624',
+    number: '0141-2225624'
   },
   {
     state: 'Sikkim',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Tamil Nadu',
-    number: '044-29510500',
+    number: '044-29510500'
   },
   {
     state: 'Telangana',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Tripura',
-    number: '0381-2315879',
+    number: '0381-2315879'
   },
   {
     state: 'Uttarakhand',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Uttar Pradesh',
-    number: '18001805145',
+    number: '18001805145'
   },
   {
     state: 'West Bengal',
-    number: '1800313444222',
+    number: '1800313444222'
   },
   {
     state: 'Andaman and Nicobar',
-    number: '03192-232102',
+    number: '03192-232102'
   },
   {
     state: 'Chandigarh',
-    number: '9779558282',
+    number: '9779558282'
   },
   {
     state: 'Dadra and Nagar Haveli and Daman & Diu',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Delhi',
-    number: '011-22307145',
+    number: '011-22307145'
   },
   {
     state: 'Jammu & Kashmir',
-    number: '01912520982',
+    number: '01912520982'
   },
   {
     state: 'Ladakh',
-    number: '01982256462',
+    number: '01982256462'
   },
   {
     state: 'Lakshadweep',
-    number: '104',
+    number: '104'
   },
   {
     state: 'Puducherry',
-    number: '104',
-  },
-];
+    number: '104'
+  }
+]
 
 export interface HelpProps {
   style: any;
 }
 
-const HelpScreen = ({style}: HelpProps) => {
+const HelpScreen = ({ style }: HelpProps) => {
   return (
     <View
       style={{
@@ -176,7 +175,7 @@ const HelpScreen = ({style}: HelpProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...style,
+        ...style
       }}>
       <ScrollView
         style={Styles.safeArea}
@@ -190,7 +189,7 @@ const HelpScreen = ({style}: HelpProps) => {
           <FlatList
             data={data}
             keyExtractor={(ele) => ele.state}
-            renderItem={({item}) => {
+            renderItem={({ item }) => {
               return (
                 <View style={styles.listItemHelp}>
                   <Subheading style={styles.helpLineText}>
@@ -202,7 +201,7 @@ const HelpScreen = ({style}: HelpProps) => {
                     <Text style={styles.number}>{item.number}</Text>
                   </TouchableOpacity>
                 </View>
-              );
+              )
             }}
           />
 
@@ -212,7 +211,7 @@ const HelpScreen = ({style}: HelpProps) => {
               fontSize: 12,
               marginVertical: 20,
               marginBottom: 0,
-              textAlign: 'center',
+              textAlign: 'center'
             }}>
             All data retrieved from mohfw.gov.in, click below for more
           </Text>
@@ -222,7 +221,7 @@ const HelpScreen = ({style}: HelpProps) => {
               style={{
                 textAlign: 'center',
                 color: 'red',
-                fontFamily: '',
+                fontFamily: ''
               }}>
               MOHFW
             </Text>
@@ -230,30 +229,30 @@ const HelpScreen = ({style}: HelpProps) => {
         </View>
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   helpContentContainer: {
-    marginHorizontal: 5,
+    marginHorizontal: 5
   },
   listItemHelp: {
-    marginVertical: 10,
+    marginVertical: 10
   },
   helpLineText: {
     textAlign: 'center',
     fontFamily: '',
-    color: 'black',
+    color: 'black'
   },
   numberContainer: {
     alignSelf: 'center',
-    marginVertical: 5,
+    marginVertical: 5
   },
   number: {
     color: '#2400FF',
     textAlign: 'center',
-    fontFamily: '',
-  },
-});
+    fontFamily: ''
+  }
+})
 
-export default HelpScreen;
+export default HelpScreen

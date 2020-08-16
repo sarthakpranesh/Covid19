@@ -1,10 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native'
 
 const Styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     paddingHorizontal: 10,
-    backgroundColor: '#DEF7FF',
+    backgroundColor: '#DEF7FF'
   },
   mainHeader: {
     flex: 1,
@@ -14,14 +14,14 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     paddingVertical: 60,
-    paddingBottom: 50,
+    paddingBottom: 50
   },
   mainHeaderText: {
     textAlign: 'center',
     fontWeight: 'bold',
     color: '#D41D3E',
-    fontFamily: '',
-  },
-});
+    fontFamily: ''
+  }
+})
 
-export default Styles;
+export default Styles

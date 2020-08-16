@@ -1,41 +1,41 @@
-import React, {Component} from 'react';
-import {Linking, FlatList, TouchableWithoutFeedback} from 'react-native';
+import React, { Component } from 'react'
+import { Linking, FlatList, TouchableWithoutFeedback } from 'react-native'
 
 // importing component
-import Precaution from './PreventionCards';
+import Precaution from './PreventionCards'
 
-import {News} from '../hooks/getTopHeadlines';
+import { News } from '../hooks/getTopHeadlines'
 
 export interface NewsCardProps {
   topHeadlines: News[];
 }
 
 class NewsCards extends Component<NewsCardProps> {
-  _renderItem = ({item}: {item: News}) => {
+  _renderItem = ({ item }: {item: News}) => {
     if (!item.title || !item.description || !item.url) {
-      return null;
+      return null
     }
     return (
       <TouchableWithoutFeedback onPress={() => Linking.openURL(item.url)}>
         <Precaution
           title={item.title}
           content={item.description}
-          src={{uri: item.urlToImage}}
+          src={{ uri: item.urlToImage }}
         />
       </TouchableWithoutFeedback>
-    );
+    )
   };
 
-  render() {
-    const {topHeadlines} = this.props;
+  render () {
+    const { topHeadlines } = this.props
     return (
       <FlatList
         data={topHeadlines}
         keyExtractor={(news) => news.title}
         renderItem={this._renderItem}
       />
-    );
+    )
   }
 }
 
-export default NewsCards;
+export default NewsCards

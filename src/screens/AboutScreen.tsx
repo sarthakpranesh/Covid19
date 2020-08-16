@@ -1,17 +1,16 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {View, StyleSheet, Image, Linking, TouchableOpacity} from 'react-native';
-import {Text, Headline} from 'react-native-paper';
-import {ScrollView} from 'react-native-gesture-handler';
+import React from 'react'
+import { View, StyleSheet, Image, Linking, TouchableOpacity } from 'react-native'
+import { Text, Headline } from 'react-native-paper'
+import { ScrollView } from 'react-native-gesture-handler'
 
 // importing common style
-import Styles from '../Styles';
+import Styles from '../Styles'
 
 export interface AboutProps {
   style: any;
 }
 
-const AboutScreen = ({style}: AboutProps) => {
+const AboutScreen = ({ style }: AboutProps) => {
   return (
     <View
       style={{
@@ -19,7 +18,7 @@ const AboutScreen = ({style}: AboutProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...style,
+        ...style
       }}>
       <ScrollView
         style={Styles.safeArea}
@@ -34,7 +33,7 @@ const AboutScreen = ({style}: AboutProps) => {
             style={{
               marginVertical: 20,
               height: 100,
-              width: 100,
+              width: 100
             }}
             source={require('../../assets/img/v.png')}
           />
@@ -64,7 +63,7 @@ const AboutScreen = ({style}: AboutProps) => {
                 color: 'black',
                 textDecorationLine: 'underline',
                 fontFamily: '',
-                fontWeight: 'bold',
+                fontWeight: 'bold'
               }}>
               Click Here to Know More
             </Text>
@@ -80,21 +79,21 @@ const AboutScreen = ({style}: AboutProps) => {
             marginBottom: 20,
             borderRadius: 5,
             justifyContent: 'center',
-            alignItems: 'center',
+            alignItems: 'center'
           }}>
           <Text
             style={{
               color: 'black',
               textAlign: 'center',
               fontFamily: '',
-              fontWeight: 'bold',
+              fontWeight: 'bold'
             }}>
             Support Project
           </Text>
           <TouchableOpacity
             onPress={() =>
               Linking.openURL(
-                'https://github.com/sarthakpranesh/Covid19-ReactNative',
+                'https://github.com/sarthakpranesh/Covid19-ReactNative'
               )
             }>
             <Text
@@ -103,7 +102,7 @@ const AboutScreen = ({style}: AboutProps) => {
                 marginVertical: 20,
                 textDecorationLine: 'underline',
                 fontFamily: '',
-                fontWeight: 'bold',
+                fontWeight: 'bold'
               }}>
               Github
             </Text>
@@ -113,15 +112,15 @@ const AboutScreen = ({style}: AboutProps) => {
               color: 'black',
               textAlign: 'center',
               fontFamily: '',
-              fontWeight: 'bold',
+              fontWeight: 'bold'
             }}>
             Made with Love
           </Text>
         </View>
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   aboutContentContainer: {
@@ -134,14 +133,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   aboutContent: {
     textAlign: 'justify',
     color: 'black',
     marginVertical: 10,
-    fontFamily: '',
-  },
-});
+    fontFamily: ''
+  }
+})
 
-export default AboutScreen;
+export default AboutScreen

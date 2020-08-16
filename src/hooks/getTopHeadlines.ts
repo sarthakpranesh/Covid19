@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react'
 
 export interface News {
   author: string;
@@ -11,15 +10,16 @@ export interface News {
 }
 
 const getTopHeadlines = (): [Function, any, Boolean] => {
-  const [results, setResults] = useState([]);
-  const [isErr, setIsError] = useState(false);
+  const [results, setResults] = useState([])
+  const [isErr, setIsError] = useState(false)
 
   const fetchTopHeadlines = async () => {
+    // eslint-disable-next-line no-undef
     fetch('https://some-news-api.herokuapp.com/articles')
       .then((resp) => resp.json())
       .then((respData) => {
         if (respData === undefined) {
-          throw new Error('No data received');
+          throw new Error('No data received')
         }
         const arrayOfNews = respData.map((news: any) => {
           const result = {
@@ -28,24 +28,24 @@ const getTopHeadlines = (): [Function, any, Boolean] => {
             description: news.description,
             name: news.source.name,
             url: news.url,
-            urlToImage: news.urlToImage,
-          };
-          return result;
-        });
-        setResults(arrayOfNews);
-        setIsError(false);
+            urlToImage: news.urlToImage
+          }
+          return result
+        })
+        setResults(arrayOfNews)
+        setIsError(false)
       })
       .catch((err) => {
-        console.log('From news api: ' + err.message);
-        setIsError(true);
-      });
-  };
+        console.log('From news api: ' + err.message)
+        setIsError(true)
+      })
+  }
 
   useEffect(() => {
-    fetchTopHeadlines();
-  }, []);
+    fetchTopHeadlines()
+  }, [])
 
-  return [fetchTopHeadlines, results, isErr];
-};
+  return [fetchTopHeadlines, results, isErr]
+}
 
-export default getTopHeadlines;
+export default getTopHeadlines

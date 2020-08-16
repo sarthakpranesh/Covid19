@@ -5,6 +5,7 @@ const getGlobalTotalHook = (): [Function, any, String] => {
   const [errorMessage, setErrorMessage] = useState('')
 
   const getGlobalTotal = async () => {
+    // eslint-disable-next-line no-undef
     fetch('https://corona.lmao.ninja/v2/all')
       .then((resp) => resp.json())
       .then((respData) => {

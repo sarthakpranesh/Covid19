@@ -1,7 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {Text, Subheading} from 'react-native-paper';
+import React, { Component } from 'react'
+import { View, StyleSheet, Image } from 'react-native'
+import { Text, Subheading } from 'react-native-paper'
 
 export interface PreventionProps {
   title: string;
@@ -10,8 +9,8 @@ export interface PreventionProps {
 }
 
 class PreventionCards extends Component<PreventionProps> {
-  render() {
-    const {title, content, src} = this.props;
+  render () {
+    const { title, content, src } = this.props
     return (
       <View style={styles.mainPreventionContainer}>
         <Subheading style={styles.mainPreventionTitle}>{title}</Subheading>
@@ -24,13 +23,13 @@ class PreventionCards extends Component<PreventionProps> {
               marginLeft: 10,
               marginBottom: 0,
               flex: 1.6,
-              borderRadius: 16,
+              borderRadius: 16
             }}
             source={src}
           />
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -40,12 +39,12 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     paddingVertical: 20,
     paddingHorizontal: 10,
-    borderRadius: 18,
+    borderRadius: 18
   },
   mainPreventionTitle: {
     color: 'black',
     fontWeight: 'bold',
-    fontFamily: '',
+    fontFamily: ''
   },
   preventionContentContainer: {
     flex: 1,
@@ -53,15 +52,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 5,
-    padding: 5,
+    padding: 5
   },
   preventionContent: {
     flex: 2,
     color: 'black',
     fontFamily: '',
     flexWrap: 'wrap',
-    textAlign: 'justify',
-  },
-});
+    textAlign: 'left'
+  }
+})
 
-export default PreventionCards;
+export default PreventionCards

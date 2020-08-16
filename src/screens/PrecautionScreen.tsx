@@ -1,19 +1,18 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {View, ScrollView} from 'react-native';
-import {Headline} from 'react-native-paper';
+import React from 'react'
+import { View, ScrollView } from 'react-native'
+import { Headline } from 'react-native-paper'
 
 // importing components
-import PreventionCards from '../components/PreventionCards';
+import PreventionCards from '../components/PreventionCards'
 
 // importing common style
-import Styles from '../Styles';
+import Styles from '../Styles'
 
 export interface PrecautionProps {
   style: any;
 }
 
-const Precaution = ({style}: PrecautionProps) => {
+const Precaution = ({ style }: PrecautionProps) => {
   return (
     <View
       style={{
@@ -21,7 +20,7 @@ const Precaution = ({style}: PrecautionProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...style,
+        ...style
       }}>
       <ScrollView
         style={Styles.safeArea}
@@ -73,7 +72,7 @@ const Precaution = ({style}: PrecautionProps) => {
         />
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
-export default Precaution;
+export default Precaution

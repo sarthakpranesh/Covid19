@@ -1,7 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Text} from 'react-native-paper';
+import React, { Component } from 'react'
+import { View, StyleSheet } from 'react-native'
+import { Text } from 'react-native-paper'
 
 export interface RowStackProps {
   data: any;
@@ -9,8 +8,8 @@ export interface RowStackProps {
 }
 
 class RowStackResult extends Component<RowStackProps> {
-  render() {
-    const {data, textColor} = this.props;
+  render () {
+    const { data, textColor } = this.props
 
     return (
       <>
@@ -19,7 +18,7 @@ class RowStackResult extends Component<RowStackProps> {
             <Text
               style={[
                 styles.subResultText,
-                {color: textColor ? textColor : 'black'},
+                { color: textColor || 'black' }
               ]}>
               Total Cases
             </Text>
@@ -28,8 +27,8 @@ class RowStackResult extends Component<RowStackProps> {
                 style={[
                   styles.resultNumbers,
                   {
-                    color: textColor ? textColor : 'black',
-                  },
+                    color: textColor || 'black'
+                  }
                 ]}>
                 {data.confirmed}
               </Text>
@@ -41,7 +40,7 @@ class RowStackResult extends Component<RowStackProps> {
             <Text
               style={[
                 styles.subResultText,
-                {color: this.props.textColor ? this.props.textColor : 'black'},
+                { color: this.props.textColor ? this.props.textColor : 'black' }
               ]}>
               Total Deaths
             </Text>
@@ -52,8 +51,8 @@ class RowStackResult extends Component<RowStackProps> {
                   {
                     color: this.props.textColor
                       ? this.props.textColor
-                      : 'black',
-                  },
+                      : 'black'
+                  }
                 ]}>
                 {data.deaths}
               </Text>
@@ -65,7 +64,7 @@ class RowStackResult extends Component<RowStackProps> {
             <Text
               style={[
                 styles.subResultText,
-                {color: this.props.textColor ? this.props.textColor : 'black'},
+                { color: this.props.textColor ? this.props.textColor : 'black' }
               ]}>
               Total Recover
             </Text>
@@ -76,8 +75,8 @@ class RowStackResult extends Component<RowStackProps> {
                   {
                     color: this.props.textColor
                       ? this.props.textColor
-                      : 'black',
-                  },
+                      : 'black'
+                  }
                 ]}>
                 {data.recovered}
               </Text>
@@ -91,7 +90,7 @@ class RowStackResult extends Component<RowStackProps> {
             <Text
               style={[
                 styles.subResultText,
-                {color: this.props.textColor ? this.props.textColor : 'black'},
+                { color: this.props.textColor ? this.props.textColor : 'black' }
               ]}>
               New Cases
             </Text>
@@ -102,8 +101,8 @@ class RowStackResult extends Component<RowStackProps> {
                   {
                     color: this.props.textColor
                       ? this.props.textColor
-                      : 'black',
-                  },
+                      : 'black'
+                  }
                 ]}>
                 {data.newConfirmed}
               </Text>
@@ -115,7 +114,7 @@ class RowStackResult extends Component<RowStackProps> {
             <Text
               style={[
                 styles.subResultText,
-                {color: this.props.textColor ? this.props.textColor : 'black'},
+                { color: this.props.textColor ? this.props.textColor : 'black' }
               ]}>
               Serious
             </Text>
@@ -126,8 +125,8 @@ class RowStackResult extends Component<RowStackProps> {
                   {
                     color: this.props.textColor
                       ? this.props.textColor
-                      : 'black',
-                  },
+                      : 'black'
+                  }
                 ]}>
                 {data.totalSerious}
               </Text>
@@ -139,7 +138,7 @@ class RowStackResult extends Component<RowStackProps> {
             <Text
               style={[
                 styles.subResultText,
-                {color: this.props.textColor ? this.props.textColor : 'black'},
+                { color: this.props.textColor ? this.props.textColor : 'black' }
               ]}>
               Deaths Today
             </Text>
@@ -150,8 +149,8 @@ class RowStackResult extends Component<RowStackProps> {
                   {
                     color: this.props.textColor
                       ? this.props.textColor
-                      : 'black',
-                  },
+                      : 'black'
+                  }
                 ]}>
                 {data.deathsToday}
               </Text>
@@ -161,7 +160,7 @@ class RowStackResult extends Component<RowStackProps> {
           </View>
         </View>
       </>
-    );
+    )
   }
 }
 
@@ -173,23 +172,23 @@ const styles = StyleSheet.create({
     marginTop: 0,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    paddingTop: 10,
+    paddingTop: 10
   },
   subResult: {
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    textAlign: 'center',
+    textAlign: 'center'
   },
   subResultText: {
     textAlign: 'center',
-    fontFamily: '',
+    fontFamily: ''
   },
   resultNumbers: {
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: '',
-  },
-});
+    fontFamily: ''
+  }
+})
 
-export default RowStackResult;
+export default RowStackResult

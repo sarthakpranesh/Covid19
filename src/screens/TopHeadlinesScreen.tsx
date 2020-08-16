@@ -1,40 +1,39 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {useState, useCallback} from 'react';
+import React, { useState, useCallback } from 'react'
 import {
   View,
   ScrollView,
   RefreshControl,
-  ActivityIndicator,
-} from 'react-native';
-import {Headline} from 'react-native-paper';
+  ActivityIndicator
+} from 'react-native'
+import { Headline } from 'react-native-paper'
 
 // importing components
-import NewsCards from '../components/NewsCards';
+import NewsCards from '../components/NewsCards'
 
 // importing common style
-import Styles from '../Styles';
+import Styles from '../Styles'
 
 // importing hooks
-import getTopHeadlines from '../hooks/getTopHeadlines';
+import getTopHeadlines from '../hooks/getTopHeadlines'
 
 export interface TopHeadlineProps {
   style: any;
   navigation: any;
 }
 
-const TopHeadlinesScreen = ({style, navigation}: TopHeadlineProps) => {
-  const [fetchTopHeadlines, topHeadlines, err] = getTopHeadlines();
+const TopHeadlinesScreen = ({ style, navigation }: TopHeadlineProps) => {
+  const [fetchTopHeadlines, topHeadlines, err] = getTopHeadlines()
 
   // for pull down to refresh
-  const [refreshing, setRefresh] = useState(false);
+  const [refreshing, setRefresh] = useState(false)
   const onRefresh = useCallback(async () => {
-    setRefresh(true);
-    await fetchTopHeadlines();
-    setRefresh(false);
-  }, [fetchTopHeadlines]);
+    setRefresh(true)
+    await fetchTopHeadlines()
+    setRefresh(false)
+  }, [fetchTopHeadlines])
 
   if (err !== false) {
-    navigation.navigate.goBack();
+    navigation.navigate.goBack()
   }
 
   return (
@@ -44,7 +43,7 @@ const TopHeadlinesScreen = ({style, navigation}: TopHeadlineProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...style,
+        ...style
       }}>
       <ScrollView
         style={Styles.safeArea}
@@ -57,14 +56,14 @@ const TopHeadlinesScreen = ({style, navigation}: TopHeadlineProps) => {
           <Headline style={Styles.mainHeaderText}>Top Headlines</Headline>
         </View>
 
-        {topHeadlines ? (
+        {topHeadlines.length !== 0 ? (
           <NewsCards topHeadlines={topHeadlines} />
         ) : (
           <ActivityIndicator size="large" color="black" />
         )}
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
-export default TopHeadlinesScreen;
+export default TopHeadlinesScreen
