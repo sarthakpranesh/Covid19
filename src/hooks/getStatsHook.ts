@@ -5,7 +5,7 @@ const getStatsHook = () => {
   const [results, setResults] = useState({});
   const [errMessage, setErrorMessage] = useState('');
 
-  const getStats = async (country) => {
+  const getStats = async (country: String) => {
     fetch(
       `https://corona.lmao.ninja/v2/countries/${country}?today&strict&query%20`,
     )

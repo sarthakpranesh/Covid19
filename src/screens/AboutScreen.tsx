@@ -7,7 +7,11 @@ import {ScrollView} from 'react-native-gesture-handler';
 // importing common style
 import Styles from '../Styles';
 
-const AboutScreen = ({style}) => {
+export interface AboutProps {
+  style: any;
+}
+
+const AboutScreen = (props: AboutProps) => {
   return (
     <View
       style={{
@@ -15,7 +19,7 @@ const AboutScreen = ({style}) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...style,
+        ...props.style,
       }}>
       <ScrollView
         style={Styles.safeArea}

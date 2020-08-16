@@ -9,7 +9,11 @@ import PreventionCards from '../components/PreventionCards';
 // importing common style
 import Styles from '../Styles';
 
-const Precaution = ({style}) => {
+export interface PrecautionProps {
+  style: any;
+}
+
+const Precaution = (props: PrecautionProps) => {
   return (
     <View
       style={{
@@ -17,7 +21,7 @@ const Precaution = ({style}) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...style,
+        ...props.style,
       }}>
       <ScrollView
         style={Styles.safeArea}

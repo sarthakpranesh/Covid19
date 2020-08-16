@@ -17,7 +17,12 @@ import Styles from '../Styles';
 // importing hooks
 import getTopHeadlines from '../hooks/getTopHeadlines';
 
-const TopHeadlinesScreen = ({style}) => {
+export interface TopHeadlineProps {
+  style: any;
+  navigation: any;
+}
+
+const TopHeadlinesScreen = (props: TopHeadlineProps) => {
   const [fetchTopHeadlines, topHeadlines, err] = getTopHeadlines();
 
   // for pull down to refresh
@@ -28,6 +33,10 @@ const TopHeadlinesScreen = ({style}) => {
     setRefresh(false);
   }, [fetchTopHeadlines]);
 
+  if (err !== false) {
+    props.navigation.navigate.goBack();
+  }
+
   return (
     <View
       style={{
@@ -35,7 +44,7 @@ const TopHeadlinesScreen = ({style}) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...style,
+        ...props.style,
       }}>
       <ScrollView
         style={Styles.safeArea}

@@ -2,10 +2,10 @@
 import {useState} from 'react';
 
 const getTimelineHook = () => {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState({});
   const [errMessage, setErrorMessage] = useState('');
 
-  const getTimeline = async (country) => {
+  const getTimeline = async (country: String) => {
     fetch(`https://disease.sh/v3/covid-19/historical/${country}?lastdays=all`)
       .then((resp) => resp.json())
       .then((respData) => {
@@ -22,7 +22,7 @@ const getTimelineHook = () => {
       })
       .catch((err) => {
         console.log('From Timeline: ' + err.message);
-        setResults([]);
+        setResults({});
         setErrorMessage(err.message);
       });
   };

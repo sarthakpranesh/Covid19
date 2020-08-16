@@ -12,7 +12,7 @@ import Animated from 'react-native-reanimated';
 
 import {DrawerContent, Screens} from './src/components/navigation/Drawer.js';
 
-import getLocationHook from './src/hooks/getLocationHook.js';
+import getLocationHook from './src/hooks/getLocationHook.ts';
 
 const Drawer = createDrawerNavigator();
 
@@ -59,7 +59,7 @@ const MainApp = () => {
     });
   }, []);
 
-  return ![undefined, false].includes(country) ? (
+  return country !== '' ? (
     <NavigationContainer>
       <LinearGradient
         colors={['#DEF7FF', '#B1ECFF']}

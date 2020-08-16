@@ -17,14 +17,20 @@ import Country from '../components/Country.js';
 import CandleCharts from '../components/CandleCharts.js';
 
 // importing hooks
-import getGlobalTotalHook from '../hooks/getGlobalTotalHook.js';
-import getStatsHook from '../hooks/getStatsHook.js';
-import getTimelineHook from '../hooks/getTimelineHook.js';
+import getGlobalTotalHook from '../hooks/getGlobalTotalHook';
+import getStatsHook from '../hooks/getStatsHook';
+import getTimelineHook from '../hooks/getTimelineHook';
 
 // import common style
 import Styles from '../Styles';
 
-const HomeScreen = ({style, country}) => {
+export interface HomeProps {
+  style: any;
+  country: String;
+}
+
+const HomeScreen = (props: HomeProps) => {
+  const {style, country} = props;
   const [errorShowed, setErrorShowed] = useState(false);
   const [refreshing, setRefresh] = useState();
 
@@ -34,7 +40,7 @@ const HomeScreen = ({style, country}) => {
 
   if ((err1 !== '' || err2 !== '' || err3 !== '') && !errorShowed) {
     setErrorShowed(true);
-    let errMessage;
+    let errMessage: any;
     if (err1 !== '') {
       errMessage = err1;
     } else if (err2 !== '') {

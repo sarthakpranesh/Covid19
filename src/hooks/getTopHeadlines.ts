@@ -1,6 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import {useState, useEffect} from 'react';
 
+export interface News {
+  author: String;
+  title: String;
+  description: String;
+  source: any;
+  url: String;
+  urlToImage: String;
+}
+
 const getTopHeadlines = () => {
   const [results, setResults] = useState('');
   const [isErr, setIsError] = useState(false);
@@ -12,7 +21,7 @@ const getTopHeadlines = () => {
         if (respData === undefined) {
           throw new Error('No data received');
         }
-        const arrayOfNews = respData.map((news) => {
+        const arrayOfNews = respData.map((news: News) => {
           const result = {
             author: news.author,
             title: news.title,
