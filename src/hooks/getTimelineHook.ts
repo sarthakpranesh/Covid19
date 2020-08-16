@@ -2,13 +2,13 @@
 import {useState} from 'react';
 
 const getTimelineHook = () => {
-  const [results, setResults] = useState({});
+  const [results, setResults] = useState<any>([]);
   const [errMessage, setErrorMessage] = useState('');
 
   const getTimeline = async (country: String) => {
     fetch(`https://disease.sh/v3/covid-19/historical/${country}?lastdays=all`)
       .then((resp) => resp.json())
-      .then((respData) => {
+      .then((respData: any) => {
         const dateKeys = Object.keys(respData.timeline.cases);
         const filteredData = dateKeys.map((date) => {
           return {

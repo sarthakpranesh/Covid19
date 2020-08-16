@@ -2,7 +2,7 @@
 import {useState} from 'react';
 
 const getGlobalTotalHook = () => {
-  const [results, setResults] = useState({});
+  const [results, setResults] = useState<any>({});
   const [errorMessage, setErrorMessage] = useState('');
 
   const getGlobalTotal = async () => {

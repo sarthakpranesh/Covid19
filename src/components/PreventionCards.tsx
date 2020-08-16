@@ -3,15 +3,15 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import {Text, Subheading} from 'react-native-paper';
 
-class PreventionCards extends Component {
+export interface PreventionProps {
+  title: string;
+  content: string;
+  src: any;
+}
+
+class PreventionCards extends Component<PreventionProps> {
   render() {
-    const title = this.props.title ? this.props.title : 'Precaution';
-    const content = this.props.content
-      ? this.props.content
-      : 'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum';
-    const src = this.props.src
-      ? this.props.src
-      : require('../../assets/img/wh.png');
+    const {title, content, src} = this.props;
     return (
       <View style={styles.mainPreventionContainer}>
         <Subheading style={styles.mainPreventionTitle}>{title}</Subheading>

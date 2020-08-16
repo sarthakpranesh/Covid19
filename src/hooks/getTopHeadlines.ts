@@ -11,7 +11,7 @@ export interface News {
 }
 
 const getTopHeadlines = () => {
-  const [results, setResults] = useState('');
+  const [results, setResults] = useState<any>([]);
   const [isErr, setIsError] = useState(false);
 
   const fetchTopHeadlines = async () => {

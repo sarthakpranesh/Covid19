@@ -10,9 +10,9 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Animated from 'react-native-reanimated';
 
-import {DrawerContent, Screens} from './src/components/navigation/Drawer.js';
+import {DrawerContent, Screens} from './src/components/navigation/Drawer';
 
-import getLocationHook from './src/hooks/getLocationHook.ts';
+import getLocationHook from './src/hooks/getLocationHook';
 
 const Drawer = createDrawerNavigator();
 

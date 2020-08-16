@@ -4,7 +4,7 @@ import {Linking, FlatList, TouchableOpacity} from 'react-native';
 // importing component
 import Precaution from './PreventionCards';
 
-class PreventionCards extends Component {
+class NewsCards extends Component<any> {
   render() {
     const {topHeadlines} = this.props;
     return (
@@ -30,4 +30,4 @@ class PreventionCards extends Component {
   }
 }
 
-export default PreventionCards;
+export default NewsCards;

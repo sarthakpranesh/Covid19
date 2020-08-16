@@ -3,7 +3,12 @@ import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 
-class RowStackResult extends Component {
+export interface RowStackProps {
+  data: any;
+  textColor?: string;
+}
+
+class RowStackResult extends Component<RowStackProps> {
   render() {
     const healthResults = this.props.data;
 

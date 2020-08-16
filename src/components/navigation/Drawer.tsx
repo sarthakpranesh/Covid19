@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import Animated from 'react-native-reanimated';
@@ -16,7 +16,14 @@ import TopHeadlinesScreen from '../../screens/TopHeadlinesScreen';
 
 const Stack = createStackNavigator();
 
-export const Screens = ({navigation, style, country}) => {
+export interface ScreensProps {
+  navigation: any;
+  style: any;
+  country: String;
+}
+
+export const Screens = (props: ScreensProps) => {
+  const {navigation, style, country} = props;
   return (
     <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
       <Stack.Navigator
@@ -24,7 +31,6 @@ export const Screens = ({navigation, style, country}) => {
         screenOptions={{
           animationEnabled: false,
           headerTransparent: true,
-          headerTitle: null,
           headerLeft: () => (
             <View
               style={{
@@ -38,7 +44,7 @@ export const Screens = ({navigation, style, country}) => {
               }}>
               <IconButton
                 style={{margin: 0}}
-                icon={({size, color}) => (
+                icon={({size}) => (
                   <Icon name="menu" size={size} color="black" />
                 )}
                 onPress={() => navigation.openDrawer()}
@@ -47,26 +53,26 @@ export const Screens = ({navigation, style, country}) => {
           ),
         }}>
         <Stack.Screen name="Home">
-          {(props) => <HomeScreen {...props} country={country} />}
+          {(p: any) => <HomeScreen {...p} country={country} />}
         </Stack.Screen>
         <Stack.Screen name="Headline">
-          {(props) => <TopHeadlinesScreen {...props} />}
+          {(p: any) => <TopHeadlinesScreen {...p} />}
         </Stack.Screen>
         <Stack.Screen name="Precaution">
-          {(props) => <PrecautionScreen {...props} />}
+          {(p: any) => <PrecautionScreen {...p} />}
         </Stack.Screen>
         <Stack.Screen name="Help">
-          {(props) => <HelpScreen {...props} />}
+          {(p: any) => <HelpScreen {...p} />}
         </Stack.Screen>
         <Stack.Screen name="About">
-          {(props) => <AboutScreen {...props} />}
+          {(p: any) => <AboutScreen {...p} />}
         </Stack.Screen>
       </Stack.Navigator>
     </Animated.View>
   );
 };
 
-export const DrawerContent = (props) => {
+export const DrawerContent = (props: any) => {
   return (
     <DrawerContentScrollView
       {...props}

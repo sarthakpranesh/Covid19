@@ -2,7 +2,7 @@
 import {useState} from 'react';
 
 const getStatsHook = () => {
-  const [results, setResults] = useState({});
+  const [results, setResults] = useState<any>({});
   const [errMessage, setErrorMessage] = useState('');
 
   const getStats = async (country: String) => {

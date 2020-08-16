@@ -7,16 +7,30 @@ import Animated from 'react-native-reanimated';
 const {width} = Dimensions.get('screen');
 const svgWidth = width * 3;
 
-const CandleCharts = ({data, country}) => {
-  const [pressedData, setPressedData] = useState({});
+export interface CandleProps {
+  data: any;
+  country: String;
+}
+
+export interface TimelineDataType {
+  date: String;
+  difference: number;
+}
+
+const CandleCharts = (props: CandleProps) => {
+  let {data, country} = props;
+  const [pressedData, setPressedData] = useState<TimelineDataType>({
+    date: '',
+    difference: -1,
+  });
   const [animatedOpacity, setAnimatedOpacity] = useState(0);
-  let scrollView;
+  let scrollView: ScrollView | null;
   let widthOfCandle = 10;
   let xWidth = 12;
   let heightScale = 1;
   if (data.length !== 0) {
     const max = data[data.length - 1].difference;
-    data = data.filter((d) => d.difference / max > 0.001);
+    data = data.filter((d: any) => d.difference / max > 0.001);
     xWidth = svgWidth / data.length;
     widthOfCandle = xWidth - 1;
     heightScale = width / data[data.length - 1].difference;
@@ -40,13 +54,15 @@ const CandleCharts = ({data, country}) => {
         ref={(ref) => {
           scrollView = ref;
         }}
-        onContentSizeChange={() => scrollView.scrollToEnd({animated: true})}
+        onContentSizeChange={() =>
+          scrollView !== null ? scrollView.scrollToEnd({animated: true}) : null
+        }
         style={styles.graphContainer}
         horizontal={true}
         scrollEventThrottle={16}>
         {data.length !== 0 ? (
           <Svg width={svgWidth + 20} height={width}>
-            {data.map((d, index) => {
+            {data.map((d: any, index: any) => {
               if (index !== 0) {
                 if (d.difference - data[index - 1].difference < 0) {
                   color = 'green';
@@ -64,7 +80,7 @@ const CandleCharts = ({data, country}) => {
                   width={widthOfCandle}
                   height={heightScale * d.difference}
                   fill={color}
-                  stroke={d.date === pressedData.date ? 'black' : null}
+                  stroke={d.date === pressedData.date ? 'black' : undefined}
                   onPress={() => {
                     setPressedData(d);
                     setAnimatedOpacity(1);

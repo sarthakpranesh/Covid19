@@ -13,8 +13,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 
 // importing components
-import Country from '../components/Country.js';
-import CandleCharts from '../components/CandleCharts.js';
+import Country from '../components/Country';
+import CandleCharts from '../components/CandleCharts';
 
 // importing hooks
 import getGlobalTotalHook from '../hooks/getGlobalTotalHook';
@@ -31,8 +31,8 @@ export interface HomeProps {
 
 const HomeScreen = (props: HomeProps) => {
   const {style, country} = props;
-  const [errorShowed, setErrorShowed] = useState(false);
-  const [refreshing, setRefresh] = useState();
+  const [errorShowed, setErrorShowed] = useState<boolean>(false);
+  const [refreshing, setRefresh] = useState<boolean>(false);
 
   const [getGlobalTotal, globalTotal, err1] = getGlobalTotalHook();
   const [getStats, stats, err2] = getStatsHook();

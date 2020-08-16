@@ -6,27 +6,27 @@ import {Title} from 'react-native-paper';
 // importing components
 import RowStackResult from './RowStackResult';
 
-class Country extends Component {
-  constructor(props) {
-    super(props);
-  }
+export interface CountryProps {
+  data: any;
+  isError: String;
+  countryName: String;
+  containerStyle?: any;
+}
 
+class Country extends Component<CountryProps> {
   render() {
-    const country = this.props.countryName;
-    const data = this.props.data;
+    const {containerStyle, countryName, data} = this.props;
     return (
       <View
         style={[
           styles.countrySection,
           {
-            backgroundColor: this.props.containerStyle
-              ? this.props.containerStyle
-              : '#FFC692',
+            backgroundColor: containerStyle ? containerStyle : '#FFC692',
           },
         ]}>
         <View style={styles.countryHeader}>
           <Title style={styles.countrySectionTitle}>
-            {country ? country : ' Unknown Country '}:{' '}
+            {countryName ? countryName : 'Unknown Country'}:{' '}
           </Title>
         </View>
         <RowStackResult data={data} textColor="black" />
