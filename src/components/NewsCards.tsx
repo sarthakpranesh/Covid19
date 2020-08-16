@@ -13,14 +13,14 @@ export interface NewsCardProps {
 class NewsCards extends Component<NewsCardProps> {
   _renderItem = ({item}: {item: News}) => {
     if (!item.title || !item.description || !item.url) {
-      return;
+      return null;
     }
     return (
       <TouchableWithoutFeedback onPress={() => Linking.openURL(item.url)}>
         <Precaution
           title={item.title}
           content={item.description}
-          src={{uri: item.image}}
+          src={{uri: item.urlToImage}}
         />
       </TouchableWithoutFeedback>
     );

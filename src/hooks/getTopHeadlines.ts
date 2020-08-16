@@ -7,7 +7,7 @@ export interface News {
   description: string;
   source: any;
   url: string;
-  image: string;
+  urlToImage: string;
 }
 
 const getTopHeadlines = (): [Function, any, Boolean] => {
@@ -21,14 +21,14 @@ const getTopHeadlines = (): [Function, any, Boolean] => {
         if (respData === undefined) {
           throw new Error('No data received');
         }
-        const arrayOfNews = respData.map((news: News) => {
+        const arrayOfNews = respData.map((news: any) => {
           const result = {
             author: news.author,
             title: news.title,
             description: news.description,
             name: news.source.name,
             url: news.url,
-            image: news.urlToImage,
+            urlToImage: news.urlToImage,
           };
           return result;
         });
