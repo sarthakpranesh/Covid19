@@ -1,53 +1,51 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useCallback, useEffect} from 'react';
+import React, { useState, useCallback, useEffect } from 'react'
 import {
   View,
   StyleSheet,
   Image,
   RefreshControl,
   Alert,
-  BackHandler,
-} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import SplashScreen from 'react-native-splash-screen';
+  BackHandler
+} from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import SplashScreen from 'react-native-splash-screen'
 
 // importing components
-import Country from '../components/Country';
-import CandleCharts from '../components/CandleCharts';
+import Country from '../components/Country'
+import CandleCharts from '../components/CandleCharts'
 
 // importing hooks
-import getGlobalTotalHook from '../hooks/getGlobalTotalHook';
-import getStatsHook from '../hooks/getStatsHook';
-import getTimelineHook from '../hooks/getTimelineHook';
+import getGlobalTotalHook from '../hooks/getGlobalTotalHook'
+import getStatsHook from '../hooks/getStatsHook'
+import getTimelineHook from '../hooks/getTimelineHook'
 
 // import common style
-import Styles from '../Styles';
+import Styles from '../Styles'
 
 export interface HomeProps {
   style: any;
   country: String;
 }
 
-const HomeScreen = ({style, country}: HomeProps) => {
-  const [errorShowed, setErrorShowed] = useState<boolean>(false);
-  const [refreshing, setRefresh] = useState<boolean>(false);
+const HomeScreen = ({ style, country }: HomeProps) => {
+  const [errorShowed, setErrorShowed] = useState<boolean>(false)
+  const [refreshing, setRefresh] = useState<boolean>(false)
 
-  const [getGlobalTotal, globalTotal, err1] = getGlobalTotalHook();
-  const [getStats, stats, err2] = getStatsHook();
-  const [getTimeline, timeline, err3] = getTimelineHook();
+  const [getGlobalTotal, globalTotal, err1] = getGlobalTotalHook()
+  const [getStats, stats, err2] = getStatsHook()
+  const [getTimeline, timeline, err3] = getTimelineHook()
 
   if ((err1 !== '' || err2 !== '' || err3 !== '') && !errorShowed) {
-    setErrorShowed(true);
-    let errMessage: any;
+    setErrorShowed(true)
+    let errMessage: any
     if (err1 !== '') {
-      errMessage = err1;
+      errMessage = err1
     } else if (err2 !== '') {
-      errMessage = err2;
+      errMessage = err2
     } else if (err3 !== '') {
-      errMessage = err3;
+      errMessage = err3
     } else {
-      errMessage = 'Some unknown message occured';
+      errMessage = 'Some unknown message occured'
     }
     Alert.alert(
       'Error',
@@ -56,46 +54,46 @@ const HomeScreen = ({style, country}: HomeProps) => {
         {
           text: 'Retry',
           onPress: () => {
-            onRefresh();
-          },
+            onRefresh()
+          }
         },
-        {text: 'Exit', onPress: () => BackHandler.exitApp()},
+        { text: 'Exit', onPress: () => BackHandler.exitApp() }
       ],
-      {cancelable: false},
-    );
-    SplashScreen.hide();
+      { cancelable: false }
+    )
+    SplashScreen.hide()
   }
 
   if (!!getGlobalTotal && !!getStats && !!getTimeline) {
-    SplashScreen.hide();
+    SplashScreen.hide()
   }
 
   useEffect(() => {
-    console.log('Initial data load');
+    console.log('Initial data load')
     Promise.all([
       getGlobalTotal(),
       getStats(country),
-      getTimeline(country),
-    ]).then(() => SplashScreen.hide());
+      getTimeline(country)
+    ]).then(() => SplashScreen.hide())
     setInterval(() => {
       Promise.all([
         getGlobalTotal(),
         getStats(country),
-        getTimeline(country),
-      ]).then(() => console.log('Reloaded data'));
-    }, 5 * 60000);
-  }, [country]);
+        getTimeline(country)
+      ]).then(() => console.log('Reloaded data'))
+    }, 5 * 60000)
+  }, [country])
 
   const onRefresh = useCallback(async () => {
-    setRefresh(true);
+    setRefresh(true)
     await Promise.all([
       getGlobalTotal(),
       getStats(country),
-      getTimeline(country),
-    ]);
-    setRefresh(false);
-    setErrorShowed(false);
-  }, [getGlobalTotal, getStats, getTimeline]);
+      getTimeline(country)
+    ])
+    setRefresh(false)
+    setErrorShowed(false)
+  }, [getGlobalTotal, getStats, getTimeline])
 
   return (
     <View
@@ -104,7 +102,7 @@ const HomeScreen = ({style, country}: HomeProps) => {
         alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: 'pink',
-        ...style,
+        ...style
       }}>
       <ScrollView
         style={Styles.safeArea}
@@ -131,20 +129,20 @@ const HomeScreen = ({style, country}: HomeProps) => {
         <CandleCharts country={country} data={timeline} />
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   mainHeaderImage: {
     width: 200,
     height: 40,
     alignSelf: 'center',
-    marginBottom: 0,
+    marginBottom: 0
   },
   lineChartContainer: {
     marginVertical: -10,
     paddingVertical: 0,
-    marginBottom: 0,
+    marginBottom: 0
   },
   lineChartText: {
     textAlign: 'center',
@@ -152,8 +150,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     fontFamily: '',
-    paddingVertical: 10,
-  },
-});
+    paddingVertical: 10
+  }
+})
 
-export default HomeScreen;
+export default HomeScreen
