@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, ScrollView, Dimensions } from 'react-native'
-import { Title, Text } from 'react-native-paper'
+import { View, StyleSheet, ScrollView, Dimensions, Text } from 'react-native'
 import Svg, { Rect } from 'react-native-svg'
 import Animated from 'react-native-reanimated'
 
-const { width } = Dimensions.get('screen')
+const { width, scale } = Dimensions.get('screen')
 const svgWidth = width * 3
 
 export interface CandleProps {
@@ -39,9 +38,9 @@ const CandleCharts = (props: CandleProps) => {
   return (
     <View style={styles.countrySection}>
       <View style={styles.countryHeader}>
-        <Title style={styles.countrySectionTitle}>
+        <Text style={styles.countrySectionTitle}>
           {country ? `${country}'s Timeline` : ' Unknown Country '}:{' '}
-        </Title>
+        </Text>
       </View>
       <Animated.View
         style={[styles.animatedDataDialog, { opacity: animatedOpacity }]}>
@@ -117,7 +116,8 @@ const styles = StyleSheet.create({
     color: 'black',
     marginTop: 0,
     fontWeight: 'bold',
-    fontFamily: ''
+    fontFamily: '',
+    fontSize: 12 * scale
   },
   animatedDataDialog: {
     color: 'black',

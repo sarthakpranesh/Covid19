@@ -3,9 +3,9 @@ import {
   View,
   ScrollView,
   RefreshControl,
-  ActivityIndicator
+  ActivityIndicator,
+  Text
 } from 'react-native'
-import { Headline } from 'react-native-paper'
 
 // importing components
 import NewsCards from '../components/NewsCards'
@@ -53,7 +53,7 @@ const TopHeadlinesScreen = ({ style, navigation }: TopHeadlineProps) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <View style={Styles.mainHeader}>
-          <Headline style={Styles.mainHeaderText}>Top Headlines</Headline>
+          <Text style={Styles.mainHeaderText}>Top Headlines</Text>
         </View>
 
         {topHeadlines.length !== 0 ? (

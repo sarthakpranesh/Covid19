@@ -1,7 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Title } from 'react-native-paper'
+import { View, StyleSheet, Text, Dimensions } from 'react-native'
 
 // importing components
 import RowStackResult from './RowStackResult'
@@ -12,6 +10,8 @@ export interface CountryProps {
   countryName: String;
   containerStyle?: any;
 }
+
+const { scale } = Dimensions.get('window')
 
 class Country extends Component<CountryProps> {
   render () {
@@ -25,9 +25,9 @@ class Country extends Component<CountryProps> {
           }
         ]}>
         <View style={styles.countryHeader}>
-          <Title style={styles.countrySectionTitle}>
+          <Text style={styles.countrySectionTitle}>
             {countryName || 'Unknown Country'}:{' '}
-          </Title>
+          </Text>
         </View>
         <RowStackResult data={data} textColor="black" />
       </View>
@@ -53,11 +53,12 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   countrySectionTitle: {
-    textAlign: 'justify',
+    textAlign: 'left',
     color: 'black',
     marginTop: 0,
     fontWeight: 'bold',
-    fontFamily: ''
+    fontFamily: '',
+    fontSize: 12 * scale
   }
 })
 

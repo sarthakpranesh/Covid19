@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, ScrollView } from 'react-native'
-import { Headline } from 'react-native-paper'
+import { View, ScrollView, Text } from 'react-native'
 
 // importing components
 import PreventionCards from '../components/PreventionCards'
@@ -27,9 +26,9 @@ const Precaution = ({ style }: PrecautionProps) => {
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>
-          <Headline style={Styles.mainHeaderText}>
+          <Text style={Styles.mainHeaderText}>
             Prevention Is Better Than Cure
-          </Headline>
+          </Text>
         </View>
 
         <PreventionCards

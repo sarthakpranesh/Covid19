@@ -1,28 +1,29 @@
 import React, { Component } from 'react'
-import { Linking, FlatList, TouchableWithoutFeedback } from 'react-native'
+import { Linking, FlatList, TouchableNativeFeedback } from 'react-native'
 
 // importing component
-import Precaution from './PreventionCards'
-
-import { News } from '../hooks/getTopHeadlines'
+import PreventionCards from './PreventionCards'
 
 export interface NewsCardProps {
-  topHeadlines: News[];
+  topHeadlines: any[];
 }
 
 class NewsCards extends Component<NewsCardProps> {
-  _renderItem = ({ item }: {item: News}) => {
+  _renderItem = ({ item }: {item: any}) => {
     if (!item.title || !item.description || !item.url) {
       return null
     }
     return (
-      <TouchableWithoutFeedback onPress={() => Linking.openURL(item.url)}>
-        <Precaution
+      <TouchableNativeFeedback onPress={() => {
+        console.log('item.url')
+        Linking.openURL(item.url)
+      }}>
+        <PreventionCards
           title={item.title}
           content={item.description}
           src={{ uri: item.urlToImage }}
         />
-      </TouchableWithoutFeedback>
+      </TouchableNativeFeedback>
     )
   };
 

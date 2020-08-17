@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+
+const { scale } = Dimensions.get('window')
 
 const Styles = StyleSheet.create({
   safeArea: {
@@ -14,13 +16,14 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     paddingVertical: 60,
-    paddingBottom: 50
+    paddingBottom: 40
   },
   mainHeaderText: {
     textAlign: 'center',
     fontWeight: 'bold',
     color: '#D41D3E',
-    fontFamily: ''
+    fontFamily: '',
+    fontSize: 18 * scale
   }
 })
 

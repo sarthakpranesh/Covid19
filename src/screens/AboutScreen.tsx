@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, StyleSheet, Image, Linking, TouchableOpacity } from 'react-native'
-import { Text, Headline } from 'react-native-paper'
-import { ScrollView } from 'react-native-gesture-handler'
+import { View, StyleSheet, Image, Linking, TouchableOpacity, Text, Dimensions, ScrollView } from 'react-native'
+import Icon from 'react-native-vector-icons/Feather'
 
 // importing common style
 import Styles from '../Styles'
@@ -9,6 +8,7 @@ import Styles from '../Styles'
 export interface AboutProps {
   style: any;
 }
+const { scale } = Dimensions.get('window')
 
 const AboutScreen = ({ style }: AboutProps) => {
   return (
@@ -25,7 +25,7 @@ const AboutScreen = ({ style }: AboutProps) => {
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>
-          <Headline style={Styles.mainHeaderText}>Corona Virus</Headline>
+          <Text style={Styles.mainHeaderText}>Corona Virus</Text>
         </View>
 
         <View style={styles.aboutContentContainer}>
@@ -63,7 +63,8 @@ const AboutScreen = ({ style }: AboutProps) => {
                 color: 'black',
                 textDecorationLine: 'underline',
                 fontFamily: '',
-                fontWeight: 'bold'
+                fontWeight: 'bold',
+                fontSize: 10 * scale
               }}>
               Click Here to Know More
             </Text>
@@ -86,7 +87,8 @@ const AboutScreen = ({ style }: AboutProps) => {
               color: 'black',
               textAlign: 'center',
               fontFamily: '',
-              fontWeight: 'bold'
+              fontWeight: 'bold',
+              fontSize: 10 * scale
             }}>
             Support Project
           </Text>
@@ -96,22 +98,14 @@ const AboutScreen = ({ style }: AboutProps) => {
                 'https://github.com/sarthakpranesh/Covid19-ReactNative'
               )
             }>
-            <Text
-              style={{
-                color: 'black',
-                marginVertical: 20,
-                textDecorationLine: 'underline',
-                fontFamily: '',
-                fontWeight: 'bold'
-              }}>
-              Github
-            </Text>
+            <Icon style={{ marginVertical: 10 }} name="github" color="black" size={18 * scale} />
           </TouchableOpacity>
           <Text
             style={{
               color: 'black',
               textAlign: 'center',
               fontFamily: '',
+              fontSize: 10 * scale,
               fontWeight: 'bold'
             }}>
             Made with Love
@@ -139,7 +133,8 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     color: 'black',
     marginVertical: 10,
-    fontFamily: ''
+    fontFamily: '',
+    fontSize: 8 * scale
   }
 })
 

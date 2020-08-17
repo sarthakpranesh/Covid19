@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Image } from 'react-native'
-import { Text, Subheading } from 'react-native-paper'
+import { View, StyleSheet, Image, Text, Dimensions } from 'react-native'
 
 export interface PreventionProps {
   title: string;
@@ -8,23 +7,18 @@ export interface PreventionProps {
   src: any;
 }
 
+const { scale } = Dimensions.get('window')
+
 class PreventionCards extends Component<PreventionProps> {
   render () {
     const { title, content, src } = this.props
     return (
       <View style={styles.mainPreventionContainer}>
-        <Subheading style={styles.mainPreventionTitle}>{title}</Subheading>
+        <Text style={styles.mainPreventionTitle}>{title}</Text>
         <View style={styles.preventionContentContainer}>
           <Text style={styles.preventionContent}>{content}</Text>
           <Image
-            style={{
-              width: 100,
-              height: 120,
-              marginLeft: 10,
-              marginBottom: 0,
-              flex: 1.6,
-              borderRadius: 16
-            }}
+            style={styles.preventionContentImage}
             source={src}
           />
         </View>
@@ -37,14 +31,14 @@ const styles = StyleSheet.create({
   mainPreventionContainer: {
     backgroundColor: '#FFC692',
     marginVertical: 10,
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    borderRadius: 18
+    padding: 10,
+    borderRadius: 8
   },
   mainPreventionTitle: {
     color: 'black',
     fontWeight: 'bold',
-    fontFamily: ''
+    fontFamily: '',
+    fontSize: 10 * scale
   },
   preventionContentContainer: {
     flex: 1,
@@ -58,8 +52,14 @@ const styles = StyleSheet.create({
     flex: 2,
     color: 'black',
     fontFamily: '',
-    flexWrap: 'wrap',
-    textAlign: 'left'
+    textAlign: 'left',
+    fontSize: 8 * scale
+  },
+  preventionContentImage: {
+    width: 100,
+    marginLeft: 2,
+    flex: 1.6,
+    borderRadius: 8
   }
 })
 

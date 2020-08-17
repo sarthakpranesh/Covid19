@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Text } from 'react-native-paper'
+import { View, StyleSheet, Text, Dimensions } from 'react-native'
 
 export interface RowStackProps {
   data: any;
   textColor?: string;
 }
+
+const { scale } = Dimensions.get('window')
 
 class RowStackResult extends Component<RowStackProps> {
   render () {
@@ -187,7 +188,8 @@ const styles = StyleSheet.create({
   resultNumbers: {
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: ''
+    fontFamily: '',
+    fontSize: 10 * scale
   }
 })
 

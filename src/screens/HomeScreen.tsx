@@ -5,9 +5,9 @@ import {
   Image,
   RefreshControl,
   Alert,
-  BackHandler
+  BackHandler,
+  ScrollView
 } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
 import SplashScreen from 'react-native-splash-screen'
 
 // importing components

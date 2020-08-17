@@ -4,10 +4,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
-  FlatList
+  FlatList,
+  ScrollView,
+  Text,
+  Dimensions,
 } from 'react-native'
-import { Text, Subheading, Headline } from 'react-native-paper'
-import { ScrollView } from 'react-native-gesture-handler'
 
 // importing common styles
 import Styles from '../Styles'
@@ -167,6 +168,8 @@ export interface HelpProps {
   style: any;
 }
 
+const { scale } = Dimensions.get('window')
+
 const HelpScreen = ({ style }: HelpProps) => {
   return (
     <View
@@ -182,7 +185,7 @@ const HelpScreen = ({ style }: HelpProps) => {
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>
-          <Headline style={Styles.mainHeaderText}>Help Line Numbers</Headline>
+          <Text style={Styles.mainHeaderText}>Help Line Numbers</Text>
         </View>
 
         <View style={styles.helpContentContainer}>
@@ -192,9 +195,9 @@ const HelpScreen = ({ style }: HelpProps) => {
             renderItem={({ item }) => {
               return (
                 <View style={styles.listItemHelp}>
-                  <Subheading style={styles.helpLineText}>
+                  <Text style={styles.helpLineText}>
                     {item.state}
-                  </Subheading>
+                  </Text>
                   <TouchableOpacity
                     onPress={() => Linking.openURL(`tel:${item.number}`)}
                     style={styles.numberContainer}>
@@ -208,7 +211,7 @@ const HelpScreen = ({ style }: HelpProps) => {
           <Text
             style={{
               fontFamily: '',
-              fontSize: 12,
+              fontSize: 8 * scale,
               marginVertical: 20,
               marginBottom: 0,
               textAlign: 'center'
@@ -221,7 +224,8 @@ const HelpScreen = ({ style }: HelpProps) => {
               style={{
                 textAlign: 'center',
                 color: 'red',
-                fontFamily: ''
+                fontFamily: '',
+                fontSize: 10 * scale
               }}>
               MOHFW
             </Text>
@@ -242,7 +246,8 @@ const styles = StyleSheet.create({
   helpLineText: {
     textAlign: 'center',
     fontFamily: '',
-    color: 'black'
+    color: 'black',
+    fontSize: 12 * scale
   },
   numberContainer: {
     alignSelf: 'center',
@@ -251,7 +256,8 @@ const styles = StyleSheet.create({
   number: {
     color: '#2400FF',
     textAlign: 'center',
-    fontFamily: ''
+    fontFamily: '',
+    fontSize: 10 * scale
   }
 })
 
