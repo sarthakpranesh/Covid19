@@ -31,34 +31,37 @@ const MainApp = () => {
   const animatedStyle = { borderRadius, transform: [{ scale }] }
 
   useEffect(() => {
-    PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Covid-19 App',
-        message:
-          "App needs to access your phone's location to work correctly. " +
-          'You can cancel this step but then app will default to Indian Stats',
-        buttonNeutral: 'Ask Me Later',
-        buttonNegative: 'Cancel',
-        buttonPositive: 'OK'
-      }
-    )
-      .then(() => {
-        Geolocation.getCurrentPosition(
-          async (pos) => {
-            await getLocation({
-              long: pos.coords.longitude,
-              lat: pos.coords.latitude
-            })
-          },
-          (err) => {
-            console.log(err.message)
-            getLocation({ lat: '28.644800', long: '77.216721' })
-          },
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-        )
-      })
-      .catch((err) => console.log(err.message))
+    // some bug in react native
+    setTimeout(() => {
+      PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Covid-19 App',
+          message:
+            "App needs to access your phone's location to work correctly. " +
+            'You can cancel this step but then app will default to Indian Stats',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK'
+        }
+      )
+        .then(() => {
+          Geolocation.getCurrentPosition(
+            async (pos) => {
+              await getLocation({
+                long: pos.coords.longitude,
+                lat: pos.coords.latitude
+              })
+            },
+            (err) => {
+              console.log(err.message)
+              getLocation({ lat: '28.644800', long: '77.216721' })
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+          )
+        })
+        .catch((err) => console.log(err.message))
+    }, 100)
   }, [])
 
   return country !== '' ? (

@@ -19,7 +19,7 @@ class PreventionCards extends Component<PreventionProps> {
           <Text style={styles.preventionContent}>{content}</Text>
           <Image
             style={styles.preventionContentImage}
-            source={src}
+            source={ src }
           />
         </View>
       </View>
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   },
   preventionContentImage: {
     width: 100,
+    height: 100,
     marginLeft: 2,
     flex: 1.6,
     borderRadius: 8

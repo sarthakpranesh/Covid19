@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Linking, FlatList, TouchableNativeFeedback } from 'react-native'
+import { Linking, FlatList, TouchableOpacity } from 'react-native'
 
 // importing component
 import PreventionCards from './PreventionCards'
@@ -10,11 +10,8 @@ export interface NewsCardProps {
 
 class NewsCards extends Component<NewsCardProps> {
   _renderItem = ({ item }: {item: any}) => {
-    if (!item.title || !item.description || !item.url) {
-      return null
-    }
     return (
-      <TouchableNativeFeedback onPress={() => {
+      <TouchableOpacity onPress={() => {
         console.log('item.url')
         Linking.openURL(item.url)
       }}>
@@ -23,7 +20,7 @@ class NewsCards extends Component<NewsCardProps> {
           content={item.description}
           src={{ uri: item.urlToImage }}
         />
-      </TouchableNativeFeedback>
+      </TouchableOpacity>
     )
   };
 
