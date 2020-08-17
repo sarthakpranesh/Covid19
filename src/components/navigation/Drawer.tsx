@@ -1,18 +1,22 @@
 /* eslint-disable react/display-name */
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { DrawerContentScrollView } from '@react-navigation/drawer'
 import Animated from 'react-native-reanimated'
 import Icon from 'react-native-vector-icons/Feather'
-import { Drawer, IconButton, DefaultTheme } from 'react-native-paper'
 
-// // importing Screens
+// importing Screens
 import HomeScreen from '../../screens/HomeScreen'
 import AboutScreen from '../../screens/AboutScreen'
 import PrecautionScreen from '../../screens/PrecautionScreen'
 import HelpScreen from '../../screens/HelpScreen'
 import TopHeadlinesScreen from '../../screens/TopHeadlinesScreen'
+
+// Importing drawer components
+import DrawerItem from './DrawerItem'
+
+const scale = Dimensions.get('window').scale
 
 const Stack = createStackNavigator()
 
@@ -32,25 +36,22 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
           headerTransparent: true,
           title: '',
           headerLeft: () => (
-            <View
+            <TouchableOpacity
               style={{
-                backgroundColor: '#DEF7FF',
-                marginLeft: 14,
-                borderRadius: 8,
-                shadowColor: '#000',
+                backgroundColor: '#ffffff',
+                padding: 7,
+                margin: 14,
+                borderRadius: 4,
+                shadowColor: 'black',
                 shadowOpacity: 1,
-                shadowRadius: 8,
+                shadowRadius: 2,
                 elevation: 10
-              }}>
-              <IconButton
-                style={{ margin: 0 }}
-                icon={({ size }) => (
-                  <Icon name="menu" size={size} color="black" />
-                )}
-                // eslint-disable-next-line react/prop-types
-                onPress={() => navigation.openDrawer()}
-              />
-            </View>
+              }}
+              // eslint-disable-next-line react/prop-types
+              onPress={() => navigation.openDrawer()}
+            >
+              <Icon name="menu" size={12 * scale} color="black" />
+            </TouchableOpacity>
           )
         }}>
         <Stack.Screen name="Home">
@@ -86,47 +87,31 @@ export const DrawerContent = (props: any) => {
           justifyContent: 'center',
           alignItems: 'flex-start'
         }}>
-        <View>
-          <Drawer.Item
-            label="Home"
-            theme={DefaultTheme}
-            style={styles.drawerItem}
-            onPress={() => props.navigation.navigate('Home')}
-            icon={({ size }) => <Icon name="home" size={size} color="black" />}
-          />
-          <Drawer.Item
-            label="Headline"
-            theme={DefaultTheme}
-            style={styles.drawerItem}
-            onPress={() => props.navigation.navigate('Headline')}
-            icon={({ size }) => <Icon name="columns" size={size} color="black" />}
-          />
-          <Drawer.Item
-            label="Precaution"
-            theme={DefaultTheme}
-            style={styles.drawerItem}
-            onPress={() => props.navigation.navigate('Precaution')}
-            icon={({ size }) => (
-              <Icon name="alert-octagon" size={size} color="black" />
-            )}
-          />
-          <Drawer.Item
-            label="Help"
-            theme={DefaultTheme}
-            style={styles.drawerItem}
-            onPress={() => props.navigation.navigate('Help')}
-            icon={({ size }) => (
-              <Icon name="help-circle" size={size} color="black" />
-            )}
-          />
-          <Drawer.Item
-            label="About"
-            theme={DefaultTheme}
-            style={styles.drawerItem}
-            onPress={() => props.navigation.navigate('About')}
-            icon={({ size }) => <Icon name="github" size={size} color="black" />}
-          />
-        </View>
+        <DrawerItem
+          label="Home"
+          onPress={() => props.navigation.navigate('Home')}
+          icon="home"
+        />
+        <DrawerItem
+          label="Headline"
+          onPress={() => props.navigation.navigate('Headline')}
+          icon="columns"
+        />
+        <DrawerItem
+          label="Precaution"
+          onPress={() => props.navigation.navigate('Precaution')}
+          icon="alert-octagon"
+        />
+        <DrawerItem
+          label="Help"
+          onPress={() => props.navigation.navigate('Help')}
+          icon="help-circle"
+        />
+        <DrawerItem
+          label="About"
+          onPress={() => props.navigation.navigate('About')}
+          icon="github"
+        />
       </View>
     </DrawerContentScrollView>
   )
@@ -143,10 +128,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
     elevation: 10
-  },
-  drawerItem: {
-    alignSelf: 'flex-start',
-    margin: 0,
-    padding: 0
   }
 })
