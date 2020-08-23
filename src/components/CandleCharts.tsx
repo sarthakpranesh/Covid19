@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
-import { View, StyleSheet, ScrollView, Dimensions, Text } from 'react-native'
-import Svg, { Rect } from 'react-native-svg'
-import Animated from 'react-native-reanimated'
+import React, { useState, useEffect } from 'react'
+import { View, StyleSheet, ScrollView, Dimensions, Text, Animated } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const { width, scale } = Dimensions.get('screen')
-const svgWidth = width * 3
 
 export interface CandleProps {
   data: any;
@@ -17,6 +15,12 @@ export interface TimelineDataType {
 }
 
 const CandleCharts = (props: CandleProps) => {
+  const startAnimation = new Animated.Value(0)
+  const animatedHeight = startAnimation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -width],
+    extrapolate: 'clamp'
+  })
   let { data, country } = props
   const [pressedData, setPressedData] = useState<TimelineDataType>({
     date: '',
@@ -24,14 +28,21 @@ const CandleCharts = (props: CandleProps) => {
   })
   const [animatedOpacity, setAnimatedOpacity] = useState(0)
   let scrollView: ScrollView | null
-  let widthOfCandle = 10
-  let xWidth = 12
+  const widthOfCandle = 4
+  const marginBetweenCandles = 2
   let heightScale = 1
+  let svgWidth = 0
+  useEffect(() => {
+    Animated.timing(startAnimation, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true
+    }).start()
+  }, [data, pressedData])
   if (data.length !== 0) {
     const max = data[data.length - 1].difference
     data = data.filter((d: any) => d.difference / max > 0.001)
-    xWidth = svgWidth / data.length
-    widthOfCandle = xWidth - 1
+    svgWidth = (widthOfCandle + marginBetweenCandles) * data.length
     heightScale = width / data[data.length - 1].difference
   }
   let color = 'red'
@@ -60,34 +71,55 @@ const CandleCharts = (props: CandleProps) => {
         horizontal={true}
         scrollEventThrottle={16}>
         {data.length !== 0 ? (
-          <Svg width={svgWidth + 20} height={width}>
+          <View style={{
+            width: svgWidth + 20,
+            height: width,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-end'
+          }}
+          >
             {data.map((d: any, index: any) => {
               if (index !== 0) {
                 if (d.difference - data[index - 1].difference < 0) {
-                  color = 'green'
+                  color = 'rgba(0, 255, 0, 0.9)'
                 } else if (d.difference - data[index - 1].difference === 0) {
-                  color = 'yellow'
+                  color = 'rgba(255, 255, 0, 0.9)'
                 } else {
-                  color = 'red'
+                  color = 'rgba(255, 0, 0, 0.9)'
                 }
               }
               return (
-                <Rect
-                  key={`case${index}`}
-                  x={xWidth * index}
-                  y={width - heightScale * d.difference}
-                  width={widthOfCandle}
-                  height={heightScale * d.difference}
-                  fill={color}
-                  stroke={d.date === pressedData.date ? 'black' : undefined}
-                  onPress={() => {
-                    setPressedData(d)
-                    setAnimatedOpacity(1)
-                  }}
-                />
+                <TouchableOpacity key={`case${index}`} onPress={() => {
+                  setPressedData(d)
+                  setAnimatedOpacity(1)
+                }}>
+                  <Animated.View style={{
+                    marginLeft: marginBetweenCandles,
+                    width: widthOfCandle,
+                    height: widthOfCandle,
+                    backgroundColor: 'black',
+                    top: widthOfCandle
+                  }}/>
+                  <Animated.View
+                    style={{
+                      top: width + widthOfCandle,
+                      marginLeft: marginBetweenCandles,
+                      width: widthOfCandle,
+                      height: heightScale * d.difference,
+                      transform: [{ translateY: animatedHeight }],
+                      backgroundColor: color,
+                      opacity: 0.6,
+                      borderWidth: d.date === pressedData.date ? 2 : 0,
+                      borderColor: d.date === pressedData.date ? 'black' : null
+                    }}
+                  >
+                  </Animated.View>
+                </TouchableOpacity>
               )
             })}
-          </Svg>
+          </View>
         ) : null}
       </ScrollView>
     </View>
