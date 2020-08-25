@@ -15,9 +15,7 @@ import Country from '../components/Country'
 import CandleCharts from '../components/CandleCharts'
 
 // importing hooks
-import getGlobalTotalHook from '../hooks/getGlobalTotalHook'
-import getStatsHook from '../hooks/getStatsHook'
-import getTimelineHook from '../hooks/getTimelineHook'
+import getHomeScreenData from '../hooks/getHomeScreenData'
 
 // import common style
 import Styles from '../Styles'
@@ -28,28 +26,14 @@ export interface HomeProps {
 }
 
 const HomeScreen = ({ style, country }: HomeProps) => {
-  const [errorShowed, setErrorShowed] = useState<boolean>(false)
   const [refreshing, setRefresh] = useState<boolean>(false)
 
-  const [getGlobalTotal, globalTotal, err1] = getGlobalTotalHook()
-  const [getStats, stats, err2] = getStatsHook()
-  const [getTimeline, timeline, err3] = getTimelineHook()
+  const [fetchHomeData, results, err] = getHomeScreenData()
 
-  if ((err1 !== '' || err2 !== '' || err3 !== '') && !errorShowed) {
-    setErrorShowed(true)
-    let errMessage: any
-    if (err1 !== '') {
-      errMessage = err1
-    } else if (err2 !== '') {
-      errMessage = err2
-    } else if (err3 !== '') {
-      errMessage = err3
-    } else {
-      errMessage = 'Some unknown message occured'
-    }
+  const handleError = () => {
     Alert.alert(
-      'Error',
-      errMessage,
+      'Covid 19',
+      err === undefined ? 'Network Error' : err,
       [
         {
           text: 'Retry',
@@ -61,35 +45,31 @@ const HomeScreen = ({ style, country }: HomeProps) => {
       ],
       { cancelable: false }
     )
-    SplashScreen.hide()
   }
 
   useEffect(() => {
-    console.log('Initial data load')
-    Promise.all([
-      getGlobalTotal(),
-      getStats(country),
-      getTimeline(country)
-    ]).then(() => SplashScreen.hide())
+    fetchHomeData(country)
+      .then(() => SplashScreen.hide())
+      .catch(() => handleError())
     setInterval(() => {
-      Promise.all([
-        getGlobalTotal(),
-        getStats(country),
-        getTimeline(country)
-      ]).then(() => console.log('Reloaded data'))
+      console.log('Set Interval running')
+      fetchHomeData()
+        .then(() => console.log('Data Updated'))
     }, 5 * 60000)
   }, [country])
 
   const onRefresh = useCallback(async () => {
     setRefresh(true)
-    await Promise.all([
-      getGlobalTotal(),
-      getStats(country),
-      getTimeline(country)
-    ])
-    setRefresh(false)
-    setErrorShowed(false)
-  }, [getGlobalTotal, getStats, getTimeline])
+    fetchHomeData(country)
+      .then(() => {
+        setRefresh(false)
+      })
+      .catch(() => handleError())
+  }, [fetchHomeData])
+
+  if (results === null) {
+    return null
+  }
 
   return (
     <View
@@ -106,7 +86,8 @@ const HomeScreen = ({ style, country }: HomeProps) => {
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
+        }
+      >
         <View style={Styles.mainHeader}>
           <Image
             style={styles.mainHeaderImage}
@@ -115,14 +96,13 @@ const HomeScreen = ({ style, country }: HomeProps) => {
         </View>
 
         <Country
-          data={globalTotal}
-          isError={err1}
+          data={results?.global}
           countryName="World"
           containerStyle={'#B1ECFF'}
         />
 
-        <Country data={stats} isError={err2} countryName={country} />
-        <CandleCharts country={country} data={timeline} />
+        <Country data={results?.country} countryName={country} />
+        <CandleCharts country={country} data={results?.timeline} />
       </ScrollView>
     </View>
   )

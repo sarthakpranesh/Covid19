@@ -1,12 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react'
 import { View, StyleSheet, Text, Dimensions } from 'react-native'
 
 // importing components
 import RowStackResult from './RowStackResult'
 
+// importing types
+import { CountryCases } from '../API/NinjaApi'
+
 export interface CountryProps {
-  data: any;
-  isError: String;
+  data: CountryCases | null;
   countryName: String;
   containerStyle?: any;
 }

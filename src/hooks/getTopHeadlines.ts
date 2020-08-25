@@ -1,42 +1,17 @@
 import { useState, useEffect } from 'react'
-
-export interface News {
-  author: string;
-  title: string;
-  description: string;
-  source: any;
-  url: string;
-  urlToImage: string;
-}
+import NewsApi, { News } from '../API/NewsApi'
 
 const getTopHeadlines = (): [Function, any, Boolean] => {
-  const [results, setResults] = useState([])
+  const [results, setResults] = useState<News[]>([])
   const [isErr, setIsError] = useState(false)
 
   const fetchTopHeadlines = async () => {
-    // eslint-disable-next-line no-undef
-    fetch('https://some-news-api.herokuapp.com/articles')
-      .then((resp) => resp.json())
-      .then((respData) => {
-        if (respData === undefined) {
-          throw new Error('No data received')
-        }
-        const arrayOfNews = respData.map((news: any) => {
-          const result = {
-            author: news.author,
-            title: news.title,
-            description: news.description,
-            name: news.source.name,
-            url: news.url,
-            urlToImage: news.urlToImage
-          }
-          return result
-        })
+    NewsApi()
+      .then((arrayOfNews) => {
         setResults(arrayOfNews)
         setIsError(false)
       })
-      .catch((err) => {
-        console.log('From news api: ' + err.message)
+      .catch(() => {
         setIsError(true)
       })
   }

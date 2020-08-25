@@ -18,7 +18,7 @@ const getLocationHook = (): [Function, String] => {
         if (respData.status.code === 200) {
           return setResults(respData.results[0].components.country)
         }
-        setResults('India')
+        return setResults('India')
       })
       .catch((err) => {
         console.log('From location fetch: ' + err.message)
