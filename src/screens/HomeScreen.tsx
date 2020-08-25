@@ -53,8 +53,9 @@ const HomeScreen = ({ style, country }: HomeProps) => {
       .catch(() => handleError())
     setInterval(() => {
       console.log('Set Interval running')
-      fetchHomeData()
+      fetchHomeData(country)
         .then(() => console.log('Data Updated'))
+        .catch(() => handleError())
     }, 5 * 60000)
   }, [country])
 

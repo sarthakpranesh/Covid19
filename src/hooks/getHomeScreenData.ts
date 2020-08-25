@@ -36,7 +36,6 @@ const getHomeScreenData = (): [
           resolve()
         })
         .catch((err) => {
-          setResults(null)
           setError(err.message)
           reject()
         })

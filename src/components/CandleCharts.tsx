@@ -32,6 +32,12 @@ const CandleCharts = (props: CandleProps) => {
   const marginBetweenCandles = 2
   let heightScale = 1
   let svgWidth = 0
+  if (data.length !== 0) {
+    const max = data[data.length - 1].difference
+    data = data.filter((d: any) => d.difference / max > 0.001)
+    svgWidth = (widthOfCandle + marginBetweenCandles) * data.length
+    heightScale = width / data[data.length - 1].difference
+  }
   useEffect(() => {
     Animated.timing(startAnimation, {
       toValue: 1,
@@ -39,13 +45,6 @@ const CandleCharts = (props: CandleProps) => {
       useNativeDriver: true
     }).start()
   }, [data, pressedData])
-  if (data.length !== 0) {
-    const max = data[data.length - 1].difference
-    data = data.filter((d: any) => d.difference / max > 0.001)
-    svgWidth = (widthOfCandle + marginBetweenCandles) * data.length
-    heightScale = width / data[data.length - 1].difference
-  }
-  let color = 'red'
   return (
     <View style={styles.countrySection}>
       <View style={styles.countryHeader}>
@@ -81,6 +80,7 @@ const CandleCharts = (props: CandleProps) => {
           }}
           >
             {data.map((d: any, index: any) => {
+              let color
               if (index !== 0) {
                 if (d.difference - data[index - 1].difference < 0) {
                   color = 'rgba(0, 255, 0, 0.9)'
