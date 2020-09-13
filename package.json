@@ -18,6 +18,7 @@
     "@react-navigation/drawer": "^5.8.0",
     "@react-navigation/native": "^5.4.3",
     "@react-navigation/stack": "^5.4.0",
+    "node-fetch": "^2.6.1",
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-geolocation-service": "^5.0.0",
