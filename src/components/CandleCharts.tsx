@@ -31,12 +31,17 @@ const CandleCharts = (props: CandleProps) => {
   const widthOfCandle = 4
   const marginBetweenCandles = 2
   let heightScale = 1
-  let svgWidth = 0
+  let svgWidth = data.for
   if (data.length !== 0) {
-    const max = data[data.length - 1].difference
+    let max = 0
+    data.forEach((val: TimelineDataType) => {
+      if (val.difference > max) {
+        max = val.difference
+      }
+    })
     data = data.filter((d: any) => d.difference / max > 0.001)
     svgWidth = (widthOfCandle + marginBetweenCandles) * data.length
-    heightScale = width / data[data.length - 1].difference
+    heightScale = width / max
   }
   useEffect(() => {
     Animated.timing(startAnimation, {
