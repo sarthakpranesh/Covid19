@@ -1,6 +1,6 @@
 {
   "name": "Covid19",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
