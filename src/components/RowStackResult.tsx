@@ -182,13 +182,11 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   subResultText: {
-    textAlign: 'center',
-    fontFamily: ''
+    textAlign: 'center'
   },
   resultNumbers: {
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: '',
     fontSize: 10 * scale
   }
 })

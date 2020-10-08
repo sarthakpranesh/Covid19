@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react'
-import { View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
+import { View, StyleSheet, TouchableOpacity, Dimensions, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { DrawerContentScrollView } from '@react-navigation/drawer'
 import Animated from 'react-native-reanimated'
@@ -38,14 +38,8 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
           headerLeft: () => (
             <TouchableOpacity
               style={{
-                backgroundColor: '#ffffff',
                 padding: 7,
-                margin: 14,
-                borderRadius: 4,
-                shadowColor: 'black',
-                shadowOpacity: 1,
-                shadowRadius: 2,
-                elevation: 10
+                marginLeft: 14
               }}
               // eslint-disable-next-line react/prop-types
               onPress={() => navigation.openDrawer()}

@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
   mainPreventionTitle: {
     color: 'black',
     fontWeight: 'bold',
-    fontFamily: '',
     fontSize: 10 * scale
   },
   preventionContentContainer: {
@@ -51,7 +50,6 @@ const styles = StyleSheet.create({
   preventionContent: {
     flex: 2,
     color: 'black',
-    fontFamily: '',
     textAlign: 'left',
     fontSize: 8 * scale
   },

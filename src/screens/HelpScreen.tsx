@@ -210,7 +210,6 @@ const HelpScreen = ({ style }: HelpProps) => {
 
           <Text
             style={{
-              fontFamily: '',
               fontSize: 8 * scale,
               marginVertical: 20,
               marginBottom: 0,
@@ -224,7 +223,6 @@ const HelpScreen = ({ style }: HelpProps) => {
               style={{
                 textAlign: 'center',
                 color: 'red',
-                fontFamily: '',
                 fontSize: 10 * scale
               }}>
               MOHFW
@@ -245,7 +243,6 @@ const styles = StyleSheet.create({
   },
   helpLineText: {
     textAlign: 'center',
-    fontFamily: '',
     color: 'black',
     fontSize: 12 * scale
   },
@@ -256,7 +253,6 @@ const styles = StyleSheet.create({
   number: {
     color: '#2400FF',
     textAlign: 'center',
-    fontFamily: '',
     fontSize: 10 * scale
   }
 })

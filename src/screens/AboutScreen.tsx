@@ -62,7 +62,6 @@ const AboutScreen = ({ style }: AboutProps) => {
               style={{
                 color: 'black',
                 textDecorationLine: 'underline',
-                fontFamily: '',
                 fontWeight: 'bold',
                 fontSize: 10 * scale
               }}>
@@ -86,7 +85,6 @@ const AboutScreen = ({ style }: AboutProps) => {
             style={{
               color: 'black',
               textAlign: 'center',
-              fontFamily: '',
               fontWeight: 'bold',
               fontSize: 10 * scale
             }}>
@@ -104,7 +102,6 @@ const AboutScreen = ({ style }: AboutProps) => {
             style={{
               color: 'black',
               textAlign: 'center',
-              fontFamily: '',
               fontSize: 10 * scale,
               fontWeight: 'bold'
             }}>
@@ -133,7 +130,6 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     color: 'black',
     marginVertical: 10,
-    fontFamily: '',
     fontSize: 8 * scale
   }
 })

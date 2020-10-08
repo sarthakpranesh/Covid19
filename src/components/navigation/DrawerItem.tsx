@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   drawerTextStyle: {
     paddingLeft: 4,
     fontSize: 10 * scale,
-    fontFamily: '',
     fontWeight: 'bold'
   }
 })
