@@ -6,6 +6,7 @@ const Styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     paddingHorizontal: 10,
+    paddingVertical: 10,
     backgroundColor: '#DEF7FF'
   },
   mainHeader: {
@@ -15,7 +16,7 @@ const Styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
-    paddingVertical: 60,
+    paddingVertical: 40,
     paddingBottom: 40
   },
   mainHeaderText: {
