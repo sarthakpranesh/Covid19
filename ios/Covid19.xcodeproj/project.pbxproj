@@ -16,6 +16,7 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2D0C7E1F2533679D003F784B /* location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C7E1E2533679D003F784B /* location.swift */; };
 		2DCD954D1E0B4F2C00145EB5 /* Covid19Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* Covid19Tests.m */; };
 		532300D4F8F699C12823E541 /* libPods-Covid19-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E87AB8D71BCA79511B2BE2 /* libPods-Covid19-tvOS.a */; };
 		5D21585B4E63FEDD5AEC52A6 /* libPods-Covid19-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F36DD8C15EA40E9456E80F4 /* libPods-Covid19-tvOSTests.a */; };
@@ -55,6 +56,8 @@
 		20E87AB8D71BCA79511B2BE2 /* libPods-Covid19-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Covid19-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* Covid19-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid19-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Covid19-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Covid19-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D0C7E1D2533679C003F784B /* Covid19-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Covid19-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D0C7E1E2533679D003F784B /* location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = location.swift; sourceTree = "<group>"; };
 		348C8134081B139A0707F960 /* Pods-Covid19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19.release.xcconfig"; path = "Target Support Files/Pods-Covid19/Pods-Covid19.release.xcconfig"; sourceTree = "<group>"; };
 		385B1EE7F5A4632FEDF398CC /* Pods-Covid19-Covid19Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19-Covid19Tests.release.xcconfig"; path = "Target Support Files/Pods-Covid19-Covid19Tests/Pods-Covid19-Covid19Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3E4F85F33C2A131D54BCD5F6 /* Pods-Covid19-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covid19-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Covid19-tvOSTests/Pods-Covid19-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				2D0C7E1E2533679D003F784B /* location.swift */,
+				2D0C7E1D2533679C003F784B /* Covid19-Bridging-Header.h */,
 			);
 			name = Covid19;
 			sourceTree = "<group>";
@@ -194,7 +199,6 @@
 				3E4F85F33C2A131D54BCD5F6 /* Pods-Covid19-tvOSTests.debug.xcconfig */,
 				0E4AFD5F4AC20ED79259A7FA /* Pods-Covid19-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -295,7 +299,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1130;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -677,6 +681,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D0C7E1F2533679D003F784B /* location.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -731,6 +736,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8E2B16BAD142AA7B8726E79 /* Pods-Covid19-Covid19Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -754,6 +760,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 385B1EE7F5A4632FEDF398CC /* Pods-Covid19-Covid19Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = Covid19Tests/Info.plist;
@@ -791,6 +798,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Covid19;
+				SWIFT_OBJC_BRIDGING_HEADER = "Covid19-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -813,6 +821,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Covid19;
+				SWIFT_OBJC_BRIDGING_HEADER = "Covid19-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
