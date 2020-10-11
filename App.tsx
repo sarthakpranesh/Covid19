@@ -104,7 +104,7 @@ const MainApp = () => {
           sceneContainerStyle={{ backgroundColor: 'transparent' }}
           drawerContent={(p) => {
             setProgress(p.progress)
-            return <DrawerContent {...p} />
+            return <DrawerContent {...p} country={country} />
           }}>
           <Drawer.Screen name="Screens">
             {(p) => <Screens {...p} style={animatedStyle} country={country} />}
