@@ -22,7 +22,7 @@ const Precaution = ({ style }: PrecautionProps) => {
         ...style
       }}>
       <ScrollView
-        style={Styles.safeArea}
+        style={[Styles.safeArea, { paddingBottom: 0 }]}
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>

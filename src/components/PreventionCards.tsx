@@ -30,7 +30,7 @@ class PreventionCards extends Component<PreventionProps> {
 const styles = StyleSheet.create({
   mainPreventionContainer: {
     backgroundColor: '#FFC692',
-    marginVertical: 10,
+    marginBottom: 20,
     padding: 10,
     borderRadius: 8
   },

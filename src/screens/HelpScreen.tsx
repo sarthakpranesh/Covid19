@@ -211,8 +211,7 @@ const HelpScreen = ({ style }: HelpProps) => {
           <Text
             style={{
               fontSize: 8 * scale,
-              marginVertical: 20,
-              marginBottom: 0,
+              paddingTop: 20,
               textAlign: 'center'
             }}>
             All data retrieved from mohfw.gov.in, click below for more
@@ -223,7 +222,8 @@ const HelpScreen = ({ style }: HelpProps) => {
               style={{
                 textAlign: 'center',
                 color: 'red',
-                fontSize: 10 * scale
+                fontSize: 10 * scale,
+                paddingBottom: 20
               }}>
               MOHFW
             </Text>
