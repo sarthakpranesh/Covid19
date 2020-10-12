@@ -33,10 +33,10 @@ const MainApp = () => {
   useEffect(() => {
     // some bug in react native
     setTimeout(() => {
-      if (Platform.OS === "ios") {
-        Geolocation.requestAuthorization("whenInUse")
+      if (Platform.OS === 'ios') {
+        Geolocation.requestAuthorization('whenInUse')
           .then((result) => {
-            console.log("IOS permission:", result)
+            console.log('IOS permission:', result)
             Geolocation.getCurrentPosition(
               async (pos) => {
                 await getLocation({
@@ -81,7 +81,7 @@ const MainApp = () => {
             )
           })
           .catch((err) => console.log(err.message))
-        }
+      }
     }, 100)
   }, [])
 
