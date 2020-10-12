@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions, Platform } from 'react-native'
 
 const { scale } = Dimensions.get('window')
 
@@ -17,6 +17,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     paddingVertical: 40,
+    paddingTop: Platform.OS === "ios" ? 80 : 40,
     paddingBottom: 40
   },
   mainHeaderText: {

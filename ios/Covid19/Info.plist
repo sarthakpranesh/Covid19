@@ -48,8 +48,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
@@ -57,5 +55,7 @@
 	<array>
 		<string>Feather.ttf</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Covid19 requires to access your location to fetch stats</string>
 </dict>
 </plist>

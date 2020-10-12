@@ -60,9 +60,13 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
         <Stack.Screen name="Precaution">
           {(p: any) => <PrecautionScreen {...p} />}
         </Stack.Screen>
-        <Stack.Screen name="Help">
-          {(p: any) => <HelpScreen {...p} />}
-        </Stack.Screen>
+        {
+          country.trim() === "India" ? (
+            <Stack.Screen name="Help">
+              {(p: any) => <HelpScreen {...p} />}
+            </Stack.Screen>
+          ) : null
+        }
         <Stack.Screen name="About">
           {(p: any) => <AboutScreen {...p} />}
         </Stack.Screen>
@@ -72,6 +76,7 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
 }
 
 export const DrawerContent = (props: any) => {
+  const country = props.country;
   return (
     <DrawerContentScrollView
       {...props}
@@ -99,11 +104,15 @@ export const DrawerContent = (props: any) => {
           onPress={() => props.navigation.navigate('Precaution')}
           icon="alert-octagon"
         />
-        <DrawerItem
-          label="Help"
-          onPress={() => props.navigation.navigate('Help')}
-          icon="help-circle"
-        />
+        {
+          country === "India" ? (
+            <DrawerItem
+              label="Help"
+              onPress={() => props.navigation.navigate('Help')}
+              icon="help-circle"
+            />
+          ) : null
+        }
         <DrawerItem
           label="About"
           onPress={() => props.navigation.navigate('About')}
