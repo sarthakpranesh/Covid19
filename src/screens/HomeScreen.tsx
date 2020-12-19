@@ -121,13 +121,6 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     marginBottom: 0
   },
-  lineChartText: {
-    textAlign: 'center',
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: 'black',
-    paddingVertical: 10
-  }
 })
 
 export default HomeScreen

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Image, Text, Dimensions } from 'react-native'
 
+import Layout from '../Layout';
+const scale = Layout.fontScale
+
 export interface PreventionProps {
   title: string;
   content: string;
   src: any;
 }
-
-const { scale } = Dimensions.get('window')
 
 class PreventionCards extends Component<PreventionProps> {
   render () {
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   mainPreventionTitle: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 10 * scale
+    fontSize: 18 * scale
   },
   preventionContentContainer: {
     flex: 1,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 2,
     color: 'black',
     textAlign: 'left',
-    fontSize: 8 * scale
+    fontSize: 12 * scale
   },
   preventionContentImage: {
     width: 100,

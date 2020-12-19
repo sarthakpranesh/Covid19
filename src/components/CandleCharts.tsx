@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, ScrollView, Dimensions, Text, Animated } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, Animated } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const { width, scale } = Dimensions.get('screen')
+// importing constants
+import Layout from '../Layout'
+const scale = Layout.fontScale
+const width = Layout.window.width
 
 export interface CandleProps {
   data: any;
@@ -153,7 +156,7 @@ const styles = StyleSheet.create({
     color: 'black',
     marginTop: 0,
     fontWeight: 'bold',
-    fontSize: 12 * scale
+    fontSize: 18 * scale
   },
   animatedDataDialog: {
     color: 'black',

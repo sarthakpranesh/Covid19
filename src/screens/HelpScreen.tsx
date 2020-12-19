@@ -13,6 +13,10 @@ import {
 // importing common styles
 import Styles from '../Styles'
 
+// importing constants
+import Layout from '../Layout'
+const scale = Layout.fontScale
+
 const data = [
   {
     state: 'Central Help Line Number',
@@ -168,8 +172,6 @@ export interface HelpProps {
   style: any;
 }
 
-const { scale } = Dimensions.get('window')
-
 const HelpScreen = ({ style }: HelpProps) => {
   return (
     <View
@@ -210,7 +212,7 @@ const HelpScreen = ({ style }: HelpProps) => {
 
           <Text
             style={{
-              fontSize: 8 * scale,
+              fontSize: 12 * scale,
               paddingTop: 20,
               textAlign: 'center'
             }}>

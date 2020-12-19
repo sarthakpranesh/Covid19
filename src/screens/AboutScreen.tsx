@@ -1,14 +1,25 @@
 import React from 'react'
-import { View, StyleSheet, Image, Linking, TouchableOpacity, Text, Dimensions, ScrollView } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  Image,
+  Linking,
+  TouchableOpacity,
+  Text,
+  ScrollView
+} from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 
 // importing common style
 import Styles from '../Styles'
 
+// importing constants
+import Layout from '../Layout';
+const scale = Layout.fontScale;
+
 export interface AboutProps {
   style: any;
 }
-const { scale } = Dimensions.get('window')
 
 const AboutScreen = ({ style }: AboutProps) => {
   return (
@@ -63,7 +74,7 @@ const AboutScreen = ({ style }: AboutProps) => {
                 color: 'black',
                 textDecorationLine: 'underline',
                 fontWeight: 'bold',
-                fontSize: 10 * scale
+                fontSize: 12 * scale
               }}>
               Click Here to Know More
             </Text>
@@ -86,7 +97,7 @@ const AboutScreen = ({ style }: AboutProps) => {
               color: 'black',
               textAlign: 'center',
               fontWeight: 'bold',
-              fontSize: 10 * scale
+              fontSize: 18 * scale
             }}>
             Support Project
           </Text>
@@ -96,7 +107,7 @@ const AboutScreen = ({ style }: AboutProps) => {
                 'https://github.com/sarthakpranesh/Covid19-ReactNative'
               )
             }>
-            <Icon style={{ marginVertical: 10 }} name="github" color="black" size={18 * scale} />
+            <Icon style={{ marginVertical: 10 }} name="github" color="black" size={24 * scale} />
           </TouchableOpacity>
           <Text
             style={{
@@ -130,7 +141,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     color: 'black',
     marginVertical: 10,
-    fontSize: 8 * scale
+    fontSize: 12 * scale
   }
 })
 

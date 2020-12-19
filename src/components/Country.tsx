@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, Dimensions } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 
 // importing components
 import RowStackResult from './RowStackResult'
@@ -8,13 +8,15 @@ import RowStackResult from './RowStackResult'
 // importing types
 import { CountryCases } from '../API/NinjaApi'
 
+// importing constants
+import Layout from '../Layout';
+const scale = Layout.fontScale
+
 export interface CountryProps {
   data: CountryCases | null;
   countryName: String;
   containerStyle?: any;
 }
-
-const { scale } = Dimensions.get('window')
 
 class Country extends Component<CountryProps> {
   render () {
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     color: 'black',
     marginTop: 0,
     fontWeight: 'bold',
-    fontSize: 12 * scale
+    fontSize: 18 * scale
   }
 })
 

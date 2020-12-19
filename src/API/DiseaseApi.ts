@@ -14,7 +14,7 @@ export const fetchTimelineData: (country: String) => Promise<TimelineData[]> = (
           const r: TimelineData = {
             date: date,
             difference:
-              respData.timeline.cases[date] - respData.timeline.recovered[date]
+              respData.timeline.cases[date] - ( respData.timeline.recovered[date] + respData.timeline.deaths[date] )
           }
           return r
         })
