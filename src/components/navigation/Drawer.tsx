@@ -16,7 +16,9 @@ import TopHeadlinesScreen from '../../screens/TopHeadlinesScreen'
 // Importing drawer components
 import DrawerItem from './DrawerItem'
 
-const scale = Dimensions.get('window').scale
+// importing constants
+import Layout from '../../Layout'
+const scale = Layout.fontScale
 
 const Stack = createStackNavigator()
 
@@ -47,7 +49,7 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
               // eslint-disable-next-line react/prop-types
               onPress={() => navigation.openDrawer()}
             >
-              <Icon name="menu" size={12 * scale} color="black" />
+              <Icon name="menu" size={18 * scale} color="black" />
             </TouchableOpacity>
           )
         }}>
