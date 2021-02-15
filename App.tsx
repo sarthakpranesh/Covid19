@@ -33,6 +33,11 @@ const MainApp = () => {
   useEffect(() => {
     // some bug in react native
     setTimeout(() => {
+      if (Platform.OS === 'web') {
+        getLocation({ lat: '28.644800', long: '77.216721' })
+        return
+      }
+
       if (Platform.OS === 'ios') {
         Geolocation.requestAuthorization('whenInUse')
           .then((result) => {

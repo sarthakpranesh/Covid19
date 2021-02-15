@@ -1,4 +1,7 @@
 {
   "name": "Covid19",
-  "displayName": "Covid19"
+  "displayName": "Covid19",
+  "expo": {
+    "platform": ["web"]
+  }
 }
