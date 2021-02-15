@@ -78,7 +78,6 @@ const HomeScreen = ({ style, country }: HomeProps) => {
         flex: 1,
         alignItems: 'stretch',
         justifyContent: 'center',
-        backgroundColor: 'pink',
         ...style
       }}>
       <ScrollView

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { PermissionsAndroid, Platform } from 'react-native'
+import { Dimensions, PermissionsAndroid, Platform } from 'react-native'
 import Geolocation from 'react-native-geolocation-service'
 import LinearGradient from 'react-native-linear-gradient'
 import { NavigationContainer } from '@react-navigation/native'
@@ -13,6 +13,8 @@ import { DrawerContent, Screens } from './src/components/navigation/Drawer'
 import getLocationHook from './src/hooks/getLocationHook'
 
 const Drawer = createDrawerNavigator()
+
+const isLargeScreen = Dimensions.get('window').width > 760;
 
 const MainApp = () => {
   const [getLocation, country] = getLocationHook()
@@ -98,13 +100,11 @@ const MainApp = () => {
         <Drawer.Navigator
           edgeWidth={100}
           initialRouteName="Screens"
-          drawerType="slide"
+          drawerType={isLargeScreen ? 'permanent' : 'slide'}
           overlayColor="transparent"
-          drawerStyle={{ flex: 1, width: '50%', backgroundColor: 'transparent' }}
-          drawerContentOptions={{
-            activeBackgroundColor: 'transparent',
-            activeTintColor: 'black',
-            inactiveTintColor: 'black'
+          drawerStyle={{
+            width: isLargeScreen ? '20%' : '50%',
+            backgroundColor: 'transparent'
           }}
           sceneContainerStyle={{ backgroundColor: 'transparent' }}
           drawerContent={(p) => {

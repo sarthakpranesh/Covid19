@@ -20,6 +20,8 @@ import DrawerItem from './DrawerItem'
 import Layout from '../../Layout'
 const scale = Layout.fontScale
 
+const isLargeDevice = Dimensions.get('window').width
+
 const Stack = createStackNavigator()
 
 export interface ScreensProps {
@@ -29,8 +31,9 @@ export interface ScreensProps {
 }
 
 export const Screens = ({ navigation, style, country }: ScreensProps) => {
+  const stylesForAnimatedView = isLargeDevice ? [{ flex: 1 }] : [styles.stack, style]
   return (
-    <Animated.View style={StyleSheet.flatten([styles.stack, style])}>
+    <Animated.View style={StyleSheet.flatten(stylesForAnimatedView)}>
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
@@ -42,7 +45,6 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
               style={{
                 padding: 7,
                 marginLeft: 14,
-                backgroundColor: '#ffffff',
                 borderRadius: 8,
                 elevation: 2
               }}
@@ -63,7 +65,7 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
           {(p: any) => <PrecautionScreen {...p} />}
         </Stack.Screen>
         {
-          country.trim() === "India" ? (
+          country.trim() === 'India' ? (
             <Stack.Screen name="Help">
               {(p: any) => <HelpScreen {...p} />}
             </Stack.Screen>
@@ -78,7 +80,7 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
 }
 
 export const DrawerContent = (props: any) => {
-  const country = props.country;
+  const country = props.country
   return (
     <DrawerContentScrollView
       {...props}
@@ -107,7 +109,7 @@ export const DrawerContent = (props: any) => {
           icon="alert-octagon"
         />
         {
-          country === "India" ? (
+          country === 'India' ? (
             <DrawerItem
               label="Help"
               onPress={() => props.navigation.navigate('Help')}
