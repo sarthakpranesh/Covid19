@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native'
-import Icon from 'react-native-vector-icons/Feather'
+import { SvgProps } from 'react-native-svg'
 
 // importing constants
 import Layout from '../../Layout'
@@ -9,15 +9,23 @@ const scale = Layout.fontScale
 export interface DrawerItemProps {
   label: string;
   onPress: () => {};
-  icon: string;
+  Icon: (p: SvgProps) => JSX.Element;
   style?: any;
 }
 
-const DrawerItem = ({ label, onPress, icon, style }: DrawerItemProps) => {
+const DrawerItem = ({ label, onPress, Icon, style }: DrawerItemProps) => {
   return (
     <TouchableOpacity style={styles.drawerItemContainer} onPress={onPress}>
       <View style={styles.innerDrawerItemContainer}>
-        <Icon name={icon} size={14 * scale} color="black" style={styles.drawerIconStyle} />
+        {
+          Icon({
+            width: 14 * scale,
+            color: 'black',
+            style: {
+              paddingHorizontal: 4
+            }
+          })
+        }
         <Text style={styles.drawerTextStyle}>{label}</Text>
       </View>
     </TouchableOpacity>
@@ -34,9 +42,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center'
-  },
-  drawerIconStyle: {
-    paddingHorizontal: 4
   },
   drawerTextStyle: {
     paddingLeft: 4,
