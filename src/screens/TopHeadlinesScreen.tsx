@@ -4,7 +4,8 @@ import {
   ScrollView,
   RefreshControl,
   ActivityIndicator,
-  Text
+  Text,
+  Platform
 } from 'react-native'
 
 // importing components
@@ -33,7 +34,10 @@ const TopHeadlinesScreen = ({ style, navigation }: TopHeadlineProps) => {
   }, [fetchTopHeadlines])
 
   if (err !== false) {
-    navigation.navigate.goBack()
+    if (Platform.OS === 'web') {
+      alert('Headlines are not supported yet on the Web. Tryout our app to use this feature!')
+    }
+    navigation.navigate('Home')
   }
 
   return (
