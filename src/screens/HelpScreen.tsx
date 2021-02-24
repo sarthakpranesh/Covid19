@@ -6,8 +6,7 @@ import {
   Linking,
   FlatList,
   ScrollView,
-  Text,
-  Dimensions,
+  Text
 } from 'react-native'
 
 // importing common styles
@@ -183,7 +182,8 @@ const HelpScreen = ({ style }: HelpProps) => {
         ...style
       }}>
       <ScrollView
-        style={Styles.safeArea}
+        style={Styles.scrollView}
+        contentContainerStyle={Styles.scrollViewContentContainer}
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
   helpLineText: {
     textAlign: 'center',
     color: 'black',
-    fontSize: 12 * scale
+    fontSize: 14 * scale
   },
   numberContainer: {
     alignSelf: 'center',

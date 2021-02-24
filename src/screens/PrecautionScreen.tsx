@@ -18,11 +18,11 @@ const Precaution = ({ style }: PrecautionProps) => {
         flex: 1,
         alignItems: 'stretch',
         justifyContent: 'center',
-        backgroundColor: 'pink',
         ...style
       }}>
       <ScrollView
-        style={[Styles.safeArea, { paddingBottom: 0 }]}
+        style={Styles.scrollView}
+        contentContainerStyle={Styles.scrollViewContentContainer}
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>

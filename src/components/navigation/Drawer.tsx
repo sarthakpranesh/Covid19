@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 import React from 'react'
-import { View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { DrawerContentScrollView } from '@react-navigation/drawer'
 import Animated from 'react-native-reanimated'
@@ -27,39 +28,45 @@ import {
 import Layout from '../../Layout'
 const scale = Layout.fontScale
 
-const isLargeDevice = Dimensions.get('window').width
-
 const Stack = createStackNavigator()
 
 export interface ScreensProps {
   navigation: any;
   style: any;
   country: String;
+  isLargeDevice: boolean;
 }
 
-export const Screens = ({ navigation, style, country }: ScreensProps) => {
-  const stylesForAnimatedView = isLargeDevice ? [{ flex: 1 }] : [styles.stack, style]
+export const Screens = ({ navigation, style, country, isLargeDevice }: ScreensProps) => {
+  const stylesForAnimatedView = Layout.isLargeDevice ? [{ flex: 1 }] : [styles.stack, style]
+
   return (
     <Animated.View style={StyleSheet.flatten(stylesForAnimatedView)}>
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
-          animationEnabled: false,
+          animationEnabled: true,
           headerTransparent: true,
           title: '',
-          headerShown: !Layout.isLargeDevice,
+          headerShown: !isLargeDevice,
           headerLeft: () => (
             <TouchableOpacity
               style={{
-                padding: 7,
                 marginLeft: 14,
                 borderRadius: 8,
-                elevation: 2
+                elevation: 2,
+                backgroundColor: 'white'
               }}
-              // eslint-disable-next-line react/prop-types
               onPress={() => navigation.openDrawer()}
             >
-              <Menu width={18 * scale} color="black" />
+              <Menu
+                style={{
+                  margin: 8,
+                  scaleX: scale,
+                  scaleY: scale
+                }}
+                color="black"
+              />
             </TouchableOpacity>
           )
         }}>

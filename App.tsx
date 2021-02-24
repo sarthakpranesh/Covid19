@@ -1,36 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Dimensions, PermissionsAndroid, Platform } from 'react-native'
+import React, { useEffect } from 'react'
+import { PermissionsAndroid, Platform } from 'react-native'
 import Geolocation from 'react-native-geolocation-service'
-import LinearGradient from 'react-native-linear-gradient'
-import { NavigationContainer } from '@react-navigation/native'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import { createDrawerNavigator } from '@react-navigation/drawer'
 
-import Animated from 'react-native-reanimated'
+// Importing RootNavigator
+import RootNavigator from './src/components/navigation/index'
 
-import { DrawerContent, Screens } from './src/components/navigation/Drawer'
-
+// Importing Hooks
 import getLocationHook from './src/hooks/getLocationHook'
-
-const Drawer = createDrawerNavigator()
-
-const isLargeScreen = Dimensions.get('window').width > 760;
 
 const MainApp = () => {
   const [getLocation, country] = getLocationHook()
-  const [progress, setProgress] = useState<Animated.Node<number>>(
-    new Animated.Value(0)
-  )
-  const scale = Animated.interpolate(progress, {
-    inputRange: [0, 1],
-    outputRange: [1, 0.8]
-  })
-  const borderRadius = Animated.interpolate(progress, {
-    inputRange: [0, 1],
-    outputRange: [0, 16]
-  })
-
-  const animatedStyle = { borderRadius, transform: [{ scale }] }
 
   useEffect(() => {
     // some bug in react native
@@ -92,32 +72,7 @@ const MainApp = () => {
     }, 100)
   }, [])
 
-  return country !== '' ? (
-    <NavigationContainer>
-      <LinearGradient
-        colors={['#DEF7FF', '#B1ECFF']}
-        style={{ flex: 1, backgroundColor: 'white' }}>
-        <Drawer.Navigator
-          edgeWidth={100}
-          initialRouteName="Screens"
-          drawerType={isLargeScreen ? 'permanent' : 'slide'}
-          overlayColor="transparent"
-          drawerStyle={{
-            width: isLargeScreen ? '20%' : '50%',
-            backgroundColor: 'transparent'
-          }}
-          sceneContainerStyle={{ backgroundColor: 'transparent' }}
-          drawerContent={(p) => {
-            setProgress(p.progress)
-            return <DrawerContent {...p} country={country} />
-          }}>
-          <Drawer.Screen name="Screens">
-            {(p) => <Screens {...p} style={animatedStyle} country={country} />}
-          </Drawer.Screen>
-        </Drawer.Navigator>
-      </LinearGradient>
-    </NavigationContainer>
-  ) : null
+  return <RootNavigator country={country} />
 }
 
 const UserStartingSwitch = createSwitchNavigator(

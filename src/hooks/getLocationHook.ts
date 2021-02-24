@@ -5,7 +5,7 @@ export interface Coords {
   long: number;
 }
 
-const getLocationHook = (): [Function, String] => {
+const getLocationHook = (): [Function, string] => {
   const [results, setResults] = useState('')
 
   const getLocation: Function = async (coords: Coords) => {

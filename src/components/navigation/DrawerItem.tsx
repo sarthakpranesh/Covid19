@@ -19,11 +19,11 @@ const DrawerItem = ({ label, onPress, Icon, style }: DrawerItemProps) => {
       <View style={styles.innerDrawerItemContainer}>
         {
           Icon({
-            width: 22 * scale,
-            height: 22 * scale,
             color: 'black',
             style: {
-              paddingHorizontal: 4
+              paddingHorizontal: 4,
+              scaleX: scale,
+              scaleY: scale
             }
           })
         }

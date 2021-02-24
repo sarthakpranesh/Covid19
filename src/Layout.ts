@@ -8,7 +8,9 @@ export default {
     width,
     height
   },
-  fontScale: width >= 760 ? 1.2 : width / 320,
+  largeScreenBreak: 720,
+  smallScreenBreak: 375,
+  fontScale: width >= 720 ? width / 720 : width / 375,
   isSmallDevice: width < 375,
   isLargeDevice: width > 720
 }

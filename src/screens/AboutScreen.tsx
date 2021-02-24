@@ -30,11 +30,11 @@ const AboutScreen = ({ style }: AboutProps) => {
         flex: 1,
         alignItems: 'stretch',
         justifyContent: 'center',
-        backgroundColor: 'pink',
         ...style
       }}>
       <ScrollView
-        style={Styles.safeArea}
+        style={Styles.scrollView}
+        contentContainerStyle={Styles.scrollViewContentContainer}
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}>
         <View style={Styles.mainHeader}>
@@ -133,8 +133,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 5,
-
-    flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center'

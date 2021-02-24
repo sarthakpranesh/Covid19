@@ -82,7 +82,8 @@ const HomeScreen = ({ style, country }: HomeProps) => {
         ...style
       }}>
       <ScrollView
-        style={Styles.safeArea}
+        style={Styles.scrollView}
+        contentContainerStyle={Styles.scrollViewContentContainer}
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}
         refreshControl={
