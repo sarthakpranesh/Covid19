@@ -47,6 +47,7 @@ export const Screens = ({ navigation, style, country }: ScreensProps) => {
           animationEnabled: false,
           headerTransparent: true,
           title: '',
+          headerShown: !Layout.isLargeDevice,
           headerLeft: () => (
             <TouchableOpacity
               style={{

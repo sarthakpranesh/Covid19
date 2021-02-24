@@ -1,12 +1,12 @@
 import { StyleSheet, Platform } from 'react-native'
-import Layout from './Layout';
+import Layout from './Layout'
 
 const Styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    backgroundColor: '#DEF7FF'
+    backgroundColor: '#DEF7FF',
+    paddingVertical: Layout.isLargeDevice ? 0 : 10,
+    paddingHorizontal: Layout.isLargeDevice ? 100 : 10
   },
   mainHeader: {
     flex: 1,

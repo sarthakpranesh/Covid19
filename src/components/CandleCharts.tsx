@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, ScrollView, Text, Animated } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, Animated, Dimensions } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
 // importing constants
 import Layout from '../Layout'
 const scale = Layout.fontScale
-const width = Layout.window.width
+const width = Dimensions.get('window').width > 720 ? 300 : Layout.window.width;
 
 export interface CandleProps {
   data: any;

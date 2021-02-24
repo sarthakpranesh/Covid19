@@ -6,7 +6,8 @@ import {
   RefreshControl,
   Alert,
   BackHandler,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     marginVertical: -10,
     paddingVertical: 0,
     marginBottom: 0
-  },
+  }
 })
 
 export default HomeScreen
