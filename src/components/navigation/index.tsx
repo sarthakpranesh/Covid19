@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dimensions } from 'react-native'
+import { Dimensions, Platform } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
@@ -29,12 +29,13 @@ const RootNavigator = (props: RootNavigatorProps) => {
   })
 
   const animatedStyle = { borderRadius, transform: [{ scale }] }
-
-  Dimensions.addEventListener('change', ({ window }) => {
-    if (isLargeDevice !== (window.width > Layout.largeScreenBreak)) {
-      setIsLargeDevice(window.width > Layout.largeScreenBreak)
-    }
-  })
+  if (Platform.OS === 'web') {
+    Dimensions.addEventListener('change', ({ window }) => {
+      if (isLargeDevice !== (window.width > Layout.largeScreenBreak)) {
+        setIsLargeDevice(window.width > Layout.largeScreenBreak)
+      }
+    })
+  }
 
   return (
     <NavigationContainer>

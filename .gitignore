@@ -63,3 +63,5 @@ buck-out/
 # Expo used for web and web builds
 /.expo
 /web-build
+
+.vercel
