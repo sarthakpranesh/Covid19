@@ -5,10 +5,12 @@ module.exports = {
       alias: {
         'react-native-linear-gradient': 'react-native-web-linear-gradient'
       }
-    }]
+    }],
+    'react-native-reanimated/plugin'
   ],
   env: {
     production: {
+      plugins: ['transform-remove-console']
     }
   }
 }

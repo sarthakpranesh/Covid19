@@ -21,9 +21,10 @@ const DrawerItem = ({ label, onPress, Icon, style }: DrawerItemProps) => {
           Icon({
             color: 'black',
             style: {
-              paddingHorizontal: 4,
-              scaleX: scale,
-              scaleY: scale
+              marginHorizontal: Layout.isLargeDevice ? 8 * scale : 4 * scale,
+              transform: [
+                { scale: Layout.isLargeDevice ? 1.4 : 1 }
+              ]
             }
           })
         }

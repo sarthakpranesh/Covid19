@@ -96,7 +96,7 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
     }, 100)
   }, [])
 
-  return <RootNavigator country={country} />
+  return country === null ? null : <RootNavigator country={country} />
 })
 
 const App = () => {

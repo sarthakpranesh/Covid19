@@ -32,16 +32,17 @@ const Stack = createStackNavigator()
 
 export interface ScreensProps {
   navigation: any;
-  style: any;
-  country: String;
+  country: string;
   isLargeDevice: boolean;
 }
 
-export const Screens = ({ navigation, style, country, isLargeDevice }: ScreensProps) => {
-  const stylesForAnimatedView = Layout.isLargeDevice ? [{ flex: 1 }] : [styles.stack, style]
+export const Screens = ({ navigation, country, isLargeDevice }: ScreensProps) => {
+  const stylesForAnimatedView = Layout.isLargeDevice ? [{ flex: 1 }] : [styles.stack]
 
   return (
-    <Animated.View style={StyleSheet.flatten(stylesForAnimatedView)}>
+    <Animated.View
+      style={stylesForAnimatedView}
+    >
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
