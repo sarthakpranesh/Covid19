@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, StyleSheet, View } from 'react-native'
 import { SvgProps } from 'react-native-svg'
 
 // importing constants
-import Layout from '../../Layout'
+import Layout from '../Layout'
 const scale = Layout.fontScale
 
 export interface DrawerItemProps {

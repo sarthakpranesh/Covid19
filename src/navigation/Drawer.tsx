@@ -7,11 +7,11 @@ import { DrawerContentScrollView } from '@react-navigation/drawer'
 import Animated from 'react-native-reanimated'
 
 // importing Screens
-import HomeScreen from '../../screens/HomeScreen'
-import AboutScreen from '../../screens/AboutScreen'
-import PrecautionScreen from '../../screens/PrecautionScreen'
-import HelpScreen from '../../screens/HelpScreen'
-import TopHeadlinesScreen from '../../screens/TopHeadlinesScreen'
+import HomeScreen from '../screens/HomeScreen'
+import AboutScreen from '../screens/AboutScreen'
+import PrecautionScreen from '../screens/PrecautionScreen'
+import HelpScreen from '../screens/HelpScreen'
+import TopHeadlinesScreen from '../screens/TopHeadlinesScreen'
 
 // Importing drawer components
 import DrawerItem from './DrawerItem'
@@ -22,10 +22,10 @@ import {
   Columns,
   Github,
   HelpCircle
-} from '../Svgs/index'
+} from '../components/Svgs/index'
 
 // importing constants
-import Layout from '../../Layout'
+import Layout from '../Layout'
 const scale = Layout.fontScale
 
 const Stack = createStackNavigator()

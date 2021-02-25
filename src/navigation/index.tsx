@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { Dimensions, Platform } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
-import { NavigationContainer } from '@react-navigation/native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import Animated from 'react-native-reanimated'
 
 import { DrawerContent, Screens } from './Drawer'
 
-import Layout from '../../Layout'
+import Layout from '../Layout'
 const Drawer = createDrawerNavigator()
 
 export type RootNavigatorProps = {
@@ -38,35 +37,33 @@ const RootNavigator = (props: RootNavigatorProps) => {
   }
 
   return (
-    <NavigationContainer>
-      <LinearGradient
-        colors={['#DEF7FF', '#B1ECFF']}
-        style={{ flex: 1, backgroundColor: '#B1ECFF' }}>
-        <Drawer.Navigator
-          edgeWidth={100}
-          initialRouteName="Screens"
-          drawerType={isLargeDevice ? 'permanent' : 'slide'}
-          overlayColor="transparent"
-          drawerStyle={{
-            width: isLargeDevice ? '20%' : '50%',
-            backgroundColor: 'transparent'
-          }}
-          sceneContainerStyle={{ backgroundColor: 'transparent' }}
-          drawerContent={(p) => {
-            setProgress(p.progress)
-            return <DrawerContent {...p} country={props.country} />
-          }}>
-          <Drawer.Screen name="Screens">
-            {(p) => <Screens
-              {...p} 
-              style={animatedStyle} 
-              country={props.country}
-              isLargeDevice={isLargeDevice}
-            />}
-          </Drawer.Screen>
-        </Drawer.Navigator>
-      </LinearGradient>
-    </NavigationContainer>
+    <LinearGradient
+      colors={['#DEF7FF', '#B1ECFF']}
+      style={{ flex: 1, backgroundColor: '#B1ECFF' }}>
+      <Drawer.Navigator
+        edgeWidth={100}
+        initialRouteName="Screens"
+        drawerType={isLargeDevice ? 'permanent' : 'slide'}
+        overlayColor="transparent"
+        drawerStyle={{
+          width: isLargeDevice ? '20%' : '50%',
+          backgroundColor: 'transparent'
+        }}
+        sceneContainerStyle={{ backgroundColor: 'transparent' }}
+        drawerContent={(p) => {
+          setProgress(p.progress)
+          return <DrawerContent {...p} country={props.country} />
+        }}>
+        <Drawer.Screen name="Screens">
+          {(p) => <Screens
+            {...p} 
+            style={animatedStyle} 
+            country={props.country}
+            isLargeDevice={isLargeDevice}
+          />}
+        </Drawer.Screen>
+      </Drawer.Navigator>
+    </LinearGradient>
   )
 }
 
