@@ -1,11 +1,24 @@
 import React, { useState } from 'react'
-import { Dimensions, Platform } from 'react-native'
+import { Dimensions, Platform, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 
-import { DrawerContent, Screens } from './Drawer'
+import DrawerContent from './DrawerContent'
+
+// importing Screens
+import HomeScreen from '../screens/HomeScreen'
+import AboutScreen from '../screens/AboutScreen'
+import PrecautionScreen from '../screens/PrecautionScreen'
+import HelpScreen from '../screens/HelpScreen'
+import TopHeadlinesScreen from '../screens/TopHeadlinesScreen'
+
+import {
+  Menu
+} from '../components/Svgs/index'
 
 import Layout from '../Layout'
+const scale = Layout.fontScale
+
 const Drawer = createDrawerNavigator()
 
 export type RootNavigatorProps = {
@@ -23,13 +36,16 @@ const RootNavigator = (props: RootNavigatorProps) => {
     })
   }
 
+  const country = props.country
+
   return (
     <LinearGradient
       colors={['#DEF7FF', '#B1ECFF']}
       style={{ flex: 1, backgroundColor: '#B1ECFF' }}>
       <Drawer.Navigator
         edgeWidth={100}
-        initialRouteName="Screens"
+        lazy={false}
+        initialRouteName="Home"
         drawerType={isLargeDevice ? 'permanent' : 'slide'}
         overlayColor="transparent"
         drawerStyle={{
@@ -37,14 +53,47 @@ const RootNavigator = (props: RootNavigatorProps) => {
           backgroundColor: 'transparent'
         }}
         sceneContainerStyle={{ backgroundColor: 'transparent' }}
-        drawerContent={(p) => <DrawerContent {...p} country={props.country} />}>
-        <Drawer.Screen name="Screens">
-          {(p) => <Screens
-            {...p}
-            country={props.country}
-            isLargeDevice={isLargeDevice}
-          />}
-        </Drawer.Screen>
+        screenOptions={{
+          headerShown: !isLargeDevice,
+          // eslint-disable-next-line react/display-name
+          header: (p) => {
+            const navigation = p.scene.descriptor.navigation
+            return (
+              <TouchableOpacity
+                style={{
+                  backgroundColor: 'white',
+                  position: 'absolute',
+                  top: 10,
+                  left: 10,
+                  borderRadius: 8,
+                  elevation: 8,
+                  zIndex: 100
+                }}
+                onPress={() => navigation.toggleDrawer()}
+              >
+                <Menu
+                  style={{
+                    margin: 8,
+                    scaleX: scale,
+                    scaleY: scale
+                  }}
+                  color="black"
+                />
+              </TouchableOpacity>
+            )
+          }
+        }}
+        drawerContent={(p) => <DrawerContent {...p} country={props.country} />}
+      >
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Headline" component={TopHeadlinesScreen} />
+        <Drawer.Screen name="Precaution" component={PrecautionScreen} />
+        {
+          country.trim() === 'India' ? (
+            <Drawer.Screen name="Help" component={HelpScreen} />
+          ) : null
+        }
+        <Drawer.Screen name="About" component={AboutScreen} />
       </Drawer.Navigator>
     </LinearGradient>
   )

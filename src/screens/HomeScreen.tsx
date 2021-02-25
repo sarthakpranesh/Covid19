@@ -49,13 +49,16 @@ const HomeScreen = ({ style, ...props }: any) => {
   if (results.global === undefined) {
     return (
       <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          ...style
-        }}>
+        style={[
+          Styles.scrollView,
+          {
+            flex: 1,
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            ...style
+          }
+        ]}>
         <ActivityIndicator />
       </View>
     )

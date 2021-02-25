@@ -1,4 +1,4 @@
-/* eslint-disable prefer-promise-reject-errors */
+import fetch from 'node-fetch'
 
 export interface News {
   author: string;
@@ -11,7 +11,6 @@ export interface News {
 
 const fetchData: () => Promise<News[]> = () => {
   return new Promise((resolve, reject) => {
-    // eslint-disable-next-line no-undef
     fetch('https://some-news-api.herokuapp.com/articles')
       .then((resp) => resp.json())
       .then((respData) => {
