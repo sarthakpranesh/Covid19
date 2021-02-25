@@ -10,7 +10,6 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.facebook.react.bridge.JSIModulePackage; // <- reanimated 2
 import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- reanimated 2
 

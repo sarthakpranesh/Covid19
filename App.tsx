@@ -18,6 +18,9 @@ import { setCountry, setLoaded } from './src/reducers/DataReducer'
 // Importing API functions
 import getCountry from './src/API/functions/getCountry'
 
+// Importing splash screen
+import SplashScreen from './src/screens/SplashScreen'
+
 const mapStateToProps = (state: any) => {
   const data = state.dataReducer.data
   return data
@@ -96,7 +99,7 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
     }, 100)
   }, [])
 
-  return country === null ? null : <RootNavigator country={country} />
+  return country === null ? <SplashScreen /> : <RootNavigator country={country} />
 })
 
 const App = () => {

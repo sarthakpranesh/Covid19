@@ -33,7 +33,6 @@
     "react-native-reanimated": "^2.0.0-rc.3",
     "react-native-safe-area-context": "^2.0.3",
     "react-native-screens": "^2.8.0",
-    "react-native-splash-screen": "^3.2.0",
     "react-native-svg": "^12.1.0",
     "react-native-unimodules": "^0.9.1",
     "react-native-web": "~0.11",

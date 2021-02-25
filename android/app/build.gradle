@@ -224,8 +224,6 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-    implementation project(':react-native-splash-screen')
 }
 
 // Run this once to be able to run the application with BUCK

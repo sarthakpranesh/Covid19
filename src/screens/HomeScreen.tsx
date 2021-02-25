@@ -9,7 +9,6 @@ import {
   ScrollView,
   ActivityIndicator
 } from 'react-native'
-import SplashScreen from 'react-native-splash-screen'
 
 // importing components
 import Country from '../components/Country'
@@ -31,7 +30,6 @@ const HomeScreen = ({ style, ...props }: any) => {
     getCovidData(props.country)
       .then((data) => {
         props.updateData(data)
-        SplashScreen.hide()
       })
       .catch((err) => {
         console.log(err)
