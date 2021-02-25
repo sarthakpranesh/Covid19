@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 
 // importing components
+import SafeAreaView from '../components/SafeAreaView'
 import NewsCards from '../components/NewsCards'
 
 // importing common style
@@ -17,12 +18,7 @@ import Styles from '../Styles'
 // importing hooks
 import getTopHeadlines from '../hooks/getTopHeadlines'
 
-export interface TopHeadlineProps {
-  style: any;
-  navigation: any;
-}
-
-const TopHeadlinesScreen = ({ style, navigation }: TopHeadlineProps) => {
+const TopHeadlinesScreen = ({ navigation }: any) => {
   const [fetchTopHeadlines, topHeadlines, err] = getTopHeadlines()
 
   // for pull down to refresh
@@ -41,14 +37,7 @@ const TopHeadlinesScreen = ({ style, navigation }: TopHeadlineProps) => {
   }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        backgroundColor: 'pink',
-        ...style
-      }}>
+    <SafeAreaView>
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
@@ -67,7 +56,7 @@ const TopHeadlinesScreen = ({ style, navigation }: TopHeadlineProps) => {
           <ActivityIndicator size="large" color="black" />
         )}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 

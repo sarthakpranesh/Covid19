@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { PermissionsAndroid, Platform } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import Geolocation from 'react-native-geolocation-service'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 // Importing RootNavigator
 import RootNavigator from './src/navigation/index'
@@ -13,10 +14,11 @@ import RootNavigator from './src/navigation/index'
 import { store, persister } from './src/stores/stores'
 
 // Importing reducer functions
-import { setCountry, setLoaded } from './src/reducers/DataReducer'
+import { setCountry, updateData } from './src/reducers/DataReducer'
 
 // Importing API functions
 import getCountry from './src/API/functions/getCountry'
+import getCovidData from './src/API/functions/getCovidData'
 
 // Importing splash screen
 import SplashScreen from './src/screens/SplashScreen'
@@ -30,14 +32,12 @@ const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
     {
       setCountry,
-      setLoaded
+      updateData
     },
     dispatch
   )
 
 const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
-  const country = props.country
-
   const fetchAndSetCountry = async (coords: any) => {
     const country = await getCountry({
       long: coords.longitude,
@@ -99,16 +99,34 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
     }, 100)
   }, [])
 
-  return country === null ? <SplashScreen /> : <RootNavigator country={country} />
+  useEffect(() => {
+    if (props.country !== null) {
+      getCovidData(props.country)
+        .then((data) => {
+          props.updateData(data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [props.country])
+
+  if (props.data.global === undefined) {
+    return <SplashScreen />
+  }
+
+  return <RootNavigator country={props.country} />
 })
 
 const App = () => {
   return (
     <ReduxProvider store={store}>
-      <PersistGate loading={null} persistor={persister}>
-        <NavigationContainer>
-          <MainApp />
-        </NavigationContainer>
+      <PersistGate loading={() => <SplashScreen />} persistor={persister}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <MainApp />
+          </NavigationContainer>
+        </SafeAreaProvider>
       </PersistGate>
     </ReduxProvider>
   )

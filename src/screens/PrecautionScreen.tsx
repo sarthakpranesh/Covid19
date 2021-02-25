@@ -2,24 +2,15 @@ import React from 'react'
 import { View, ScrollView, Text } from 'react-native'
 
 // importing components
+import SafeAreaView from '../components/SafeAreaView'
 import PreventionCards from '../components/PreventionCards'
 
 // importing common style
 import Styles from '../Styles'
 
-export interface PrecautionProps {
-  style: any;
-}
-
-const Precaution = ({ style }: PrecautionProps) => {
+const Precaution = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        ...style
-      }}>
+    <SafeAreaView>
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
@@ -70,7 +61,7 @@ const Precaution = ({ style }: PrecautionProps) => {
           src={require('../../assets/img/dt.png')}
         />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 

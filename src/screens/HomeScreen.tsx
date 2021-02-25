@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
@@ -6,11 +6,11 @@ import {
   StyleSheet,
   Image,
   RefreshControl,
-  ScrollView,
-  ActivityIndicator
+  ScrollView
 } from 'react-native'
 
 // importing components
+import SafeAreaView from '../components/SafeAreaView'
 import Country from '../components/Country'
 import CandleCharts from '../components/CandleCharts'
 
@@ -23,18 +23,8 @@ import getCovidData from '../API/functions/getCovidData'
 // import common style
 import Styles from '../Styles'
 
-const HomeScreen = ({ style, ...props }: any) => {
+const HomeScreen = (props: any) => {
   const [refreshing, setRefresh] = useState<boolean>(false)
-
-  useEffect(() => {
-    getCovidData(props.country)
-      .then((data) => {
-        props.updateData(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
 
   const onRefresh = useCallback(async () => {
     setRefresh(true)
@@ -46,32 +36,8 @@ const HomeScreen = ({ style, ...props }: any) => {
   const results = props.data
   const country = props.country
 
-  if (results.global === undefined) {
-    return (
-      <View
-        style={[
-          Styles.scrollView,
-          {
-            flex: 1,
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            ...style
-          }
-        ]}>
-        <ActivityIndicator />
-      </View>
-    )
-  }
-
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        ...style
-      }}>
+    <SafeAreaView>
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
@@ -97,7 +63,7 @@ const HomeScreen = ({ style, ...props }: any) => {
         <Country data={results?.country} countryName={country} />
         <CandleCharts country={country} data={results?.timeline} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 

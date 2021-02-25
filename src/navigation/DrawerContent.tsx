@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Platform } from 'react-native'
 import { DrawerContentScrollView } from '@react-navigation/drawer'
 
 // Importing drawer components
@@ -31,11 +31,13 @@ const DrawerContent = (props: any) => {
           onPress={() => props.navigation.navigate('Home')}
           Icon={(p) => <Home {...p}/>}
         />
-        <DrawerItem
-          label="Headline"
-          onPress={() => props.navigation.navigate('Headline')}
-          Icon={(p) => <Columns {...p}/>}
-        />
+        {
+          Platform.OS !== 'web' ? (<DrawerItem
+            label="Headline"
+            onPress={() => props.navigation.navigate('Headline')}
+            Icon={(p) => <Columns {...p}/>}
+          />) : null
+        }
         <DrawerItem
           label="Precaution"
           onPress={() => props.navigation.navigate('Precaution')}

@@ -2,24 +2,29 @@ import React from 'react'
 import {
   StyleSheet,
   Image,
-  ActivityIndicator,
+  ActivityIndicator
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+
+// importing components
+import SafeAreaView from '../components/SafeAreaView'
 
 // importing Layout
 import Layout from '../Layout'
 
 const SplashScreen = ({ style, ...props }: any) => {
   return (
-    <LinearGradient
-      colors={['#DEF7FF', '#B1ECFF']}
-      style={styles.splashWrapper}>
-      <Image
-        source={require('../../assets/img/splash.png')}
-        style={styles.splashImage}
-      />
-      <ActivityIndicator style={styles.splashActivity} />
-    </LinearGradient>
+    <SafeAreaView>
+      <LinearGradient
+        colors={['#DEF7FF', '#B1ECFF']}
+        style={styles.splashWrapper}>
+        <Image
+          source={require('../../assets/img/splash.png')}
+          style={styles.splashImage}
+        />
+        <ActivityIndicator style={styles.splashActivity} />
+      </LinearGradient>
+    </SafeAreaView>
   )
 }
 
@@ -31,8 +36,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   splashImage: {
-    width: Layout.isLargeDevice ? 300 : 150,
-    height: Layout.isLargeDevice ? 300 : 150
+    width: Layout.isLargeDevice ? 300 : 200,
+    height: Layout.isLargeDevice ? 300 : 200
   },
   splashActivity: {
     position: 'absolute',

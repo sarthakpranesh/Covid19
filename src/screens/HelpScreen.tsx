@@ -9,6 +9,9 @@ import {
   Text
 } from 'react-native'
 
+// importing components
+import SafeAreaView from '../components/SafeAreaView'
+
 // importing common styles
 import Styles from '../Styles'
 
@@ -167,20 +170,9 @@ const data = [
   }
 ]
 
-export interface HelpProps {
-  style: any;
-}
-
-const HelpScreen = ({ style }: HelpProps) => {
+const HelpScreen = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        backgroundColor: 'pink',
-        ...style
-      }}>
+    <SafeAreaView>
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
@@ -232,7 +224,7 @@ const HelpScreen = ({ style }: HelpProps) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 

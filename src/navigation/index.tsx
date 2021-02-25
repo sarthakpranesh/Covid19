@@ -86,7 +86,11 @@ const RootNavigator = (props: RootNavigatorProps) => {
         drawerContent={(p) => <DrawerContent {...p} country={props.country} />}
       >
         <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Headline" component={TopHeadlinesScreen} />
+        {
+          Platform.OS !== 'web' ? (
+            <Drawer.Screen name="Headline" component={TopHeadlinesScreen} />
+          ) : null
+        }
         <Drawer.Screen name="Precaution" component={PrecautionScreen} />
         {
           country.trim() === 'India' ? (

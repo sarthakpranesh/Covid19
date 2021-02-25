@@ -11,6 +11,7 @@ import {
 
 // import components
 import { Github } from '../components/Svgs/index'
+import SafeAreaView from '../components/SafeAreaView'
 
 // importing common style
 import Styles from '../Styles'
@@ -19,19 +20,9 @@ import Styles from '../Styles'
 import Layout from '../Layout'
 const scale = Layout.fontScale
 
-export interface AboutProps {
-  style: any;
-}
-
-const AboutScreen = ({ style }: AboutProps) => {
+const AboutScreen = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        ...style
-      }}>
+    <SafeAreaView>
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
@@ -122,7 +113,7 @@ const AboutScreen = ({ style }: AboutProps) => {
           </Text>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 
