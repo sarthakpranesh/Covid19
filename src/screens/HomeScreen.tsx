@@ -1,13 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
   Image,
   RefreshControl,
-  Alert,
-  BackHandler,
   ScrollView,
-  Dimensions
+  ActivityIndicator
 } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 
@@ -15,62 +15,52 @@ import SplashScreen from 'react-native-splash-screen'
 import Country from '../components/Country'
 import CandleCharts from '../components/CandleCharts'
 
-// importing hooks
-import getHomeScreenData from '../hooks/getHomeScreenData'
+// importing reducers
+import { updateData } from '../reducers/DataReducer'
+
+// importing API functions
+import getCovidData from '../API/functions/getCovidData'
 
 // import common style
 import Styles from '../Styles'
 
-export interface HomeProps {
-  style: any;
-  country: String;
-}
-
-const HomeScreen = ({ style, country }: HomeProps) => {
+const HomeScreen = ({ style, ...props }: any) => {
   const [refreshing, setRefresh] = useState<boolean>(false)
 
-  const [fetchHomeData, results, err] = getHomeScreenData()
-
-  const handleError = () => {
-    Alert.alert(
-      'Covid 19',
-      err === undefined ? 'Network Error' : err,
-      [
-        {
-          text: 'Retry',
-          onPress: () => {
-            onRefresh()
-          }
-        },
-        { text: 'Exit', onPress: () => BackHandler.exitApp() }
-      ],
-      { cancelable: false }
-    )
-  }
-
   useEffect(() => {
-    fetchHomeData(country)
-      .then(() => SplashScreen.hide())
-      .catch(() => handleError())
-    setInterval(() => {
-      console.log('Set Interval running')
-      fetchHomeData(country)
-        .then(() => console.log('Data Updated'))
-        .catch(() => handleError())
-    }, 5 * 60000)
-  }, [country])
+    getCovidData(props.country)
+      .then((data) => {
+        props.updateData(data)
+        SplashScreen.hide()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   const onRefresh = useCallback(async () => {
     setRefresh(true)
-    fetchHomeData(country)
-      .then(() => {
-        setRefresh(false)
-      })
-      .catch(() => handleError())
-  }, [fetchHomeData])
+    const data = await getCovidData(props.country)
+    props.updateData(data)
+    setRefresh(false)
+  }, [])
 
-  if (results === null) {
-    return null
+  const results = props.data
+  const country = props.country
+
+  if (results.global === undefined) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          ...style
+        }}>
+        <ActivityIndicator />
+      </View>
+    )
   }
 
   return (
@@ -124,4 +114,18 @@ const styles = StyleSheet.create({
   }
 })
 
-export default HomeScreen
+const mapStateToProps = (state: any) => {
+  const data = state.dataReducer.data
+  return data
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators(
+    {
+      updateData
+    },
+    dispatch
+  )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

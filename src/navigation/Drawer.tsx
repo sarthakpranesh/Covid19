@@ -71,7 +71,7 @@ export const Screens = ({ navigation, style, country, isLargeDevice }: ScreensPr
           )
         }}>
         <Stack.Screen name="Home">
-          {(p: any) => <HomeScreen {...p} country={country} />}
+          {(p: any) => <HomeScreen {...p} />}
         </Stack.Screen>
         <Stack.Screen name="Headline">
           {(p: any) => <TopHeadlinesScreen {...p} />}

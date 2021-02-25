@@ -56,8 +56,8 @@ const RootNavigator = (props: RootNavigatorProps) => {
         }}>
         <Drawer.Screen name="Screens">
           {(p) => <Screens
-            {...p} 
-            style={animatedStyle} 
+            {...p}
+            style={animatedStyle}
             country={props.country}
             isLargeDevice={isLargeDevice}
           />}

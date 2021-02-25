@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 
 const INITIAL_STATE = {
   loaded: false,
-  country: '',
+  country: null,
   data: {}
 }
 
@@ -13,6 +13,8 @@ const dataReducer = (state = INITIAL_STATE, action: any) => {
       return { ...state, loaded: action.payload }
     case 'SET_COUNTRY':
       return { ...state, country: action.payload }
+    case 'UPDATE_DATA':
+      return { ...state, data: action.payload }
     default:
       return state
   }
@@ -33,5 +35,12 @@ export const setCountry = (country: string) => (
   {
     type: 'SET_COUNTRY',
     payload: country
+  }
+)
+
+export const updateData = (data: any) => (
+  {
+    type: 'UPDATE_DATA',
+    payload: data
   }
 )
