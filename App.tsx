@@ -121,7 +121,7 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
 const App = () => {
   return (
     <ReduxProvider store={store}>
-      <PersistGate loading={() => <SplashScreen />} persistor={persister}>
+      <PersistGate loading={false} persistor={persister}>
         <SafeAreaProvider>
           <NavigationContainer>
             <MainApp />
