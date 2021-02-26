@@ -67,15 +67,13 @@ const RootNavigator = (props: RootNavigatorProps) => {
                   left: 10,
                   borderRadius: 8,
                   elevation: 8,
-                  zIndex: 100
+                  zIndex: 999
                 }}
                 onPress={() => navigation.toggleDrawer()}
               >
                 <Menu
                   style={{
-                    margin: 8,
-                    scaleX: scale,
-                    scaleY: scale
+                    margin: 8
                   }}
                   color="black"
                 />
