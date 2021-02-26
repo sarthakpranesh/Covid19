@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, Dimensions } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 
 import Layout from '../Layout'
 const scale = Layout.fontScale
@@ -183,12 +183,14 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   subResultText: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Roboto'
   },
   resultNumbers: {
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 14 * scale
+    fontSize: 14 * scale,
+    fontFamily: 'Roboto'
   }
 })
 

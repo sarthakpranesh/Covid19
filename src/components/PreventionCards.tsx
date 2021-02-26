@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   mainPreventionTitle: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 18 * scale
+    fontSize: 18 * scale,
+    fontFamily: 'Roboto'
   },
   preventionContentContainer: {
     flex: 1,
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
     flex: 2,
     color: 'black',
     textAlign: 'left',
-    fontSize: 12 * scale
+    fontSize: 12 * scale,
+    fontFamily: 'Roboto'
   },
   preventionContentImage: {
     width: 100,

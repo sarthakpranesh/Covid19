@@ -27,7 +27,8 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     color: '#D41D3E',
-    fontSize: 24 * Layout.fontScale
+    fontSize: 24 * Layout.fontScale,
+    fontFamily: 'Roboto'
   }
 })
 

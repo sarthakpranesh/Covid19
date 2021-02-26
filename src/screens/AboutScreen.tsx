@@ -67,7 +67,8 @@ const AboutScreen = () => {
                 color: 'black',
                 textDecorationLine: 'underline',
                 fontWeight: 'bold',
-                fontSize: 12 * scale
+                fontSize: 12 * scale,
+                fontFamily: 'Roboto'
               }}>
               Click Here to Know More
             </Text>
@@ -90,7 +91,8 @@ const AboutScreen = () => {
               color: 'black',
               textAlign: 'center',
               fontWeight: 'bold',
-              fontSize: 18 * scale
+              fontSize: 18 * scale,
+              fontFamily: 'Roboto'
             }}>
             Support Project
           </Text>
@@ -107,7 +109,8 @@ const AboutScreen = () => {
               color: 'black',
               textAlign: 'center',
               fontSize: 10 * scale,
-              fontWeight: 'bold'
+              fontWeight: 'bold',
+              fontFamily: 'Roboto'
             }}>
             Made with Love
           </Text>
@@ -132,7 +135,8 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     color: 'black',
     marginVertical: 10,
-    fontSize: 12 * scale
+    fontSize: 12 * scale,
+    fontFamily: 'Roboto'
   }
 })
 

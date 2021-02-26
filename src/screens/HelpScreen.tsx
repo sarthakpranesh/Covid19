@@ -206,7 +206,8 @@ const HelpScreen = () => {
             style={{
               fontSize: 12 * scale,
               paddingTop: 20,
-              textAlign: 'center'
+              textAlign: 'center',
+              fontFamily: 'Roboto'
             }}>
             All data retrieved from mohfw.gov.in, click below for more
           </Text>
@@ -217,7 +218,8 @@ const HelpScreen = () => {
                 textAlign: 'center',
                 color: 'red',
                 fontSize: 10 * scale,
-                paddingBottom: 20
+                paddingBottom: 20,
+                fontFamily: 'Roboto'
               }}>
               MOHFW
             </Text>
@@ -238,7 +240,8 @@ const styles = StyleSheet.create({
   helpLineText: {
     textAlign: 'center',
     color: 'black',
-    fontSize: 14 * scale
+    fontSize: 14 * scale,
+    fontFamily: 'Roboto'
   },
   numberContainer: {
     alignSelf: 'center',
@@ -247,7 +250,8 @@ const styles = StyleSheet.create({
   number: {
     color: '#2400FF',
     textAlign: 'center',
-    fontSize: 10 * scale
+    fontSize: 10 * scale,
+    fontFamily: 'Roboto'
   }
 })
 

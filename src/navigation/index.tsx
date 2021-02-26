@@ -17,7 +17,6 @@ import {
 } from '../components/Svgs/index'
 
 import Layout from '../Layout'
-const scale = Layout.fontScale
 
 const Drawer = createDrawerNavigator()
 

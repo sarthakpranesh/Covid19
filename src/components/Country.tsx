@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     color: 'black',
     marginTop: 0,
     fontWeight: 'bold',
-    fontSize: 18 * scale
+    fontSize: 18 * scale,
+    fontFamily: 'Roboto'
   }
 })
 
