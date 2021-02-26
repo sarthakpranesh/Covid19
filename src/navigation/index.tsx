@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Dimensions, Platform, TouchableOpacity } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
+import { Dimensions, Platform } from 'react-native'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 
 import DrawerContent from './DrawerContent'
@@ -11,10 +10,6 @@ import AboutScreen from '../screens/AboutScreen'
 import PrecautionScreen from '../screens/PrecautionScreen'
 import HelpScreen from '../screens/HelpScreen'
 import TopHeadlinesScreen from '../screens/TopHeadlinesScreen'
-
-import {
-  Menu
-} from '../components/Svgs/index'
 
 import Layout from '../Layout'
 
@@ -38,65 +33,31 @@ const RootNavigator = (props: RootNavigatorProps) => {
   const country = props.country
 
   return (
-    <LinearGradient
-      colors={['#DEF7FF', '#B1ECFF']}
-      style={{ flex: 1, backgroundColor: '#B1ECFF' }}>
-      <Drawer.Navigator
-        edgeWidth={100}
-        lazy={false}
-        initialRouteName="Home"
-        drawerType={isLargeDevice ? 'permanent' : 'slide'}
-        overlayColor="transparent"
-        drawerStyle={{
-          width: isLargeDevice ? '20%' : '50%',
-          backgroundColor: 'transparent'
-        }}
-        sceneContainerStyle={{ backgroundColor: 'transparent' }}
-        screenOptions={{
-          headerShown: !isLargeDevice,
-          // eslint-disable-next-line react/display-name
-          header: (p) => {
-            const navigation = p.scene.descriptor.navigation
-            return (
-              <TouchableOpacity
-                style={{
-                  backgroundColor: 'white',
-                  position: 'absolute',
-                  top: 10,
-                  left: 10,
-                  borderRadius: 8,
-                  elevation: 8,
-                  zIndex: 999
-                }}
-                onPress={() => navigation.toggleDrawer()}
-              >
-                <Menu
-                  style={{
-                    margin: 8
-                  }}
-                  color="black"
-                />
-              </TouchableOpacity>
-            )
-          }
-        }}
-        drawerContent={(p) => <DrawerContent {...p} country={props.country} />}
-      >
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        {
-          Platform.OS !== 'web' ? (
-            <Drawer.Screen name="Headline" component={TopHeadlinesScreen} />
-          ) : null
-        }
-        <Drawer.Screen name="Precaution" component={PrecautionScreen} />
-        {
-          country.trim() === 'India' ? (
-            <Drawer.Screen name="Help" component={HelpScreen} />
-          ) : null
-        }
-        <Drawer.Screen name="About" component={AboutScreen} />
-      </Drawer.Navigator>
-    </LinearGradient>
+    <Drawer.Navigator
+      edgeWidth={100}
+      lazy={false}
+      initialRouteName="Home"
+      drawerType={isLargeDevice ? 'permanent' : 'front'}
+      drawerStyle={{
+        width: isLargeDevice ? '20%' : '50%',
+        backgroundColor: '#B1ECFF'
+      }}
+      drawerContent={(p) => <DrawerContent {...p} country={props.country} />}
+    >
+      {
+        Platform.OS !== 'web' ? (
+          <Drawer.Screen name="Headline" component={TopHeadlinesScreen} />
+        ) : null
+      }
+      {
+        country.trim() === 'India' ? (
+          <Drawer.Screen name="Help" component={HelpScreen} />
+        ) : null
+      }
+      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Precaution" component={PrecautionScreen} />
+      <Drawer.Screen name="About" component={AboutScreen} />
+    </Drawer.Navigator>
   )
 }
 

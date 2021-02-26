@@ -11,6 +11,7 @@ import {
 
 // importing components
 import SafeAreaView from '../components/SafeAreaView'
+import MainHeader from '../components/MainHeader'
 
 // importing common styles
 import Styles from '../Styles'
@@ -170,9 +171,10 @@ const data = [
   }
 ]
 
-const HelpScreen = () => {
+const HelpScreen = (props: any) => {
   return (
     <SafeAreaView>
+      <MainHeader {...props} />
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}

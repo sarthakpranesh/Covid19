@@ -10,6 +10,7 @@ import {
 
 // importing components
 import SafeAreaView from '../components/SafeAreaView'
+import MainHeader from '../components/MainHeader'
 import NewsCards from '../components/NewsCards'
 
 // importing common style
@@ -18,7 +19,7 @@ import Styles from '../Styles'
 // importing hooks
 import getTopHeadlines from '../hooks/getTopHeadlines'
 
-const TopHeadlinesScreen = ({ navigation }: any) => {
+const TopHeadlinesScreen = (props: any) => {
   const [fetchTopHeadlines, topHeadlines, err] = getTopHeadlines()
 
   // for pull down to refresh
@@ -33,11 +34,12 @@ const TopHeadlinesScreen = ({ navigation }: any) => {
     if (Platform.OS === 'web') {
       alert('Headlines are not supported yet on the Web. Tryout our app to use this feature!')
     }
-    navigation.navigate('Home')
+    props.navigation.navigate('Home')
   }
 
   return (
     <SafeAreaView>
+      <MainHeader {...props} />
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}

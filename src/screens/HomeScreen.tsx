@@ -11,6 +11,7 @@ import {
 
 // importing components
 import SafeAreaView from '../components/SafeAreaView'
+import MainHeader from '../components/MainHeader'
 import Country from '../components/Country'
 import CandleCharts from '../components/CandleCharts'
 
@@ -38,6 +39,7 @@ const HomeScreen = (props: any) => {
 
   return (
     <SafeAreaView>
+      <MainHeader {...props} />
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}

@@ -1,10 +1,9 @@
-import { StyleSheet, Platform } from 'react-native'
+import { StyleSheet } from 'react-native'
 import Layout from './Layout'
 
 const Styles = StyleSheet.create({
   scrollView: {
-    flex: 1,
-    backgroundColor: '#DEF7FF'
+    flex: 1
   },
   scrollViewContentContainer: {
     width: Layout.isLargeDevice ? Layout.window.width / 2 : Layout.window.width,
@@ -20,7 +19,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     paddingVertical: 40,
-    paddingTop: Platform.OS === 'ios' ? 80 : 40,
+    paddingTop: 80,
     paddingBottom: 40
   },
   mainHeaderText: {

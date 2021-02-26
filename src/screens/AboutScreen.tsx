@@ -10,8 +10,9 @@ import {
 } from 'react-native'
 
 // import components
-import { Github } from '../components/Svgs/index'
 import SafeAreaView from '../components/SafeAreaView'
+import MainHeader from '../components/MainHeader'
+import { Github } from '../components/Svgs/index'
 
 // importing common style
 import Styles from '../Styles'
@@ -20,9 +21,10 @@ import Styles from '../Styles'
 import Layout from '../Layout'
 const scale = Layout.fontScale
 
-const AboutScreen = () => {
+const AboutScreen = (props: any) => {
   return (
     <SafeAreaView>
+      <MainHeader {...props} />
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}

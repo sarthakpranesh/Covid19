@@ -3,14 +3,16 @@ import { View, ScrollView, Text } from 'react-native'
 
 // importing components
 import SafeAreaView from '../components/SafeAreaView'
+import MainHeader from '../components/MainHeader'
 import PreventionCards from '../components/PreventionCards'
 
 // importing common style
 import Styles from '../Styles'
 
-const Precaution = () => {
+const Precaution = (props: any) => {
   return (
     <SafeAreaView>
+      <MainHeader {...props} />
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
