@@ -51,7 +51,14 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
     setTimeout(() => {
       switch (Platform.OS) {
         case 'web':
-          fetchAndSetCountry({ latitude: '28.644800', longitude: '77.216721' })
+          Geolocation.getCurrentPosition(
+            (pos) => fetchAndSetCountry(pos.coords),
+            (err) => {
+              console.log(err.message)
+              fetchAndSetCountry({ latitude: '28.644800', longitude: '77.216721' })
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+          )
           return
         case 'ios':
           Geolocation.requestAuthorization('whenInUse')
