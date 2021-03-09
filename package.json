@@ -10,7 +10,7 @@
     "test": "jest",
     "lint": "eslint .",
     "build-android": "cd ./android && ./gradlew clean && ./gradlew assembleRelease",
-    "build-web": "expo build:web --no-pwa"
+    "build-web": "expo build:web"
   },
   "pre-commit": [
     "lint"
