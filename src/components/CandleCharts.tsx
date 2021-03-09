@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, ScrollView, Text, Animated, Dimensions } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import React, { useState } from 'react'
+import { View, StyleSheet, ScrollView, Text, Dimensions } from 'react-native'
+
+// importing components
+import Candle from './Candle'
 
 // importing constants
 import Layout from '../Layout'
 const scale = Layout.fontScale
-const width = Dimensions.get('window').width > 720 ? 300 : Layout.window.width;
+const width = Dimensions.get('window').width > 720 ? 300 : Layout.window.width
 
 export interface CandleProps {
   data: any;
@@ -18,20 +20,16 @@ export interface TimelineDataType {
 }
 
 const CandleCharts = (props: CandleProps) => {
-  const startAnimation = new Animated.Value(0)
-  const animatedHeight = startAnimation.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, -width],
-    extrapolate: 'clamp'
-  })
   let { data, country } = props
-  const [pressedData, setPressedData] = useState<TimelineDataType>({
-    date: '',
-    difference: -1
-  })
-  const [animatedOpacity, setAnimatedOpacity] = useState(0)
+
+  // screen states
+  const [pressedData, setPressedData] = useState<TimelineDataType>(data[data.length - 1])
+
+  // screen component references
   let scrollView: ScrollView | null
-  const widthOfCandle = 4
+
+  // calculations for candles
+  const widthOfCandle = 6
   const marginBetweenCandles = 2
   let heightScale = 1
   let svgWidth = data.for
@@ -46,13 +44,7 @@ const CandleCharts = (props: CandleProps) => {
     svgWidth = (widthOfCandle + marginBetweenCandles) * data.length
     heightScale = width / max
   }
-  useEffect(() => {
-    Animated.timing(startAnimation, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true
-    }).start()
-  }, [data, pressedData])
+
   return (
     <View style={styles.countrySection}>
       <View style={styles.countryHeader}>
@@ -60,13 +52,13 @@ const CandleCharts = (props: CandleProps) => {
           {country ? `${country}'s Timeline` : ' Unknown Country '}:{' '}
         </Text>
       </View>
-      <Animated.View
-        style={[styles.animatedDataDialog, { opacity: animatedOpacity }]}>
+      <View
+        style={styles.animatedDataDialog}>
         <Text>
           Active Cases: {pressedData.difference ? pressedData.difference : 0}
         </Text>
         <Text>Date: {pressedData.date ? pressedData.date : 0}</Text>
-      </Animated.View>
+      </View>
       <ScrollView
         ref={(ref) => {
           scrollView = ref
@@ -75,60 +67,40 @@ const CandleCharts = (props: CandleProps) => {
           scrollView !== null ? scrollView.scrollToEnd({ animated: true }) : null
         }
         style={styles.graphContainer}
+        contentContainerStyle={{
+          width: svgWidth + 20,
+          height: width,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-end'
+        }}
         horizontal={true}
         scrollEventThrottle={16}>
-        {data.length !== 0 ? (
-          <View style={{
-            width: svgWidth + 20,
-            height: width,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-end'
-          }}
-          >
-            {data.map((d: any, index: any) => {
-              let color
-              if (index !== 0) {
-                if (d.difference - data[index - 1].difference < 0) {
-                  color = 'rgba(0, 255, 0, 0.9)'
-                } else if (d.difference - data[index - 1].difference === 0) {
-                  color = 'rgba(255, 255, 0, 0.9)'
-                } else {
-                  color = 'rgba(255, 0, 0, 0.9)'
-                }
-              }
-              return (
-                <TouchableOpacity key={`case${index}`} onPress={() => {
-                  setPressedData(d)
-                  setAnimatedOpacity(1)
-                }}>
-                  <Animated.View style={{
-                    marginLeft: marginBetweenCandles,
-                    width: widthOfCandle,
-                    height: widthOfCandle,
-                    backgroundColor: 'black',
-                    top: widthOfCandle
-                  }}/>
-                  <Animated.View
-                    style={{
-                      top: width + widthOfCandle,
-                      marginLeft: marginBetweenCandles,
-                      width: widthOfCandle,
-                      height: heightScale * d.difference,
-                      transform: [{ translateY: animatedHeight }],
-                      backgroundColor: color,
-                      opacity: 0.6,
-                      borderWidth: d.date === pressedData.date ? 2 : 0,
-                      borderColor: d.date === pressedData.date ? 'black' : null
-                    }}
-                  >
-                  </Animated.View>
-                </TouchableOpacity>
-              )
-            })}
-          </View>
-        ) : null}
+        {data.map((d: any, index: any) => {
+          let color
+          if (index !== 0) {
+            if (d.difference - data[index - 1].difference < 0) {
+              color = 'rgba(0, 255, 0, 0.9)'
+            } else if (d.difference - data[index - 1].difference === 0) {
+              color = 'rgba(255, 255, 0, 0.9)'
+            } else {
+              color = 'rgba(255, 0, 0, 0.9)'
+            }
+          }
+          return <Candle
+            key={`${index}`}
+            style={{
+              marginLeft: marginBetweenCandles,
+              width: widthOfCandle,
+              height: heightScale * d.difference,
+              backgroundColor: color,
+              borderWidth: d.date === pressedData.date ? 1 : 0,
+              borderColor: d.date === pressedData.date ? 'black' : null
+            }}
+            onPress={() => setPressedData(d)}
+          />
+        })}
       </ScrollView>
     </View>
   )
@@ -160,7 +132,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto'
   },
   animatedDataDialog: {
-    color: 'black',
+    opacity: 1,
     padding: 10,
     borderRadius: 16,
     backgroundColor: 'white',
