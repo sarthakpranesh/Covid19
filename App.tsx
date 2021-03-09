@@ -6,6 +6,7 @@ import { PermissionsAndroid, Platform } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import Geolocation from 'react-native-geolocation-service'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { preventAutoHideAsync, hideAsync } from 'expo-splash-screen'
 
 // Importing RootNavigator
 import RootNavigator from './src/navigation/index'
@@ -21,7 +22,7 @@ import getCountry from './src/API/functions/getCountry'
 import getCovidData from './src/API/functions/getCovidData'
 
 // Importing splash screen
-import SplashScreen from './src/screens/SplashScreen'
+import WebSplashScreen from './src/screens/SplashScreen'
 
 const mapStateToProps = (state: any) => {
   const data = state.dataReducer.data
@@ -118,14 +119,32 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
     }
   }, [props.country])
 
-  if (props.data.global === undefined) {
-    return <SplashScreen />
+  // this useEffect should hide all implementation of splash screen from native and web
+  useEffect(() => {
+    if (props.data.global !== undefined) {
+      hideAsync()
+    }
+  }, [props.data.global])
+
+  // expo-splash-screen not supported on web
+  // therefore using a extra stack with react native component for splash on web
+  if (Platform.OS === 'web') {
+    if (props.data.global === undefined) {
+      return <WebSplashScreen />
+    }
+  }
+
+  if (props.country === null || props.data.global === undefined) {
+    return null
   }
 
   return <RootNavigator country={props.country} />
 })
 
 const App = () => {
+  useEffect(() => {
+    preventAutoHideAsync()
+  }, [])
   return (
     <ReduxProvider store={store}>
       <PersistGate loading={false} persistor={persister}>
