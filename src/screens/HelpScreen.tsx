@@ -8,6 +8,7 @@ import {
   ScrollView,
   Text
 } from 'react-native'
+import { View as MotiView } from 'moti'
 
 // importing components
 import SafeAreaView from '../components/SafeAreaView'
@@ -188,9 +189,24 @@ const HelpScreen = (props: any) => {
           <FlatList
             data={data}
             keyExtractor={(ele) => ele.state}
-            renderItem={({ item }) => {
+            renderItem={({ item, index }) => {
               return (
-                <View style={styles.listItemHelp}>
+                <MotiView
+                  style={styles.listItemHelp}
+                  from={{
+                    translateX: 50,
+                    opacity: 0
+                  }}
+                  animate={{
+                    translateX: 0,
+                    opacity: 1
+                  }}
+                  transition={{
+                    type: 'timing',
+                    duration: 100,
+                    delay: 100 * index
+                  }}
+                >
                   <Text style={styles.helpLineText}>
                     {item.state}
                   </Text>
@@ -199,7 +215,7 @@ const HelpScreen = (props: any) => {
                     style={styles.numberContainer}>
                     <Text style={styles.number}>{item.number}</Text>
                   </TouchableOpacity>
-                </View>
+                </MotiView>
               )
             }}
           />

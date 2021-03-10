@@ -95,6 +95,7 @@ const CandleCharts = (props: CandleProps) => {
               width: widthOfCandle,
               height: heightScale * d.difference,
               backgroundColor: color,
+              opacity: 0.7,
               borderWidth: d.date === pressedData.date ? 1 : 0,
               borderColor: d.date === pressedData.date ? 'black' : null
             }}

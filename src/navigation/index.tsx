@@ -35,7 +35,7 @@ const RootNavigator = (props: RootNavigatorProps) => {
   return (
     <Drawer.Navigator
       edgeWidth={100}
-      lazy={false}
+      lazy={true}
       initialRouteName="Home"
       drawerType={isLargeDevice ? 'permanent' : 'front'}
       drawerStyle={{

@@ -8,6 +8,7 @@ import {
   RefreshControl,
   ScrollView
 } from 'react-native'
+import { View as MotiView } from 'moti'
 
 // importing components
 import SafeAreaView from '../components/SafeAreaView'
@@ -56,14 +57,62 @@ const HomeScreen = (props: any) => {
           />
         </View>
 
-        <Country
-          data={results?.global}
-          countryName="World"
-          containerStyle={'#B1ECFF'}
-        />
+        <MotiView
+          from={{
+            translateX: 50,
+            opacity: 0
+          }}
+          animate={{
+            translateX: 0,
+            opacity: 1
+          }}
+          transition={{
+            type: 'timing',
+            duration: 200
+          }}
+        >
+          <Country
+            data={results?.global}
+            countryName="World"
+            containerStyle={'#B1ECFF'}
+          />
+        </MotiView>
 
-        <Country data={results?.country} countryName={country} />
-        <CandleCharts country={country} data={results?.timeline} />
+        <MotiView
+          from={{
+            translateX: 50,
+            opacity: 0
+          }}
+          animate={{
+            translateX: 0,
+            opacity: 1
+          }}
+          transition={{
+            type: 'timing',
+            duration: 200,
+            delay: 200
+          }}
+        >
+          <Country data={results?.country} countryName={country} />
+        </MotiView>
+
+        <MotiView
+          from={{
+            translateX: 50,
+            opacity: 0
+          }}
+          animate={{
+            translateX: 0,
+            opacity: 1
+          }}
+          transition={{
+            type: 'timing',
+            duration: 200,
+            delay: 400
+          }}
+        >
+          <CandleCharts country={country} data={results?.timeline} />
+        </MotiView>
       </ScrollView>
     </SafeAreaView>
   )
