@@ -29,7 +29,7 @@ const CandleCharts = (props: CandleProps) => {
   let scrollView: ScrollView | null
 
   // calculations for candles
-  const widthOfCandle = 6
+  const widthOfCandle = 4
   const marginBetweenCandles = 2
   let heightScale = 1
   let svgWidth = data.for
@@ -96,8 +96,8 @@ const CandleCharts = (props: CandleProps) => {
               height: heightScale * d.difference,
               backgroundColor: color,
               opacity: 0.7,
-              borderWidth: d.date === pressedData.date ? 1 : 0,
-              borderColor: d.date === pressedData.date ? 'black' : null
+              borderWidth: d.date === pressedData.date ? 2 : 0,
+              borderColor: d.date === pressedData.date ? 'rgba(0, 0, 0, 0.4)' : null
             }}
             onPress={() => setPressedData(d)}
           />
