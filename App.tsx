@@ -3,13 +3,9 @@ import { bindActionCreators } from 'redux'
 import { Provider as ReduxProvider, connect } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { PermissionsAndroid, Platform } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
 import Geolocation from 'react-native-geolocation-service'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { preventAutoHideAsync, hideAsync } from 'expo-splash-screen'
-
-// Importing RootNavigator
-import RootNavigator from './src/navigation/index'
 
 // importing redux persist stores
 import { store, persister } from './src/stores/stores'
@@ -23,6 +19,7 @@ import getCovidData from './src/API/functions/getCovidData'
 
 // Importing splash screen
 import WebSplashScreen from './src/screens/SplashScreen'
+import HomeScreen from './src/screens/HomeScreen'
 
 const mapStateToProps = (state: any) => {
   const data = state.dataReducer.data
@@ -138,7 +135,7 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
     return null
   }
 
-  return <RootNavigator country={props.country} />
+  return <HomeScreen />
 })
 
 const App = () => {
@@ -149,9 +146,7 @@ const App = () => {
     <ReduxProvider store={store}>
       <PersistGate loading={false} persistor={persister}>
         <SafeAreaProvider>
-          <NavigationContainer>
-            <MainApp />
-          </NavigationContainer>
+          <MainApp />
         </SafeAreaProvider>
       </PersistGate>
     </ReduxProvider>

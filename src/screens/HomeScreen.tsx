@@ -6,13 +6,15 @@ import {
   StyleSheet,
   Image,
   RefreshControl,
-  ScrollView
+  ScrollView,
+  TouchableOpacity,
+  Linking
 } from 'react-native'
 import { View as MotiView } from 'moti'
 
 // importing components
+import { Github } from '../components/Svgs/index'
 import SafeAreaView from '../components/SafeAreaView'
-import MainHeader from '../components/MainHeader'
 import Country from '../components/Country'
 import CandleCharts from '../components/CandleCharts'
 
@@ -40,7 +42,25 @@ const HomeScreen = (props: any) => {
 
   return (
     <SafeAreaView>
-      <MainHeader {...props} />
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+          backgroundColor: 'white',
+          borderRadius: 8,
+          elevation: 8,
+          zIndex: 999
+        }}
+        onPress={() => Linking.openURL('https://github.com/sarthakpranesh/Covid19')}
+      >
+        <Github
+          style={{
+            margin: 8
+          }}
+          color="black"
+        />
+      </TouchableOpacity>
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
