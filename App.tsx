@@ -118,20 +118,20 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
 
   // this useEffect should hide all implementation of splash screen from native and web
   useEffect(() => {
-    if (props.data.global !== undefined) {
+    if (props.data?.global !== undefined) {
       hideAsync()
     }
-  }, [props.data.global])
+  }, [props.data?.global])
 
   // expo-splash-screen not supported on web
   // therefore using a extra stack with react native component for splash on web
   if (Platform.OS === 'web') {
-    if (props.data.global === undefined) {
+    if (props.data?.global === undefined) {
       return <WebSplashScreen />
     }
   }
 
-  if (props.country === null || props.data.global === undefined) {
+  if (props.country === null || props.data?.global === undefined) {
     return null
   }
 

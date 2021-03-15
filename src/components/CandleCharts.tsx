@@ -26,7 +26,7 @@ const CandleCharts = (props: CandleProps) => {
   const [pressedData, setPressedData] = useState<TimelineDataType>(data[data.length - 1])
 
   // screen component references
-  let scrollView: ScrollView | null
+  let scrollView: ScrollView | null = null
 
   // calculations for candles
   const widthOfCandle = 4
