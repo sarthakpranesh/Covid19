@@ -21,17 +21,17 @@
 ## Introduction
 
 <p>
-Covid19 is a React-Native project developed in support of people suffering and affected due to Covid-19 {Corona} virus all around the world. The app has a simple yet innovative design with multiple features like - showing India's Timeline, Precautions, Latest News about the virus, helpline contact info for each state, etc. The app lets the user track the growth of the virus and provides statistics from all around the world without logging any tracking information about its users.
+Covid19 is a React-Native project developed in support of people suffering and affected due to Covid-19 {Corona} virus all around the world. The app takes a very simple and light weight design keeping in mind proper responsiveness throughout different platforms like android, iOS and web. The app lets the user track the growth of active cases in their country and provides statistics from all around the world.
 </p>
 
 <p>
-v3.0.0 Introduces web support using `react-native-web` allowing the same codebase to be used on the web platform as a PWA apart from the Android and iOS support.
+v3.0.0 Introduces web support using `react-native-web` allowing the same codebase to be used on the web platform as a PWA apart from the Android and iOS support with code sharing of about 96-97%. My focus right now is: fully cross-platform app available on android, iOS and web, light weight (with good performance on the web) and more statical information and inference of the covid data.
 </p>
 
 <br />
 
 ## Designs
-Our designer worked really hard for coming up with a simple and innovative design, credits to - [Ankit Mishra](https://github.com/alexmishra)
+Though the current implementation has moved away from the actual designs (keeping in mind web support and ease of use) but our designer worked really hard for coming up with a simple and innovative initial designs, credits to - [Ankit Mishra](https://github.com/alexmishra)
 
 | Title | Link |
 | --- | --- |
@@ -42,7 +42,6 @@ Our designer worked really hard for coming up with a simple and innovative desig
 
 ## APIs used
 1. [corona.lmao.ninja](https://corona.lmao.ninja/)
-3. [Some News Api](https://github.com/sarthakpranesh/newsApiFetcher)
 
 <br/>
 
