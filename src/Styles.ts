@@ -1,12 +1,15 @@
-import { StyleSheet, Platform } from 'react-native'
-import Layout from './Layout';
+import { StyleSheet } from 'react-native'
+import Layout from './Layout'
 
 const Styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
+  scrollView: {
+    flex: 1
+  },
+  scrollViewContentContainer: {
+    width: Layout.isLargeDevice ? Layout.window.width / 2 : Layout.window.width,
+    marginVertical: 10,
     paddingHorizontal: 10,
-    paddingVertical: 10,
-    backgroundColor: '#DEF7FF'
+    alignSelf: 'center'
   },
   mainHeader: {
     flex: 1,
@@ -16,7 +19,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     paddingVertical: 40,
-    paddingTop: Platform.OS === "ios" ? 80 : 40,
+    paddingTop: 80,
     paddingBottom: 40
   },
   mainHeaderText: {
@@ -24,6 +27,7 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#D41D3E',
     fontSize: 24 * Layout.fontScale,
+    fontFamily: 'Roboto'
   }
 })
 

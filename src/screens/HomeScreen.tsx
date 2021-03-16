@@ -1,88 +1,69 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
   Image,
   RefreshControl,
-  Alert,
-  BackHandler,
-  ScrollView
+  ScrollView,
+  TouchableOpacity,
+  Linking
 } from 'react-native'
-import SplashScreen from 'react-native-splash-screen'
+import { View as MotiView } from 'moti'
 
 // importing components
+import { Github } from '../components/Svgs/index'
+import SafeAreaView from '../components/SafeAreaView'
 import Country from '../components/Country'
 import CandleCharts from '../components/CandleCharts'
 
-// importing hooks
-import getHomeScreenData from '../hooks/getHomeScreenData'
+// importing reducers
+import { updateData } from '../reducers/DataReducer'
+
+// importing API functions
+import getCovidData from '../API/functions/getCovidData'
 
 // import common style
 import Styles from '../Styles'
 
-export interface HomeProps {
-  style: any;
-  country: String;
-}
-
-const HomeScreen = ({ style, country }: HomeProps) => {
+const HomeScreen = (props: any) => {
   const [refreshing, setRefresh] = useState<boolean>(false)
-
-  const [fetchHomeData, results, err] = getHomeScreenData()
-
-  const handleError = () => {
-    Alert.alert(
-      'Covid 19',
-      err === undefined ? 'Network Error' : err,
-      [
-        {
-          text: 'Retry',
-          onPress: () => {
-            onRefresh()
-          }
-        },
-        { text: 'Exit', onPress: () => BackHandler.exitApp() }
-      ],
-      { cancelable: false }
-    )
-  }
-
-  useEffect(() => {
-    fetchHomeData(country)
-      .then(() => SplashScreen.hide())
-      .catch(() => handleError())
-    setInterval(() => {
-      console.log('Set Interval running')
-      fetchHomeData(country)
-        .then(() => console.log('Data Updated'))
-        .catch(() => handleError())
-    }, 5 * 60000)
-  }, [country])
 
   const onRefresh = useCallback(async () => {
     setRefresh(true)
-    fetchHomeData(country)
-      .then(() => {
-        setRefresh(false)
-      })
-      .catch(() => handleError())
-  }, [fetchHomeData])
+    const data = await getCovidData(props.country)
+    props.updateData(data)
+    setRefresh(false)
+  }, [])
 
-  if (results === null) {
-    return null
-  }
+  const results = props.data
+  const country = props.country
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        backgroundColor: 'pink',
-        ...style
-      }}>
+    <SafeAreaView>
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+          backgroundColor: 'white',
+          borderRadius: 8,
+          elevation: 8,
+          zIndex: 999
+        }}
+        onPress={() => Linking.openURL('https://github.com/sarthakpranesh/Covid19')}
+      >
+        <Github
+          style={{
+            margin: 8
+          }}
+          color="black"
+        />
+      </TouchableOpacity>
       <ScrollView
-        style={Styles.safeArea}
+        style={Styles.scrollView}
+        contentContainerStyle={Styles.scrollViewContentContainer}
         alwaysBounceVertical={true}
         showsVerticalScrollIndicator={false}
         refreshControl={
@@ -96,16 +77,64 @@ const HomeScreen = ({ style, country }: HomeProps) => {
           />
         </View>
 
-        <Country
-          data={results?.global}
-          countryName="World"
-          containerStyle={'#B1ECFF'}
-        />
+        <MotiView
+          from={{
+            translateX: 50,
+            opacity: 0
+          }}
+          animate={{
+            translateX: 0,
+            opacity: 1
+          }}
+          transition={{
+            type: 'timing',
+            duration: 200
+          }}
+        >
+          <Country
+            data={results?.global}
+            countryName="World"
+            containerStyle={'#B1ECFF'}
+          />
+        </MotiView>
 
-        <Country data={results?.country} countryName={country} />
-        <CandleCharts country={country} data={results?.timeline} />
+        <MotiView
+          from={{
+            translateX: 50,
+            opacity: 0
+          }}
+          animate={{
+            translateX: 0,
+            opacity: 1
+          }}
+          transition={{
+            type: 'timing',
+            duration: 200,
+            delay: 200
+          }}
+        >
+          <Country data={results?.country} countryName={country} />
+        </MotiView>
+
+        <MotiView
+          from={{
+            translateX: 50,
+            opacity: 0
+          }}
+          animate={{
+            translateX: 0,
+            opacity: 1
+          }}
+          transition={{
+            type: 'timing',
+            duration: 200,
+            delay: 400
+          }}
+        >
+          <CandleCharts country={country} data={results?.timeline} />
+        </MotiView>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -120,7 +149,21 @@ const styles = StyleSheet.create({
     marginVertical: -10,
     paddingVertical: 0,
     marginBottom: 0
-  },
+  }
 })
 
-export default HomeScreen
+const mapStateToProps = (state: any) => {
+  const data = state.dataReducer.data
+  return data
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators(
+    {
+      updateData
+    },
+    dispatch
+  )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

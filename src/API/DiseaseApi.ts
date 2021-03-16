@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+import fetch from 'node-fetch'
+
 export interface TimelineData {
   date: String,
   difference: Number,

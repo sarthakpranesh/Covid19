@@ -1,5 +1,4 @@
-/* eslint-disable prefer-promise-reject-errors */
-/* eslint-disable no-undef */
+import fetch from 'node-fetch'
 
 export interface GlobalCases {
   confirmed: Number,
@@ -26,7 +25,7 @@ export const fetchGlobalData: () => Promise<GlobalCases> = () => {
           }
           return resolve(results)
         }
-        reject('Ninja API returned no data!')
+        reject(new Error('Ninja API returned no data'))
       })
       .catch((err) => {
         console.log('Ninja API error (Global): ', err.message)
@@ -53,7 +52,7 @@ export const fetchCountryData: (country: String) => Promise<CountryCases> = (cou
           }
           return resolve(results)
         }
-        reject('Ninja API returned no data!')
+        reject(new Error('Ninja API returned no data!'))
       })
       .catch((err) => {
         console.log('Ninja API error (Country): ', err.message)
