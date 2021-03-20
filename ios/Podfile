@@ -5,7 +5,7 @@ require_relative '../node_modules/react-native-unimodules/cocoapods.rb'
 platform :ios, '11.0'
 
 target 'Covid19' do
-
+  use_unimodules!
   config = use_native_modules!
   use_react_native!(:path => config["reactNativePath"])
 
@@ -13,8 +13,6 @@ target 'Covid19' do
     inherit! :complete
     # Pods for testing
   end
-  
-  use_unimodules!
 
   # Enables Flipper.
   #
@@ -22,6 +20,13 @@ target 'Covid19' do
   # you should disable these next few lines.
   use_flipper!
   post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        if Gem::Version.new('9.0') > Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+        end
+      end
+    end
     flipper_post_install(installer)
   end
 end
@@ -34,5 +39,3 @@ target 'Covid19-tvOS' do
     # Pods for testing
   end
 end
-
-pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
