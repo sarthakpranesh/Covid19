@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, Platform } from 'react-native'
 
 export type ChipListParam = {
   data: string [];
@@ -41,7 +41,7 @@ const ChipList = (props: ChipListParam) => {
 
 const styles = StyleSheet.create({
   flatList: {
-    marginTop: 4,
+    marginTop: Platform.OS === 'web' ? 20 : 4
   },
   flatListContainer: {
     paddingLeft: 15
