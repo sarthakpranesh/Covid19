@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { bindActionCreators } from 'redux'
 import { Provider as ReduxProvider, connect } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import { PermissionsAndroid, Platform } from 'react-native'
+import { Platform } from 'react-native'
 import Geolocation from 'react-native-geolocation-service'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { preventAutoHideAsync, hideAsync } from 'expo-splash-screen'
@@ -21,6 +21,20 @@ import getCovidData from './src/API/functions/getCovidData'
 import WebSplashScreen from './src/screens/SplashScreen'
 import HomeScreen from './src/screens/HomeScreen'
 
+// Importing components
+import GeolocationPermissions from './src/components/GeolocationPermissions/GeolocationPermissions'
+
+// default location, if permission for location not provided
+const INDIA: DefaultGeolocation.GeoCoordinates = {
+  latitude: 28.644800,
+  longitude: 77.216721,
+  accuracy: 0,
+  altitude: 0,
+  altitudeAccuracy: 0,
+  heading: 0,
+  speed: 0
+}
+
 const mapStateToProps = (state: any) => {
   const data = state.dataReducer.data
   return data
@@ -36,74 +50,32 @@ const mapDispatchToProps = (dispatch: any) =>
   )
 
 const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
-  const fetchAndSetCountry = async (coords: any) => {
-    const country = await getCountry({
+  // small helper
+  const fetchAndSetCountry = async (coords: Geolocation.GeoCoordinates) => {
+    const country: string = await getCountry({
       long: coords.longitude,
       lat: coords.latitude
     })
     props.setCountry(country)
   }
 
+  // Get mobile location -> set country
   useEffect(() => {
-    // some bug in react native
-    setTimeout(() => {
-      switch (Platform.OS) {
-        case 'web':
-          Geolocation.getCurrentPosition(
-            (pos) => fetchAndSetCountry(pos.coords),
-            (err) => {
-              console.log(err.message)
-              fetchAndSetCountry({ latitude: '28.644800', longitude: '77.216721' })
-            },
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-          )
-          return
-        case 'ios':
-          Geolocation.requestAuthorization('whenInUse')
-            .then((result) => {
-              console.log('IOS permission:', result)
-              Geolocation.getCurrentPosition(
-                (pos) => fetchAndSetCountry(pos.coords),
-                (err) => {
-                  console.log(err.message)
-                  fetchAndSetCountry({ latitude: '28.644800', longitude: '77.216721' })
-                },
-                { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-              )
-            })
-            .catch((err) => console.log(err.message))
-          return
-        case 'android':
-          PermissionsAndroid.request(
-            PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-            {
-              title: 'Covid-19 App',
-              message:
-                "App needs to access your phone's location to work correctly. " +
-                'You can cancel this step but then app will default to Indian Stats',
-              buttonNeutral: 'Ask Me Later',
-              buttonNegative: 'Cancel',
-              buttonPositive: 'OK'
-            }
-          )
-            .then(() => {
-              Geolocation.getCurrentPosition(
-                (pos) => fetchAndSetCountry(pos.coords),
-                (err) => {
-                  console.log('Geolocation Error:', err.message)
-                  fetchAndSetCountry({ latitude: '28.644800', longitude: '77.216721' })
-                },
-                { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-              )
-            })
-            .catch((err) => console.log(err.message))
-          return
-        default:
-          console.log('No platform matched')
-      }
-    }, 100)
+    GeolocationPermissions()
+      .then(() => {
+        Geolocation.getCurrentPosition(
+          (pos) => fetchAndSetCountry(pos.coords),
+          (err) => {
+            console.log('Error Getting Position:', err.message)
+            fetchAndSetCountry(INDIA)
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        )
+      })
+      .catch((err) => console.log('MainApp -> UseEffect -> Location Error:', err.message))
   }, [])
 
+  // if mobile location set -> get covid stats
   useEffect(() => {
     if (props.country !== null) {
       getCovidData(props.country)
@@ -116,7 +88,7 @@ const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
     }
   }, [props.country])
 
-  // this useEffect should hide all implementation of splash screen from native and web
+  // hide all implementation of splash screen from native and web
   useEffect(() => {
     if (props.data?.global !== undefined) {
       hideAsync()
