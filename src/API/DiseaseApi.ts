@@ -2,7 +2,10 @@ import fetch from 'node-fetch'
 
 export interface TimelineData {
   date: String,
-  difference: Number,
+  active: Number,
+  total: Number,
+  recovered: Number,
+  deaths: Number,
 }
 
 export const fetchTimelineData: (country: String) => Promise<TimelineData[]> = (country) => {
@@ -14,8 +17,11 @@ export const fetchTimelineData: (country: String) => Promise<TimelineData[]> = (
         const filteredData: TimelineData[] = dateKeys.map((date) => {
           const r: TimelineData = {
             date: date,
-            difference:
-              respData.timeline.cases[date] - ( respData.timeline.recovered[date] + respData.timeline.deaths[date] )
+            active:
+              respData.timeline.cases[date] - (respData.timeline.recovered[date] + respData.timeline.deaths[date]),
+            total: respData.timeline.cases[date],
+            recovered: respData.timeline.recovered[date],
+            deaths: respData.timeline.deaths[date]
           }
           return r
         })
