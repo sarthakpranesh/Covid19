@@ -69,6 +69,7 @@ const CandleCharts = (props: CandleProps) => {
         <Text>date: {pressedData.date}</Text>
       </View>
       <ScrollView
+        key={selected}
         ref={(ref) => {
           scrollView = ref
         }}

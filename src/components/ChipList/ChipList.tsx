@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === 'web' ? 20 : 4
   },
   flatListContainer: {
-    paddingLeft: 15
+    paddingLeft: 20,
+    paddingRight: 20
   },
   chipContainer: {
     paddingHorizontal: 10,
