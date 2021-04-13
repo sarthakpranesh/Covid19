@@ -52,7 +52,7 @@ const CandleCharts = (props: CandleProps) => {
     heightScale = width / max
   }
 
-  const selectedText = `${selected}: ${pressedData[selected]}`
+  const selectedText = `${selected.toUpperCase()}: ${pressedData[selected]}`
 
   return (
     <View style={styles.countrySection}>
@@ -66,7 +66,7 @@ const CandleCharts = (props: CandleProps) => {
         <Text>
           {selectedText}
         </Text>
-        <Text>date: {pressedData.date}</Text>
+        <Text>DATE: {pressedData.date}</Text>
       </View>
       <ScrollView
         key={selected}
