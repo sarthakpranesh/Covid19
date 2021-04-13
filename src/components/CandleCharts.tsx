@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView, Text, Dimensions } from 'react-native'
 
 // importing components
 import Candle from './Candle'
+import ChipList from './ChipList/ChipList'
 
 // importing constants
 import Layout from '../Layout'
@@ -16,14 +17,20 @@ export interface CandleProps {
 
 export interface TimelineDataType {
   date: String;
-  difference: number;
+  active: number;
+}
+
+// helper functions
+const getDataKeys = (data: any []) => {
+  return Object.keys(data[0]).filter((i) => i !== 'date')
 }
 
 const CandleCharts = (props: CandleProps) => {
   let { data, country } = props
 
   // screen states
-  const [pressedData, setPressedData] = useState<TimelineDataType>(data[data.length - 1])
+  const [selected, setSelected] = useState<string>(getDataKeys(data)[0])
+  const [pressedData, setPressedData] = useState<any>(data[data.length - 1])
 
   // screen component references
   let scrollView: ScrollView | null = null
@@ -35,15 +42,17 @@ const CandleCharts = (props: CandleProps) => {
   let svgWidth = data.for
   if (data.length !== 0) {
     let max = 0
-    data.forEach((val: TimelineDataType) => {
-      if (val.difference > max) {
-        max = val.difference
+    data.forEach((val: any) => {
+      if (val[selected] > max) {
+        max = val[selected]
       }
     })
-    data = data.filter((d: any) => d.difference / max > 0.001)
+    data = data.filter((d: any) => d[selected] / max > 0.001)
     svgWidth = (widthOfCandle + marginBetweenCandles) * data.length
     heightScale = width / max
   }
+
+  const selectedText = `${selected.toUpperCase()}: ${pressedData[selected]}`
 
   return (
     <View style={styles.countrySection}>
@@ -55,11 +64,12 @@ const CandleCharts = (props: CandleProps) => {
       <View
         style={styles.animatedDataDialog}>
         <Text>
-          Active Cases: {pressedData.difference ? pressedData.difference : 0}
+          {selectedText}
         </Text>
-        <Text>Date: {pressedData.date ? pressedData.date : 0}</Text>
+        <Text>DATE: {pressedData.date}</Text>
       </View>
       <ScrollView
+        key={selected}
         ref={(ref) => {
           scrollView = ref
         }}
@@ -80,9 +90,9 @@ const CandleCharts = (props: CandleProps) => {
         {data.map((d: any, index: any) => {
           let color
           if (index !== 0) {
-            if (d.difference - data[index - 1].difference < 0) {
+            if (d[selected] - data[index - 1][selected] < 0) {
               color = 'rgba(0, 255, 0, 0.9)'
-            } else if (d.difference - data[index - 1].difference === 0) {
+            } else if (d[selected] - data[index - 1][selected] === 0) {
               color = 'rgba(255, 255, 0, 0.9)'
             } else {
               color = 'rgba(255, 0, 0, 0.9)'
@@ -93,7 +103,7 @@ const CandleCharts = (props: CandleProps) => {
             style={{
               marginLeft: marginBetweenCandles,
               width: widthOfCandle,
-              height: heightScale * d.difference,
+              height: heightScale * d[selected],
               backgroundColor: color,
               opacity: 0.7,
               borderWidth: d.date === pressedData.date ? 2 : 0,
@@ -103,6 +113,11 @@ const CandleCharts = (props: CandleProps) => {
           />
         })}
       </ScrollView>
+      <ChipList
+        data={getDataKeys(data)}
+        selected={selected}
+        setSelected={(s: string) => setSelected(s)}
+      />
     </View>
   )
 }
