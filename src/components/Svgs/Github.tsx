@@ -7,7 +7,7 @@ const SvgGithub = (props: SvgProps) => {
       width={24}
       height={24}
       fill="none"
-      stroke="currentColor"
+      stroke="black"
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"

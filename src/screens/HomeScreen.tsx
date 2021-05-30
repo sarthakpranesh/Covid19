@@ -13,7 +13,7 @@ import {
 import { View as MotiView } from 'moti'
 
 // importing components
-import { Github } from '../components/Svgs/index'
+import { Github, Vaccine } from '../components/Svgs/index'
 import SafeAreaView from '../components/SafeAreaView'
 import Country from '../components/Country'
 import CandleCharts from '../components/CandleCharts'
@@ -23,6 +23,9 @@ import { updateData } from '../reducers/DataReducer'
 
 // importing API functions
 import getCovidData from '../API/functions/getCovidData'
+
+// importing raw vaccine site data
+import vaccineData from '../rawVaccine'
 
 // import common style
 import Styles from '../Styles'
@@ -42,25 +45,57 @@ const HomeScreen = (props: any) => {
 
   return (
     <SafeAreaView>
-      <TouchableOpacity
-        style={{
-          position: 'absolute',
-          top: 10,
-          right: 10,
-          backgroundColor: 'white',
-          borderRadius: 8,
-          elevation: 8,
-          zIndex: 999
+      <MotiView
+        style={styles.topIconsContainer}
+        from={{
+          opacity: 0
         }}
-        onPress={() => Linking.openURL('https://github.com/sarthakpranesh/Covid19')}
+        animate={{
+          opacity: 1
+        }}
+        transition={{
+          type: 'timing',
+          duration: 200,
+          delay: 400
+        }}
       >
-        <Github
+        <TouchableOpacity
           style={{
-            margin: 8
+            backgroundColor: 'white',
+            borderRadius: 8,
+            elevation: 8,
+            marginRight: 6
           }}
-          color="black"
-        />
-      </TouchableOpacity>
+          onPress={() => Linking.openURL('https://github.com/sarthakpranesh/Covid19')}
+        >
+          <Github
+            style={{
+              margin: 8
+            }}
+            color="black"
+          />
+        </TouchableOpacity>
+        {
+          Object.keys(vaccineData).includes(country.toLowerCase()) ? (
+            <TouchableOpacity
+              style={{
+                backgroundColor: 'white',
+                borderRadius: 8,
+                elevation: 8,
+                marginRight: 6
+              }}
+              onPress={() => Linking.openURL(vaccineData[country.toLowerCase()])}
+            >
+              <Vaccine
+                style={{
+                  margin: 8
+                }}
+                color="black"
+              />
+            </TouchableOpacity>
+          ) : null
+        }
+      </MotiView>
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
@@ -139,6 +174,16 @@ const HomeScreen = (props: any) => {
 }
 
 const styles = StyleSheet.create({
+  topIconsContainer: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    zIndex: 999,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   mainHeaderImage: {
     width: 200,
     height: 40,
