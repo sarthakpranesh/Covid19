@@ -24,7 +24,7 @@
     "node-fetch": "^2.6.1",
     "react": "16.13.1",
     "react-dom": "16.11.0",
-    "react-native": "0.63.4",
+    "react-native": "0.64.1",
     "react-native-geolocation-service": "^5.0.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^2.0.0",
