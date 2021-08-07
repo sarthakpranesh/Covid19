@@ -43,18 +43,23 @@ export const fetchTimelineData: (country: String) => Promise<TimelineData[]> = (
     ])
       .then(([casesTimeline, vaccineTimeline]) => {
         const dateKeys = Object.keys(casesTimeline.cases)
+        let lastRecovered = 0
         const filteredData: TimelineData[] = dateKeys.map((date) => {
+          // temporary check as total recovery went 0 in latest data
+          // remove once APIs are fixed
+          lastRecovered = lastRecovered > casesTimeline.recovered[date] ? lastRecovered : casesTimeline.recovered[date]
           const r: TimelineData = {
             date: date,
             active:
-              casesTimeline.cases[date] - (casesTimeline.recovered[date] + casesTimeline.deaths[date]),
+              casesTimeline.cases[date] - (lastRecovered + casesTimeline.deaths[date]),
             vaccinated: vaccineTimeline[date] || 0,
             total: casesTimeline.cases[date],
-            recovered: casesTimeline.recovered[date],
+            recovered: lastRecovered,
             deaths: casesTimeline.deaths[date]
           }
           return r
         })
+        console.log(filteredData[filteredData.length - 1])
         resolve(filteredData)
       })
       .catch((err) => {
