@@ -60,7 +60,7 @@ const MainApp = () => {
       if (status === "granted") {
         const locationFetched = await Location.getLastKnownPositionAsync({});
         if (locationFetched) {
-          location = locationFetched.coords;
+          location = locationFetched;
         }
       }
       await fetchAndSetCountry(location.coords);
