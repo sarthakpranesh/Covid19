@@ -8,14 +8,12 @@ import * as React from "react";
 
 // import screens
 import HomeScreen from "../screens/HomeScreen";
-// importing services
-import { CombinedDarkTheme } from "../services/themes";
 
 const Stack = createStackNavigator();
 
 const RootNavigator = () => {
   return (
-    <NavigationContainer theme={CombinedDarkTheme}>
+    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,

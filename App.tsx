@@ -4,7 +4,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect, useCallback } from "react";
 import { View, Platform } from "react-native";
-import { Provider as PaperProvider } from "react-native-paper";
 import { Provider as ReduxProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -25,7 +24,6 @@ import {
   setCountry,
   updateData,
 } from "./src/services/redux/reducers/DefaultReducer";
-import { CombinedDarkTheme } from "./src/services/themes";
 
 // default location, if permission for location not provided
 const INDIA: Location.LocationObject | null = {
@@ -106,10 +104,8 @@ const MainApp = () => {
 
   return (
     <View onLayout={onLayout} style={{ flex: 1 }}>
-      <PaperProvider theme={CombinedDarkTheme}>
-        <StatusBar style="auto" />
-        <RootNavigator />
-      </PaperProvider>
+      <StatusBar style="auto" />
+      <RootNavigator />
     </View>
   );
 };

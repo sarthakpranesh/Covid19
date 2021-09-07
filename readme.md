@@ -12,21 +12,18 @@
 
 <br />
 
-## Android + iOS + [Web](https://covid19rn.vercel.app/)
+## RNE(Android + iOS + [Web](https://covid19rn.vercel.app/) + Desktop)
 
 </div>
 
 <br />
 
 ## Introduction
-
-<p>
 Covid19 is a React-Native project developed in support of people suffering and affected due to Covid-19 {Corona} virus all around the world. The app takes a very simple and light weight design keeping in mind proper responsiveness throughout different platforms like android, iOS and web. The app lets the user track the growth of active cases in their country and provides statistics from all around the world.
-</p>
 
-<p>
-v3.0.0 Introduces web support using `react-native-web` allowing the same codebase to be used on the web platform as a PWA apart from the Android and iOS support with code sharing of about 96-97%. My focus right now is: fully cross-platform app available on android, iOS and web, light weight (with good performance on the web) and more statical information and inference of the covid data.
-</p>
+
+This project uses [react-native-everywhere](https://github.com/sarthakpranesh/react-native-everywhere) template from version `v4.0.0`. This allows the app to be available for Android, iOS, Web and Desktop. Installable binaries for each platform is present in the latest release of the app.
+
 
 <br />
 
@@ -62,6 +59,10 @@ For IOS:
 
 For Web: you can close metro bundler not required for web builds
 1. `yarn web` - the project will build and the site will open automatically
+
+For Desktop:
+1. `yarn web`
+2. `yarn desktop`
 
 <br/>
 
