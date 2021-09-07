@@ -1,15 +1,9 @@
-import * as React from 'react'
-import Svg, { SvgProps, Path } from 'react-native-svg'
+import * as React from "react";
+import Svg, { SvgProps, Path } from "react-native-svg";
 
 const SvgVaccine = (props: SvgProps) => {
   return (
-    <Svg
-      width={24}
-      height={24}
-      fill="none"
-      stroke="black"
-      {...props}
-    >
+    <Svg width={24} height={24} fill="none" stroke="black" {...props}>
       <Path
         d="M8.187 20.385A1.308 1.308 0 017.255 20L4 16.745a1.318 1.318 0 010-1.864l8.662-8.663a.324.324 0 01.459 0l4.66 4.66a.324.324 0 010 .459l-8.663 8.662a1.308 1.308 0 01-.932.386zm4.706-13.48L4.46 15.339a.67.67 0 000 .948l3.253 3.255a.686.686 0 00.947 0l8.433-8.433-4.2-4.202z"
         fill="#000"
@@ -23,7 +17,7 @@ const SvgVaccine = (props: SvgProps) => {
         fill="#000"
       />
     </Svg>
-  )
-}
+  );
+};
 
-export default SvgVaccine
+export default SvgVaccine;

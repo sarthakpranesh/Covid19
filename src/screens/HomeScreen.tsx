@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { View as MotiView } from "moti";
+import React, { useState, useCallback } from "react";
 import {
   View,
   StyleSheet,
@@ -8,98 +7,94 @@ import {
   RefreshControl,
   ScrollView,
   TouchableOpacity,
-  Linking
-} from 'react-native'
-import { View as MotiView } from 'moti'
+  Linking,
+} from "react-native";
 
 // importing components
-import { Github, Vaccine } from '../components/Svgs/index'
-import SafeAreaView from '../components/SafeAreaView'
-import Country from '../components/Country'
-import CandleCharts from '../components/CandleCharts'
-
-// importing reducers
-import { updateData } from '../reducers/DataReducer'
-
-// importing API functions
-import getCovidData from '../API/functions/getCovidData'
-
-// importing raw vaccine site data
-import vaccineData from '../rawVaccine'
-
-// import common style
-import Styles from '../Styles'
+import Styles from "../Styles";
+import CandleCharts from "../components/CandleCharts";
+import Country from "../components/Country";
+import SafeAreaView from "../components/SafeAreaView";
+import { Github, Vaccine } from "../components/Svgs/index";
+// import raw data
+import vaccineData from "../rawVaccine";
+// importing services
+import getCovidData from "../services/API/functions/getCovidData";
+import { useAppDispatch, useAppSelector } from "../services/redux";
+import { updateData } from "../services/redux/reducers/DefaultReducer";
 
 const HomeScreen = (props: any) => {
-  const [refreshing, setRefresh] = useState<boolean>(false)
+  const defaultState = useAppSelector((state) => state.root.default);
+  const dispatch = useAppDispatch();
+  const [refreshing, setRefresh] = useState<boolean>(false);
 
   const onRefresh = useCallback(async () => {
-    setRefresh(true)
-    const data = await getCovidData(props.country)
-    props.updateData(data)
-    setRefresh(false)
-  }, [])
+    setRefresh(true);
+    const data = await getCovidData(props.country);
+    dispatch(updateData(data));
+    setRefresh(false);
+  }, []);
 
-  const results = props.data
-  const country = props.country
+  const results = defaultState.data;
+  const country = defaultState.country;
 
   return (
     <SafeAreaView>
       <MotiView
         style={styles.topIconsContainer}
         from={{
-          opacity: 0
+          opacity: 0,
         }}
         animate={{
-          opacity: 1
+          opacity: 1,
         }}
         transition={{
-          type: 'timing',
+          type: "timing",
           duration: 200,
-          delay: 400
+          delay: 400,
         }}
       >
         <TouchableOpacity
           style={{
-            backgroundColor: 'white',
+            backgroundColor: "white",
             borderRadius: 8,
             elevation: 8,
-            marginRight: 6
+            marginRight: 6,
           }}
-          onPress={() => Linking.openURL('https://github.com/sarthakpranesh/Covid19')}
+          onPress={() =>
+            Linking.openURL("https://github.com/sarthakpranesh/Covid19")
+          }
         >
           <Github
             style={{
-              margin: 8
+              margin: 8,
             }}
             color="black"
           />
         </TouchableOpacity>
-        {
-          Object.keys(vaccineData).includes(country.toLowerCase()) ? (
-            <TouchableOpacity
+        {Object.keys(vaccineData).includes(country.toLowerCase()) ? (
+          <TouchableOpacity
+            style={{
+              backgroundColor: "white",
+              borderRadius: 8,
+              elevation: 8,
+              marginRight: 6,
+            }}
+            onPress={() => Linking.openURL(vaccineData[country.toLowerCase()])}
+          >
+            <Vaccine
               style={{
-                backgroundColor: 'white',
-                borderRadius: 8,
-                elevation: 8,
-                marginRight: 6
+                margin: 8,
               }}
-              onPress={() => Linking.openURL(vaccineData[country.toLowerCase()])}
-            >
-              <Vaccine
-                style={{
-                  margin: 8
-                }}
-                color="black"
-              />
-            </TouchableOpacity>
-          ) : null
-        }
+              color="black"
+            />
+          </TouchableOpacity>
+        ) : null}
       </MotiView>
       <ScrollView
         style={Styles.scrollView}
         contentContainerStyle={Styles.scrollViewContentContainer}
-        alwaysBounceVertical={true}
+        alwaysBounceVertical
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -108,44 +103,44 @@ const HomeScreen = (props: any) => {
         <View style={Styles.mainHeader}>
           <Image
             style={styles.mainHeaderImage}
-            source={require('../../assets/img/ic1.png')}
+            source={require("../../assets/ic1.png")}
           />
         </View>
 
         <MotiView
           from={{
             translateX: 50,
-            opacity: 0
+            opacity: 0,
           }}
           animate={{
             translateX: 0,
-            opacity: 1
+            opacity: 1,
           }}
           transition={{
-            type: 'timing',
-            duration: 200
+            type: "timing",
+            duration: 200,
           }}
         >
           <Country
             data={results?.global}
             countryName="World"
-            containerStyle={'#B1ECFF'}
+            containerStyle="#B1ECFF"
           />
         </MotiView>
 
         <MotiView
           from={{
             translateX: 50,
-            opacity: 0
+            opacity: 0,
           }}
           animate={{
             translateX: 0,
-            opacity: 1
+            opacity: 1,
           }}
           transition={{
-            type: 'timing',
+            type: "timing",
             duration: 200,
-            delay: 200
+            delay: 200,
           }}
         >
           <Country data={results?.country} countryName={country} />
@@ -154,61 +149,47 @@ const HomeScreen = (props: any) => {
         <MotiView
           from={{
             translateX: 50,
-            opacity: 0
+            opacity: 0,
           }}
           animate={{
             translateX: 0,
-            opacity: 1
+            opacity: 1,
           }}
           transition={{
-            type: 'timing',
+            type: "timing",
             duration: 200,
-            delay: 400
+            delay: 400,
           }}
         >
           <CandleCharts country={country} data={results?.timeline} />
         </MotiView>
       </ScrollView>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   topIconsContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     right: 10,
     zIndex: 999,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   mainHeaderImage: {
     width: 200,
     height: 40,
-    alignSelf: 'center',
-    marginBottom: 0
+    alignSelf: "center",
+    marginBottom: 0,
   },
   lineChartContainer: {
     marginVertical: -10,
     paddingVertical: 0,
-    marginBottom: 0
-  }
-})
+    marginBottom: 0,
+  },
+});
 
-const mapStateToProps = (state: any) => {
-  const data = state.dataReducer.data
-  return data
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators(
-    {
-      updateData
-    },
-    dispatch
-  )
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export default HomeScreen;

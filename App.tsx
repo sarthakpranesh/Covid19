@@ -1,128 +1,137 @@
-import React, { useEffect } from 'react'
-import { bindActionCreators } from 'redux'
-import { Provider as ReduxProvider, connect } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
-import { Platform } from 'react-native'
-import Geolocation from 'react-native-geolocation-service'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { preventAutoHideAsync, hideAsync } from 'expo-splash-screen'
+import "react-native-gesture-handler";
+import * as Location from "expo-location";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect, useCallback } from "react";
+import { View, Platform } from "react-native";
+import { Provider as PaperProvider } from "react-native-paper";
+import { Provider as ReduxProvider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
-// importing redux persist stores
-import { store, persister } from './src/stores/stores'
-
-// Importing reducer functions
-import { setCountry, updateData } from './src/reducers/DataReducer'
-
-// Importing API functions
-import getCountry from './src/API/functions/getCountry'
-import getCovidData from './src/API/functions/getCovidData'
-
-// Importing splash screen
-import WebSplashScreen from './src/screens/SplashScreen'
-import HomeScreen from './src/screens/HomeScreen'
-
-// Importing components
-import GeolocationPermissions from './src/components/GeolocationPermissions/GeolocationPermissions'
+// import root navigator
+import RootNavigator from "./src/navigation";
+// importing screens
+import SplashScreenWeb from "./src/screens/SplashScreen.web";
+// importing services
+import getCountry from "./src/services/API/functions/getCountry";
+import getCovidData from "./src/services/API/functions/getCovidData";
+import {
+  store,
+  persister,
+  useAppDispatch,
+  useAppSelector,
+} from "./src/services/redux/index";
+import {
+  setCountry,
+  updateData,
+} from "./src/services/redux/reducers/DefaultReducer";
+import { CombinedDarkTheme } from "./src/services/themes";
 
 // default location, if permission for location not provided
-const INDIA: DefaultGeolocation.GeoCoordinates = {
-  latitude: 28.644800,
-  longitude: 77.216721,
-  accuracy: 0,
-  altitude: 0,
-  altitudeAccuracy: 0,
-  heading: 0,
-  speed: 0
-}
+const INDIA: Location.LocationObject | null = {
+  timestamp: 0,
+  coords: {
+    latitude: 28.6448,
+    longitude: 77.216721,
+    accuracy: 0,
+    altitude: 0,
+    altitudeAccuracy: 0,
+    heading: 0,
+    speed: 0,
+  },
+};
 
-const mapStateToProps = (state: any) => {
-  const data = state.dataReducer.data
-  return data
-}
+const MainApp = () => {
+  const dispatch = useAppDispatch();
+  const defaultState = useAppSelector((state) => state.root.default);
+  const [isAppReady, setIsAppReady] = useState<boolean>(false);
 
-const mapDispatchToProps = (dispatch: any) =>
-  bindActionCreators(
-    {
-      setCountry,
-      updateData
-    },
-    dispatch
-  )
-
-const MainApp = connect(mapStateToProps, mapDispatchToProps)((props: any) => {
   // small helper
-  const fetchAndSetCountry = async (coords: Geolocation.GeoCoordinates) => {
+  const fetchAndSetCountry = async (coords: any) => {
     const country: string = await getCountry({
       long: coords.longitude,
-      lat: coords.latitude
-    })
-    props.setCountry(country)
-  }
+      lat: coords.latitude,
+    });
+    dispatch(setCountry(country));
+  };
 
-  // Get mobile location -> set country
   useEffect(() => {
-    GeolocationPermissions()
-      .then(() => {
-        Geolocation.getCurrentPosition(
-          (pos) => fetchAndSetCountry(pos.coords),
-          (err) => {
-            console.log('Error Getting Position:', err.message)
-            fetchAndSetCountry(INDIA)
-          },
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-        )
-      })
-      .catch((err) => console.log('MainApp -> UseEffect -> Location Error:', err.message))
-  }, [])
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      let location: any = INDIA;
+      if (status === "granted") {
+        const locationFetched = await Location.getLastKnownPositionAsync({});
+        if (locationFetched) {
+          location = locationFetched.coords;
+        }
+      }
+      await fetchAndSetCountry(location.coords);
+    })();
+  }, []);
 
   // if mobile location set -> get covid stats
   useEffect(() => {
-    if (props.country !== null) {
-      getCovidData(props.country)
+    if (defaultState.country !== null) {
+      getCovidData(defaultState.country)
         .then((data) => {
-          props.updateData(data)
+          console.log(data);
+          dispatch(updateData(data));
+        })
+        .finally(() => {
+          setIsAppReady(true);
         })
         .catch((err) => {
-          console.log(err)
-        })
+          console.log(err);
+        });
     }
-  }, [props.country])
+  }, [defaultState.country]);
 
-  // hide all implementation of splash screen from native and web
-  useEffect(() => {
-    if (props.data?.global !== undefined) {
-      hideAsync()
+  // use a onLayout callback to avoid flicker when transitioning from splash to rendered app
+  const onLayout = useCallback(async () => {
+    if (isAppReady) {
+      await SplashScreen.hideAsync();
     }
-  }, [props.data?.global])
+  }, [isAppReady]);
 
-  // expo-splash-screen not supported on web
-  // therefore using a extra stack with react native component for splash on web
-  if (Platform.OS === 'web') {
-    if (props.data?.global === undefined) {
-      return <WebSplashScreen />
+  if (
+    !isAppReady ||
+    defaultState.country === null ||
+    defaultState.data === {}
+  ) {
+    if (Platform.OS === "web") {
+      return <SplashScreenWeb />;
     }
+    return null;
   }
 
-  if (props.country === null || props.data?.global === undefined) {
-    return null
-  }
+  return (
+    <View onLayout={onLayout} style={{ flex: 1 }}>
+      <PaperProvider theme={CombinedDarkTheme}>
+        <StatusBar style="auto" />
+        <RootNavigator />
+      </PaperProvider>
+    </View>
+  );
+};
 
-  return <HomeScreen />
-})
-
-const App = () => {
+export default function App() {
+  // make sure the splash screen doesn't auto hide
+  // also remember `expo-splash-screen` is not supported by web
   useEffect(() => {
-    preventAutoHideAsync()
-  }, [])
+    (async () => {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
   return (
     <ReduxProvider store={store}>
       <PersistGate loading={false} persistor={persister}>
-        <SafeAreaProvider>
-          <MainApp />
-        </SafeAreaProvider>
+        <MainApp />
       </PersistGate>
     </ReduxProvider>
-  )
+  );
 }
-
-export default App
