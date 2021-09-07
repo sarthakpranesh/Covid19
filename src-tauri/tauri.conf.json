@@ -1,7 +1,7 @@
 {
   "package": {
-    "productName": "RNE",
-    "version": "1.0.0"
+    "productName": "Covid19",
+    "version": "4.0.0"
   },
   "build": {
     "distDir": "../web-build",
@@ -13,7 +13,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.sarthakpranesh.rne",
+      "identifier": "com.sarthakpranesh.covid19",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -24,8 +24,8 @@
       "externalBin": [],
       "copyright": "Sarthak Pranesh",
       "category": "DeveloperTool",
-      "shortDescription": "RNE is a Expo + Tauri Template",
-      "longDescription": "RNE is a template I (Sarthak Pranesh) made to help me build Beautiful, Efficient, and write once run everywhere apps with Expo (React Native) building to Android, iOS and Web along with Desktop support using Tauri. This template includes some common libraries and configurations that I find myself using in almost all React Native project.",
+      "shortDescription": "Covid19 stats for your country",
+      "longDescription": "Covid19 is a React-Native project developed in support of people suffering and affected due to Covid-19 {Corona} virus all around the world. The app takes a very simple and light weight design keeping in mind proper responsiveness throughout different platforms like android, iOS and web. The app lets the user track the growth of active cases in their country and provides statistics from all around the world.",
       "deb": {
         "depends": [],
         "useBootstrapper": false
@@ -52,7 +52,7 @@
     },
     "windows": [
       {
-        "title": "RNE",
+        "title": "Covid19",
         "width": 800,
         "height": 600,
         "resizable": true,
