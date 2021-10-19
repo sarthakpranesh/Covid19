@@ -1,10 +1,11 @@
-import { fetchTimelineData, TimelineData } from "../DiseaseApi";
 import {
+  fetchTimelineData,
+  TimelineData,
   fetchGlobalData,
   fetchCountryData,
   GlobalCases,
   CountryCases,
-} from "../NinjaApi";
+} from "../Disease";
 
 export type HomeScreenData = {
   global: GlobalCases;
