@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
+// importing services
 import Layout from "../Layout";
+import numberFormatter from "../services/numberFormatter";
 const scale = Layout.fontScale;
 
 export interface RowStackProps {
@@ -31,7 +33,7 @@ class RowStackResult extends Component<RowStackProps> {
                   },
                 ]}
               >
-                {data.confirmed}
+                {numberFormatter(data.confirmed)}
               </Text>
             ) : (
               <Text>...</Text>
@@ -59,7 +61,7 @@ class RowStackResult extends Component<RowStackProps> {
                   },
                 ]}
               >
-                {data.deaths}
+                {numberFormatter(data.deaths)}
               </Text>
             ) : (
               <Text>...</Text>
@@ -87,7 +89,7 @@ class RowStackResult extends Component<RowStackProps> {
                   },
                 ]}
               >
-                {data.recovered}
+                {numberFormatter(data.recovered)}
               </Text>
             ) : (
               <Text>...</Text>
@@ -117,7 +119,7 @@ class RowStackResult extends Component<RowStackProps> {
                   },
                 ]}
               >
-                {data.newConfirmed}
+                {numberFormatter(data.newConfirmed)}
               </Text>
             ) : (
               <Text>...</Text>
@@ -145,7 +147,7 @@ class RowStackResult extends Component<RowStackProps> {
                   },
                 ]}
               >
-                {data.totalSerious}
+                {numberFormatter(data.totalSerious)}
               </Text>
             ) : (
               <Text>...</Text>
@@ -173,7 +175,7 @@ class RowStackResult extends Component<RowStackProps> {
                   },
                 ]}
               >
-                {data.deathsToday}
+                {numberFormatter(data.deathsToday)}
               </Text>
             ) : (
               <Text>...</Text>

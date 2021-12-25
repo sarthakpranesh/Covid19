@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView, Text, Dimensions } from "react-native";
 
 // importing components
 import Layout from "../Layout";
+import numberFormatter from "../services/numberFormatter";
 import Candle from "./Candle";
 import ChipList from "./ChipList/ChipList";
 
@@ -52,7 +53,9 @@ const CandleCharts = (props: CandleProps) => {
     heightScale = width / max;
   }
 
-  const selectedText = `${selected.toUpperCase()}: ${pressedData[selected]}`;
+  const selectedText = `${selected.toUpperCase()}: ${numberFormatter(
+    pressedData[selected]
+  )}`;
 
   return (
     <View style={styles.countrySection}>
