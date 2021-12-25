@@ -2,7 +2,7 @@
   "expo": {
     "name": "Covid19",
     "slug": "Covid19",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

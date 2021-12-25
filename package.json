@@ -1,5 +1,4 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -7,8 +6,9 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "desktop": "tauri dev",
-    "build-android": "expo build:android",
-    "build-ios": "expo build:ios",
+    "build-android": "eas build --platform android --profile apk",
+    "build-android-store": "eas build --platform android",
+    "build-ios-store": "eas build --platform ios",
     "build-web": "expo build:web",
     "build-desktop": "tauri build",
     "lint": "eslint ."
@@ -27,6 +27,7 @@
     "expo-location": "~12.1.2",
     "expo-splash-screen": "~0.11.2",
     "expo-status-bar": "~1.0.4",
+    "expo-system-ui": "^1.1.0",
     "moti": "^0.14.2",
     "react": "16.13.1",
     "react-dom": "^17.0.2",
@@ -51,9 +52,9 @@
     "@types/redux-logger": "^3.0.9",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-expo": "^8.4.1",
     "eslint": "^7.32.0",
-    "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint-config-universe": "^7.0.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.3.2",
