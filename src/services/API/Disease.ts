@@ -13,10 +13,10 @@ export type CountryCases = GlobalCases;
 
 export type TimelineData = {
   date: string;
-  active: number;
+  // active: number;
   vaccinated: number;
   total: number;
-  recovered: number;
+  // recovered: number;
   deaths: number;
 };
 
@@ -117,12 +117,12 @@ export const fetchTimelineData: (country: string) => Promise<TimelineData[]> = (
               : casesTimeline.recovered[date];
           const r: TimelineData = {
             date,
-            active:
-              casesTimeline.cases[date] -
-              (lastRecovered + casesTimeline.deaths[date]),
+            // active:
+            //   casesTimeline.cases[date] -
+            //   (lastRecovered + casesTimeline.deaths[date]),
             vaccinated: vaccineTimeline[date] || 0,
             total: casesTimeline.cases[date],
-            recovered: lastRecovered,
+            // recovered: lastRecovered,
             deaths: casesTimeline.deaths[date],
           };
           return r;
